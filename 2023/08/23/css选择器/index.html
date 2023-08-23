@@ -16,15 +16,15 @@
   <meta name="author" content="Ye">
   <meta name="keywords" content="">
   
-    <meta name="description" content="引入方式12345678910111213&lt;!-- 内嵌式 --&gt;&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;w">
+    <meta name="description" content="引入方式引入方式有以下三种： 1.内嵌式 2.外联式 3.行内式 12345678910111213&lt;!-- 内嵌式 --&gt;&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;    &lt;meta name&#x3D;&quot;v">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS选择器">
 <meta property="og:url" content="https://bayeeaa.github.io/2023/08/23/css%E9%80%89%E6%8B%A9%E5%99%A8/index.html">
 <meta property="og:site_name" content="ye&#39;s blog">
-<meta property="og:description" content="引入方式12345678910111213&lt;!-- 内嵌式 --&gt;&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;w">
+<meta property="og:description" content="引入方式引入方式有以下三种： 1.内嵌式 2.外联式 3.行内式 12345678910111213&lt;!-- 内嵌式 --&gt;&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;    &lt;meta name&#x3D;&quot;v">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-08-23T04:35:42.000Z">
-<meta property="article:modified_time" content="2023-08-23T04:35:24.913Z">
+<meta property="article:modified_time" content="2023-08-23T04:42:22.252Z">
 <meta property="article:author" content="Ye">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -272,7 +272,11 @@
             
               <div class="markdown-body">
                 
-                <h1 id="引入方式"><a href="#引入方式" class="headerlink" title="引入方式"></a>引入方式</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;!-- 内嵌式 --&gt;<br>&lt;!DOCTYPE <span class="hljs-selector-tag">html</span>&gt;<br>&lt;<span class="hljs-selector-tag">html</span> lang=&quot;en&quot;&gt;<br>&lt;head&gt;<br>    &lt;meta charset=&quot;UTF-<span class="hljs-number">8</span>&quot;&gt;<br>    &lt;meta name=&quot;viewport&quot; <span class="hljs-attribute">content</span>=&quot;<span class="hljs-attribute">width</span>=device-<span class="hljs-attribute">width</span>, initial-scale=<span class="hljs-number">1.0</span>&quot;&gt;<br>    &lt;title&gt;Document&lt;/title&gt;<br>    &lt;style&gt;<br>        colour&#123;<br>			colour:pink;<br>        &#125;<br>    &lt;/style&gt;<br>&lt;/head&gt;<br></code></pre></td></tr></table></figure>
+                <h1 id="引入方式"><a href="#引入方式" class="headerlink" title="引入方式"></a>引入方式</h1><p>引入方式有以下三种：</p>
+<p>1.内嵌式</p>
+<p>2.外联式</p>
+<p>3.行内式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;!-- 内嵌式 --&gt;<br>&lt;!DOCTYPE <span class="hljs-selector-tag">html</span>&gt;<br>&lt;<span class="hljs-selector-tag">html</span> lang=&quot;en&quot;&gt;<br>&lt;head&gt;<br>    &lt;meta charset=&quot;UTF-<span class="hljs-number">8</span>&quot;&gt;<br>    &lt;meta name=&quot;viewport&quot; <span class="hljs-attribute">content</span>=&quot;<span class="hljs-attribute">width</span>=device-<span class="hljs-attribute">width</span>, initial-scale=<span class="hljs-number">1.0</span>&quot;&gt;<br>    &lt;title&gt;Document&lt;/title&gt;<br>    &lt;style&gt;<br>        colour&#123;<br>			colour:pink;<br>        &#125;<br>    &lt;/style&gt;<br>&lt;/head&gt;<br></code></pre></td></tr></table></figure>
 
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;!-- 外联式 --&gt;<br>&lt;!DOCTYPE <span class="hljs-selector-tag">html</span>&gt;<br>&lt;<span class="hljs-selector-tag">html</span> lang=&quot;en&quot;&gt;<br>&lt;head&gt;<br>    &lt;meta charset=&quot;UTF-<span class="hljs-number">8</span>&quot;&gt;<br>    &lt;meta name=&quot;viewport&quot; <span class="hljs-attribute">content</span>=&quot;<span class="hljs-attribute">width</span>=device-<span class="hljs-attribute">width</span>, initial-scale=<span class="hljs-number">1.0</span>&quot;&gt;<br>    &lt;title&gt;Document&lt;/title&gt;<br>    &lt;link rel=&quot;stylesheet&quot; href=&quot;./<span class="hljs-number">111</span><span class="hljs-selector-class">.css</span>&quot;&gt;<br>	&lt;!-- <span class="hljs-number">111</span>为引入文件名 --&gt;<br>&lt;/head&gt;<br></code></pre></td></tr></table></figure>
 
