@@ -1,0 +1,646 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.jpg">
+  <link rel="icon" href="/img/fluid.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ye">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="title: 爬虫 — 以爬取笔趣阁小说为例date: 2023-08-31 12:07:42tags: 爬虫 — 以爬取笔趣阁小说为例1.发送请求123456import requestsurl &#x3D; &quot;https:&#x2F;&#x2F;www.xzmncy.com&#x2F;list&#x2F;5418&#x2F;2610707.html&quot;headers &#x3D; &amp;#123;    &quot;User-Agent&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ye&#39;s blog">
+<meta property="og:url" content="https://bayeeaa.github.io/2023/08/31/%E7%88%AC%E8%99%AB%20---%20%E4%BB%A5%E7%88%AC%E5%8F%96%E7%AC%94%E8%B6%A3%E9%98%81%E5%B0%8F%E8%AF%B4%E4%B8%BA%E4%BE%8B/index.html">
+<meta property="og:site_name" content="ye&#39;s blog">
+<meta property="og:description" content="title: 爬虫 — 以爬取笔趣阁小说为例date: 2023-08-31 12:07:42tags: 爬虫 — 以爬取笔趣阁小说为例1.发送请求123456import requestsurl &#x3D; &quot;https:&#x2F;&#x2F;www.xzmncy.com&#x2F;list&#x2F;5418&#x2F;2610707.html&quot;headers &#x3D; &amp;#123;    &quot;User-Agent&quot;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:\Users\yyn19\AppData\Roaming\Typora\typora-user-images\image-20230831120348951.png">
+<meta property="article:published_time" content="2023-08-31T04:07:49.696Z">
+<meta property="article:modified_time" content="2023-08-31T04:07:43.508Z">
+<meta property="article:author" content="Ye">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="c:\Users\yyn19\AppData\Roaming\Typora\typora-user-images\image-20230831120348951.png">
+  
+  
+  
+  <title>ye&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"bayeeaa.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ye</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-31 12:07" pubdate>
+          August 31, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>title: 爬虫 — 以爬取笔趣阁小说为例<br>date: 2023-08-31 12:07:42<br>tags:</p>
+<h1 id="爬虫-—-以爬取笔趣阁小说为例"><a href="#爬虫-—-以爬取笔趣阁小说为例" class="headerlink" title="爬虫 — 以爬取笔趣阁小说为例"></a>爬虫 — 以爬取笔趣阁小说为例</h1><h4 id="1-发送请求"><a href="#1-发送请求" class="headerlink" title="1.发送请求"></a>1.发送请求</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br>url = <span class="hljs-string">&quot;https://www.xzmncy.com/list/5418/2610707.html&quot;</span><br>headers = &#123;<br>    <span class="hljs-string">&quot;User-Agent&quot;</span> : <span class="hljs-string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0&quot;</span><br>&#125;<br>response = requests.get(url,headers)<br></code></pre></td></tr></table></figure>
+
+<p>这是requests请求，若返回response值为200，则表示请求成功</p>
+<h4 id="2-获取数据"><a href="#2-获取数据" class="headerlink" title="2.获取数据"></a>2.获取数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">response = requests.get(url,headers).text<br></code></pre></td></tr></table></figure>
+
+<p>可以通过以上方法返回得到的html文件内容，而文件中有很多标签在里面，不能直接获取想要的信息，所以需要数据解析</p>
+<h4 id="3-解析数据"><a href="#3-解析数据" class="headerlink" title="3.解析数据"></a>3.解析数据</h4><p>有以下几种途径：css、xpath、re正则表达 等等</p>
+<p>让我们来看看分别用这三种方法怎么去解析到一个章节的标题</p>
+<h5 id="css"><a href="#css" class="headerlink" title="css"></a>css</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> parsel<br>selector = parsel.Selector(response)<br>novel_title = selector.css(<span class="hljs-string">&quot;.bookname h1::text&quot;</span>).get()<br></code></pre></td></tr></table></figure>
+
+<p>这种方法通过css选择器进行选择</p>
+<h5 id="xpath"><a href="#xpath" class="headerlink" title="xpath"></a>xpath</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> parsel<br>selector = parsel.Selector(response)<br>novel_title = selector.xpath(<span class="hljs-string">&quot;//*[@class=&quot;</span>bookname<span class="hljs-string">&quot;]/h1/text()&quot;</span>).get()<br></code></pre></td></tr></table></figure>
+
+<p>注意text后面的()</p>
+<h5 id="re"><a href="#re" class="headerlink" title="re"></a>re</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> re<br>novel_title = re.findall(<span class="hljs-string">&quot;&lt;h1&gt;(.*?)&lt;/h1&gt;&quot;</span>,response)[<span class="hljs-number">0</span>]<br></code></pre></td></tr></table></figure>
+
+<p>这里是因为h1在html文件中只有一个，故我直接导入。获取的数据是一个列表，所以我后面做了个且切片来直接获取字符串</p>
+<p>*注意：以上方法各有利弊，选择合适的方式来解析数据</p>
+<h4 id="4-保存数据"><a href="#4-保存数据" class="headerlink" title="4.保存数据"></a>4.保存数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;file_name&quot;</span>+<span class="hljs-string">&quot;.txt&quot;</span>,mode=<span class="hljs-string">&quot;w&quot;</span>,encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:  <span class="hljs-comment">#w是写入但是覆盖，a是追加写入，写入文件末尾 wb是二进制写入</span><br>f.write(novel_context)  <span class="hljs-comment">#写入文件</span><br></code></pre></td></tr></table></figure>
+
+<p>with open(download_path,mode&#x3D;””,encoding&#x3D;”utf-8”)中间的download_path可以写绝对路径</p>
+<h4 id="以上思路已经理清楚了，下面开始实践："><a href="#以上思路已经理清楚了，下面开始实践：" class="headerlink" title="以上思路已经理清楚了，下面开始实践："></a>以上思路已经理清楚了，下面开始实践：</h4><h3 id="爬取一章"><a href="#爬取一章" class="headerlink" title="爬取一章"></a>爬取一章</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> parsel<br><span class="hljs-keyword">import</span> requests<br>url = <span class="hljs-string">&quot;https://www.xzmncy.com/list/5418/2610707.html&quot;</span><br>headers = &#123;<br>    <span class="hljs-string">&quot;User-Agent&quot;</span> : <span class="hljs-string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0&quot;</span><br>&#125;<br>response = requests.get(url,headers).text<br><br>selector = parsel.Selector(response)<br>novel_title = selector.css(<span class="hljs-string">&quot;.bookname h1::text&quot;</span>).get() <span class="hljs-comment">#css方法解析数据</span><br><br>novel_context_list = selector.css(<span class="hljs-string">&quot;#htmlContent p::text&quot;</span>).getall() <br>novel_context = <span class="hljs-string">&quot;\n&quot;</span>.join(novel_context_list)<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="爬取各章url"><a href="#爬取各章url" class="headerlink" title="爬取各章url"></a>爬取各章url</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> re<br>url = <span class="hljs-string">&quot;https://www.xzmncy.com/list/18753/&quot;</span><br>headers = &#123;<br>        <span class="hljs-string">&quot;User-Agent&quot;</span> : <span class="hljs-string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0&quot;</span><br>    &#125;<br>response = requests.get(url,headers).text<br>novel_name = re.findall(<span class="hljs-string">&quot;&lt;h1&gt;(.*?)&lt;/h1&gt;&quot;</span>,response)[<span class="hljs-number">0</span>]<br>novel_info = re.findall(<span class="hljs-string">&#x27;&lt;dd&gt;&lt;a href=&quot;(.*?)&quot;&gt;(.*?)&lt;/a&gt;&lt;/dd&gt;&#x27;</span>,response)<br><span class="hljs-keyword">for</span> novel_url_part,novel_title <span class="hljs-keyword">in</span> novel_info:<br>    novel_url = <span class="hljs-string">&quot;https://www.xzmncy.com&quot;</span>+novel_url_part[<span class="hljs-number">0</span>:<span class="hljs-number">24</span>]<br>    <span class="hljs-built_in">print</span>(novel_url)<br>    <span class="hljs-built_in">print</span>(novel_title)<br></code></pre></td></tr></table></figure>
+
+<p>在小说的列表页面我们可以发现每个标签对应的章节url，此时我们获取的数据是这样的：</p>
+<p><img src="C:\Users\yyn19\AppData\Roaming\Typora\typora-user-images\image-20230831120348951.png" srcset="/img/loading.gif" lazyload alt="image-20230831120348951"></p>
+<p>我们就可以用re来解析到各个章节的url和title</p>
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> re<br><span class="hljs-keyword">import</span> parsel<br>url = <span class="hljs-string">&quot;https://www.xzmncy.com/list/18753/&quot;</span><br>headers = &#123;<br>        <span class="hljs-string">&quot;User-Agent&quot;</span> : <span class="hljs-string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0&quot;</span><br>    &#125;<br>response = requests.get(url,headers).text<br>novel_name = re.findall(<span class="hljs-string">&quot;&lt;h1&gt;(.*?)&lt;/h1&gt;&quot;</span>,response)[<span class="hljs-number">0</span>]<br>novel_info = re.findall(<span class="hljs-string">&#x27;&lt;dd&gt;&lt;a href=&quot;(.*?)&quot;&gt;(.*?)&lt;/a&gt;&lt;/dd&gt;&#x27;</span>,response)<br><span class="hljs-keyword">for</span> novel_url_part,novel_title <span class="hljs-keyword">in</span> novel_info:<br>    novel_url = <span class="hljs-string">&quot;https://www.xzmncy.com&quot;</span>+novel_url_part[<span class="hljs-number">0</span>:<span class="hljs-number">24</span>]<br>    novel_response = requests.get(novel_url, headers).text<br>    selectors = parsel.Selector(novel_response)<br>    novel_context_list = selectors.css(<span class="hljs-string">&quot;#htmlContent p::text&quot;</span>).getall()<br>    novel_context = <span class="hljs-string">&quot;\n&quot;</span>.join(novel_context_list)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;正在保存&quot;</span>+novel_title)<br>    novel_title = <span class="hljs-string">&quot;*&quot;</span> + novel_title<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(novel_name+<span class="hljs-string">&quot;.txt&quot;</span>,mode=<span class="hljs-string">&quot;a&quot;</span>) <span class="hljs-keyword">as</span> f:<br>        f.write(novel_title)<br>        f.write(<span class="hljs-string">&quot;\n&quot;</span>)<br>        f.write(novel_context)<br>        f.write(<span class="hljs-string">&quot;\n&quot;</span>)<br>        f.write(<span class="hljs-string">&quot;\n&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>运行代码就可以看到当前的目录下出现一个txt文件，里面就是想要的小说啦~</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://bayeeaa.github.io/2023/08/31/爬虫 --- 以爬取笔趣阁小说为例/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Ye</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 31, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/23/css%E9%80%89%E6%8B%A9%E5%99%A8/" title="CSS选择器">
+                        <span class="hidden-mobile">CSS选择器</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

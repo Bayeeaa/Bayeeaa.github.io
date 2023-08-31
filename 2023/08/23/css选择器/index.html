@@ -24,7 +24,7 @@
 <meta property="og:description" content="引入方式引入方式有以下三种： 1.内嵌式 12345678910111213&lt;!-- 内嵌式 --&gt;&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;    &lt;meta name&#x3D;&quot;viewport&amp;quot">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-08-23T04:35:42.000Z">
-<meta property="article:modified_time" content="2023-08-23T04:52:20.712Z">
+<meta property="article:modified_time" content="2023-08-24T07:48:46.105Z">
 <meta property="article:author" content="Ye">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -287,7 +287,7 @@
 
 
 <h1 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h1><p>一共有4种：标签选择器、类选择器、id选择器、通符选择器</p>
-<p>注：一下选择器均是在style骨架下的</p>
+<p>注：一下选择器均是在style标签下的</p>
 <h4 id="1-标签"><a href="#1-标签" class="headerlink" title="1.标签"></a>1.标签</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&#123;<br>	<span class="hljs-attribute">color</span>:blue;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>所选类型与body中html的文本类型相符(如上文中，其下文body中应该是div)</p>
@@ -310,7 +310,7 @@
 <h2 id="选择器的选择"><a href="#选择器的选择" class="headerlink" title="选择器的选择"></a>选择器的选择</h2><h4 id="1-后代-（后面所有代）"><a href="#1-后代-（后面所有代）" class="headerlink" title="1.后代  （后面所有代）"></a>1.后代  （后面所有代）</h4><p>问题如下</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span> abab <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span> 哈哈哈 <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p>欲选择div中的p骨架，而不是外部的p</p>
+<p>欲选择div中的p标签，而不是外部的p</p>
 <p>以如下方法实现：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;style&gt;<br>	<span class="hljs-selector-tag">div</span> <span class="hljs-selector-tag">p</span> &#123;<br>        <span class="hljs-attribute">color</span>:blue;<br>	&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
 
@@ -324,7 +324,7 @@
 
 
 
-<h4 id="3-并集"><a href="#3-并集" class="headerlink" title="3.并集"></a>3.并集</h4><p>问题：想要让以下这些骨架被选到</p>
+<h4 id="3-并集"><a href="#3-并集" class="headerlink" title="3.并集"></a>3.并集</h4><p>问题：想要让以下这些标签被选到</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span> p <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span> div <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span> span <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span> haha <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>以下面方法实现：</p>
@@ -338,7 +338,7 @@
 <p>以下面方法实现：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span><span class="hljs-selector-class">.c</span>&#123;<br>    <span class="hljs-attribute">color</span>:blue;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>p是骨架，c是类名（前面带个.的）</p>
+<p>p是标签，c是类名（前面带个.的）</p>
 <h4 id="5-伪类"><a href="#5-伪类" class="headerlink" title="5.伪类"></a>5.伪类</h4><p>问题：想要让鼠标悬停在如下超链接上能够变色</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;~~~&quot;</span>&gt;</span>传送<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -406,6 +406,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/08/31/%E7%88%AC%E8%99%AB%20---%20%E4%BB%A5%E7%88%AC%E5%8F%96%E7%AC%94%E8%B6%A3%E9%98%81%E5%B0%8F%E8%AF%B4%E4%B8%BA%E4%BE%8B/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
