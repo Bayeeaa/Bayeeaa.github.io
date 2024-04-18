@@ -1,0 +1,750 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.jpg">
+  <link rel="icon" href="/img/fluid.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ye">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="JavaScript基础语法介绍JavaScript介绍1.1 JavaScript是什么是一个运行在浏览器上的编程语言。 1.2JavaScript书写位置内部式： 12345&lt;body&gt;    &lt;script&gt;        alert(&amp;#x27;hey&amp;#x27;)&#x2F;&#x2F;页面弹出警示框    &lt;&#x2F;script&gt;&lt;&#x2F;body&gt;  外部式： 123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript基本语法">
+<meta property="og:url" content="https://bayeeaa.github.io/2024/04/18/JavaScript%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="ye&#39;s blog">
+<meta property="og:description" content="JavaScript基础语法介绍JavaScript介绍1.1 JavaScript是什么是一个运行在浏览器上的编程语言。 1.2JavaScript书写位置内部式： 12345&lt;body&gt;    &lt;script&gt;        alert(&amp;#x27;hey&amp;#x27;)&#x2F;&#x2F;页面弹出警示框    &lt;&#x2F;script&gt;&lt;&#x2F;body&gt;  外部式： 123">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-04-18T04:48:23.000Z">
+<meta property="article:modified_time" content="2024-04-18T04:58:24.586Z">
+<meta property="article:author" content="Ye">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>JavaScript基本语法 - ye&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"bayeeaa.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ye</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JavaScript基本语法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-18 12:48" pubdate>
+          April 18, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          30 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">JavaScript基本语法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="JavaScript基础语法介绍"><a href="#JavaScript基础语法介绍" class="headerlink" title="JavaScript基础语法介绍"></a>JavaScript基础语法介绍</h2><h3 id="JavaScript介绍"><a href="#JavaScript介绍" class="headerlink" title="JavaScript介绍"></a>JavaScript介绍</h3><h4 id="1-1-JavaScript是什么"><a href="#1-1-JavaScript是什么" class="headerlink" title="1.1 JavaScript是什么"></a>1.1 JavaScript是什么</h4><p>是一个运行在浏览器上的编程语言。</p>
+<h4 id="1-2JavaScript书写位置"><a href="#1-2JavaScript书写位置" class="headerlink" title="1.2JavaScript书写位置"></a>1.2JavaScript书写位置</h4><p>内部式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;body&gt;<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;hey&#x27;</span>)<span class="hljs-comment">//页面弹出警示框</span></span></span><br><span class="language-javascript"><span class="language-xml">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br>&lt;/body&gt;<br></code></pre></td></tr></table></figure>
+
+<p>外部式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;body&gt;<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./my.js&quot;</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br>&lt;/body&gt;<br></code></pre></td></tr></table></figure>
+
+<p>使用外部时，script标签里面不要写内容，否则会被忽略。</p>
+<h4 id="1-3JavaScript输入输出语法"><a href="#1-3JavaScript输入输出语法" class="headerlink" title="1.3JavaScript输入输出语法"></a>1.3JavaScript输入输出语法</h4><p>输出语法1：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;body&gt;<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">write</span>(<span class="hljs-string">&#x27;hey&#x27;</span>)</span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">write</span>(<span class="hljs-string">&#x27;&lt;h1&gt; 一级 &lt;/h1&gt;&#x27;</span>)</span></span><br><span class="language-javascript"><span class="language-xml">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br>&lt;/body&gt;<br></code></pre></td></tr></table></figure>
+
+<p>输出语法2：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">        <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;hey&#x27;</span>)<span class="hljs-comment">//页面弹出警示框</span></span><br><span class="language-javascript">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>输出语法3：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;body&gt;<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;haha&#x27;</span>)<span class="hljs-comment">//控制台输出语法，程序员调试使用</span></span></span><br><span class="language-javascript"><span class="language-xml">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br>&lt;/body&gt;<br></code></pre></td></tr></table></figure>
+
+<p>输入语法1：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">prompt</span>(<span class="hljs-string">&#x27;请输入&#x27;</span>)<span class="hljs-comment">//弹出一个对话框</span><br></code></pre></td></tr></table></figure>
+
+<p>prompt输入类型为字符串。</p>
+<h4 id="1-4-字面量"><a href="#1-4-字面量" class="headerlink" title="1.4 字面量"></a>1.4 字面量</h4><p>比如2000 是数字字面量，’hahaha’是字符串字面量，[]数组字面量，{}对象字面量</p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><h4 id="2-1-变量是什么"><a href="#2-1-变量是什么" class="headerlink" title="2.1 变量是什么"></a>2.1 变量是什么</h4><p>白话：用来装数据的盒子。可以用来存放数据。</p>
+<h4 id="2-2-变量的基本使用"><a href="#2-2-变量的基本使用" class="headerlink" title="2.2 变量的基本使用"></a>2.2 变量的基本使用</h4><p>(与c语言定义类似)</p>
+<h5 id="1-声明变量"><a href="#1-声明变量" class="headerlink" title="1.声明变量"></a>1.声明变量</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> variable <span class="hljs-comment">//var存在与老版的JavaScript中</span><br></code></pre></td></tr></table></figure>
+
+<p>age为变量。</p>
+<h5 id="2-变量赋值"><a href="#2-变量赋值" class="headerlink" title="2.变量赋值"></a>2.变量赋值</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">variable = <span class="hljs-number">18</span><br></code></pre></td></tr></table></figure>
+
+<p>variable为变量，18为字面量。</p>
+<p>变量不允许多次定义。</p>
+<p>小小的变量使用一下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;body&gt;<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-keyword">let</span> n=<span class="hljs-title function_">prompt</span>(<span class="hljs-string">&#x27;请输入&#x27;</span>)</span></span><br><span class="language-javascript"><span class="language-xml">        <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">write</span>(n)</span></span><br><span class="language-javascript"><span class="language-xml">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br>&lt;/body&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-3-变量命名规则与规范"><a href="#2-3-变量命名规则与规范" class="headerlink" title="2.3 变量命名规则与规范"></a>2.3 变量命名规则与规范</h4><h5 id="1-规则"><a href="#1-规则" class="headerlink" title="1. 规则"></a>1. 规则</h5><p>①不能用关键字。</p>
+<p>②只能用下划线、字母、数字、＄组成，且不能用数字开头。</p>
+<p>③字母严格区分大小写。</p>
+<h5 id="2-规范"><a href="#2-规范" class="headerlink" title="2.规范"></a>2.规范</h5><p>①起名要有意义。</p>
+<p>②遵守小驼峰命名法。</p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><h4 id="1-1-声明数组"><a href="#1-1-声明数组" class="headerlink" title="1.1 声明数组"></a>1.1 声明数组</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>，<span class="hljs-number">2</span>，<span class="hljs-number">3</span>]<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-2-数组的基本使用"><a href="#1-2-数组的基本使用" class="headerlink" title="1.2 数组的基本使用"></a>1.2 数组的基本使用</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arr[<span class="hljs-number">0</span>]) <span class="hljs-comment">//索引</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arr.<span class="hljs-property">length</span>) <span class="hljs-comment">//获取长度</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><h4 id="1-1-基本使用"><a href="#1-1-基本使用" class="headerlink" title="1.1 基本使用"></a>1.1 基本使用</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> G = <span class="hljs-number">9.8</span><br></code></pre></td></tr></table></figure>
+
+<p>常量不允许重新赋值，声明的时候必须赋值。</p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>js为弱数据类型语言，只有赋值了才知道是什么数据类型。</p>
+<h5 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h5><p>number 数字型</p>
+<p>string 字符串型</p>
+<p>boolean 布尔型</p>
+<p>undefined 未定义型</p>
+<p>null 空类型</p>
+<h5 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h5><p>object 对象</p>
+<h4 id="1-数字类型"><a href="#1-数字类型" class="headerlink" title="1.数字类型"></a>1.数字类型</h4><p>数字类型可以由+ - * &#x2F; %各个符号进行运算。</p>
+<p>NaN (not a number)：表示计算错误。</p>
+<p>NaN是粘性的，任何对NaN的操作都会返回NaN。</p>
+<h4 id="2-字符串"><a href="#2-字符串" class="headerlink" title="2.字符串"></a>2.字符串</h4><p>通过单引号、双引号或反引号包裹的数据都叫字符串。</p>
+<h5 id="字符串拼接："><a href="#字符串拼接：" class="headerlink" title="字符串拼接："></a>字符串拼接：</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;12&#x27;</span>+<span class="hljs-string">&#x27;34&#x27;</span>) <span class="hljs-comment">//字符串可以用加号拼接</span><br><span class="hljs-keyword">let</span> a=<span class="hljs-string">&#x27;k&#x27;</span><br><span class="hljs-keyword">let</span> b=<span class="hljs-string">&#x27;q&#x27;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(k+q)<br></code></pre></td></tr></table></figure>
+
+<h5 id="模板字符串："><a href="#模板字符串：" class="headerlink" title="模板字符串："></a>模板字符串：</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">write</span>(<span class="hljs-string">`大家好，我叫<span class="hljs-subst">$&#123;name&#125;</span>,今年<span class="hljs-subst">$&#123;age&#125;</span>岁`</span>) <span class="hljs-comment">//用反引号,变量用＄&#123;&#125;包裹</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="3-布尔型-bollean"><a href="#3-布尔型-bollean" class="headerlink" title="3.布尔型 (bollean)"></a>3.布尔型 (bollean)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> n=<span class="hljs-literal">true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(n)<br></code></pre></td></tr></table></figure>
+
+<h4 id="4-未定义类型-undefined"><a href="#4-未定义类型-undefined" class="headerlink" title="4.未定义类型 (undefined)"></a>4.未定义类型 (undefined)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> num<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(num) <span class="hljs-comment">//输出undefined</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="5-空类型-null"><a href="#5-空类型-null" class="headerlink" title="5.空类型 (null)"></a>5.空类型 (null)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> obj=<span class="hljs-literal">null</span> <span class="hljs-comment">//表示赋值了一个空的内容</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj) <br></code></pre></td></tr></table></figure>
+
+<p>如果一个变量里面确定存放的是对象，如果还没准备号对象，可以放个null</p>
+<h4 id="6-检测数据类型"><a href="#6-检测数据类型" class="headerlink" title="6.检测数据类型"></a>6.检测数据类型</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">typeof</span> num <span class="hljs-comment">//num为变量</span><br><span class="hljs-title function_">typeof</span>(num)<br></code></pre></td></tr></table></figure>
+
+<h4 id="7-类型转换"><a href="#7-类型转换" class="headerlink" title="7.类型转换"></a>7.类型转换</h4><h5 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h5><p>+号两边只要有一个是字符串，都会把另外一个转成字符串。</p>
+<p>除了+以外的算数运算符，比如- * &#x2F;等都会把数据转成数字类型。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;数字&#x27;</span> + <span class="hljs-number">1</span>) <span class="hljs-comment">//返回&#x27;数字1&#x27;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;1&#x27;</span> + <span class="hljs-number">1</span>) <span class="hljs-comment">//返回&#x27;11&#x27;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;1&#x27;</span> - <span class="hljs-number">1</span>) <span class="hljs-comment">//返回0</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(+<span class="hljs-string">&#x27;123&#x27;</span>) <span class="hljs-comment">//返回123</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="显示转换"><a href="#显示转换" class="headerlink" title="显示转换"></a>显示转换</h5><p>通过函数来进行数据转换：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Number</span>(str) <span class="hljs-comment">//转换为数字类型</span><br><span class="hljs-keyword">let</span> num = +<span class="hljs-title function_">prompt</span>(<span class="hljs-string">&#x27;输入&#x27;</span>) <span class="hljs-comment">//输入的可以转换为数字类型</span><br></code></pre></td></tr></table></figure>
+
+<p>parse系列：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">parseInt</span>(num) <span class="hljs-comment">//只保留数字且只保留整数</span><br><span class="hljs-built_in">parseFloat</span>(num) <span class="hljs-comment">//保留数字并保留小数</span><br><span class="hljs-built_in">parseInt</span>(12px) <span class="hljs-comment">//12 </span><br><span class="hljs-built_in">parseFloat</span>(<span class="hljs-number">12.</span>86px) <span class="hljs-comment">//12.86</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h3><h4 id="一元运算符"><a href="#一元运算符" class="headerlink" title="一元运算符"></a>一元运算符</h4><h5 id="前置自增"><a href="#前置自增" class="headerlink" title="前置自增"></a>前置自增</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> i=<span class="hljs-number">1</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(++i + <span class="hljs-number">2</span>) <span class="hljs-comment">//2+2=4</span><br></code></pre></td></tr></table></figure>
+
+<p>先自加再使用。</p>
+<h5 id="后置自增"><a href="#后置自增" class="headerlink" title="后置自增"></a>后置自增</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> i=<span class="hljs-number">1</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i++ + <span class="hljs-number">2</span>) <span class="hljs-comment">//1+2=3 此时i已经为2，但是没有参与运算</span><br></code></pre></td></tr></table></figure>
+
+<p>先使用再自加。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> i=<span class="hljs-number">1</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i++ + ++i + i) <span class="hljs-comment">//1+3+3=7 第二个i时i为2</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&gt;<br>&lt;<br>&gt;=<br>&lt;=<br>== <span class="hljs-comment">//左右两边值是否相等</span><br>===	<span class="hljs-comment">//左右两边是否类型和值都相等</span><br>!== <span class="hljs-comment">//左右两边是否不全等</span><br></code></pre></td></tr></table></figure>
+
+<p>NaN不等于任何人，包括它自己。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">NaN</span> === <span class="hljs-title class_">NaN</span>) <span class="hljs-comment">//false</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">if</span> (条件) &#123;<br>	满足条件执行的代码<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>条件中只有数字0或者空字符会触发false，其余都是true。</p>
+<h4 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h4><p>可以代替if双分支。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">条件 ? 满足条件执行的代码 : 不满足条件执行的代码<br></code></pre></td></tr></table></figure>
+
+<p>例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">if</span>(<span class="hljs-number">3</span>&lt;<span class="hljs-number">5</span>)&#123;<br>	<span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;真的&#x27;</span>)<br>&#125;<br><span class="hljs-keyword">else</span>&#123;<br>	<span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;假的&#x27;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>和</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-number">3</span>&lt;<span class="hljs-number">5</span> ? <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;真的&#x27;</span>) : <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;假的&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>等价。</p>
+<p>还可以作赋值操作：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> sum = <span class="hljs-number">3</span> &lt; <span class="hljs-number">5</span> ? <span class="hljs-number">3</span> : <span class="hljs-number">5</span> <span class="hljs-comment">//sum=3</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="数字补0例子"><a href="#数字补0例子" class="headerlink" title="数字补0例子"></a>数字补0例子</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> num = <span class="hljs-title function_">prompt</span>(<span class="hljs-string">&#x27;请您输入一个数字&#x27;</span>) <span class="hljs-comment">//类型为string</span><br>num = num &lt; <span class="hljs-number">10</span> ? <span class="hljs-number">0</span> + num : num <span class="hljs-comment">//判断小于10才补0</span><br><span class="hljs-title function_">alert</span>(num)<br></code></pre></td></tr></table></figure>
+
+<p>输入9，输出09</p>
+<p>输入11，输出11</p>
+<h3 id="数组-1"><a href="#数组-1" class="headerlink" title="数组"></a>数组</h3><h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arr[<span class="hljs-number">0</span>])<br></code></pre></td></tr></table></figure>
+
+<h4 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]<br>arr[<span class="hljs-number">0</span>]=<span class="hljs-number">3</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arr[<span class="hljs-number">0</span>]) <span class="hljs-comment">//[3,2,3]</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="增加"><a href="#增加" class="headerlink" title="增加"></a>增加</h4><p>push() 添加数组末尾</p>
+<p>unshift() 添加数组开头</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]<br>arr.<span class="hljs-title function_">push</span>(<span class="hljs-number">4</span>) <span class="hljs-comment">//[1,2,3,4]</span><br>arr.<span class="hljs-title function_">push</span>(<span class="hljs-number">4</span>,<span class="hljs-number">5</span>) <span class="hljs-comment">//[1,2,3,4,5]</span><br>arr.<span class="hljs-title function_">unshift</span>(<span class="hljs-number">0</span>) <span class="hljs-comment">//[0,1,2,3]</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><p>pop() 弹出最后一个元素</p>
+<p>shift() 弹出第一个元素</p>
+<p>splice() 切片删除  &#x2F;&#x2F;arr.plice(起始位置，删除几个)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]<br>arr.<span class="hljs-title function_">pop</span>() <span class="hljs-comment">//[1,2]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arr.<span class="hljs-title function_">pop</span>()) <span class="hljs-comment">//3</span><br>arr.<span class="hljs-title function_">shift</span>() <span class="hljs-comment">//[2,3]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arr.<span class="hljs-property">shift</span>) <span class="hljs-comment">//1</span><br>arr.<span class="hljs-title function_">splice</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>) <span class="hljs-comment">//[1,3]</span><br>arr.<span class="hljs-title function_">splice</span>(<span class="hljs-number">1</span>) <span class="hljs-comment">//[1] 删除索引1后面的所有</span><br>arr.<span class="hljs-title function_">splice</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>) <span class="hljs-comment">//[1]</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-keyword">function</span> <span class="hljs-title">函数名</span>() &#123;<br>	函数体<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>调用:</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gcode">函数名<span class="hljs-comment">()</span><br></code></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> sayhi&#123;<br>	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;hi&#x27;</span>)<br>&#125;<br><br><span class="hljs-title function_">sayhi</span>()<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JavaScript基本语法</div>
+      <div>https://bayeeaa.github.io/2024/04/18/JavaScript基本语法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Ye</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 18, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/04/18/c-%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/" title="c++基础数据结构之栈、队列、链表">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">c++基础数据结构之栈、队列、链表</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/18/%E7%A7%92%E8%BD%AC%E6%8D%A2%E6%97%B6%E9%97%B4/" title="如何优雅的将秒换算成-时:分:秒？">
+                        <span class="hidden-mobile">如何优雅的将秒换算成-时:分:秒？</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

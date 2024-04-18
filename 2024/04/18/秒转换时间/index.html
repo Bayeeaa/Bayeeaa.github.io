@@ -16,21 +16,21 @@
   <meta name="author" content="Ye">
   <meta name="keywords" content="">
   
-    <meta name="description" content="CSS背景背景颜色background-color(bgc) 123div &amp;#123;	background-color: pink;&amp;#125;  颜色取值可以用：关键字、rgb表示法、rgba表示法、十六进制… 背景图片background-image(bgi) 123div &amp;#123;	background-image: url(&amp;#x27;图片的路径&amp;#x27;);&amp;#125;  ①背">
+    <meta name="description" content="如何优雅的将秒换算成-时:分:秒？思路先看一下题目，发现就是一道模拟题，但是又一些细节的。 首先是数据的规模：时间不超过 10^18,所以需要开 long long。 然后首先要忽略掉毫秒。 这里普及一个知识:1s &#x3D; 1000ms 所以需要忽略后面的三位。直接整除 1000 就可以了。 之后就是处理时分秒了： 1.小时由于只是算一天，24 小时之内，所以要把完整的一天去掉，也就是把对每">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css背景">
-<meta property="og:url" content="https://bayeeaa.github.io/2024/01/20/css-bgc/index.html">
+<meta property="og:title" content="如何优雅的将秒换算成-时:分:秒？">
+<meta property="og:url" content="https://bayeeaa.github.io/2024/04/18/%E7%A7%92%E8%BD%AC%E6%8D%A2%E6%97%B6%E9%97%B4/index.html">
 <meta property="og:site_name" content="ye&#39;s blog">
-<meta property="og:description" content="CSS背景背景颜色background-color(bgc) 123div &amp;#123;	background-color: pink;&amp;#125;  颜色取值可以用：关键字、rgb表示法、rgba表示法、十六进制… 背景图片background-image(bgi) 123div &amp;#123;	background-image: url(&amp;#x27;图片的路径&amp;#x27;);&amp;#125;  ①背">
+<meta property="og:description" content="如何优雅的将秒换算成-时:分:秒？思路先看一下题目，发现就是一道模拟题，但是又一些细节的。 首先是数据的规模：时间不超过 10^18,所以需要开 long long。 然后首先要忽略掉毫秒。 这里普及一个知识:1s &#x3D; 1000ms 所以需要忽略后面的三位。直接整除 1000 就可以了。 之后就是处理时分秒了： 1.小时由于只是算一天，24 小时之内，所以要把完整的一天去掉，也就是把对每">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-01-20T04:25:09.000Z">
-<meta property="article:modified_time" content="2024-01-20T04:25:56.969Z">
+<meta property="article:published_time" content="2024-04-18T01:29:59.000Z">
+<meta property="article:modified_time" content="2024-04-18T04:45:48.735Z">
 <meta property="article:author" content="Ye">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>css背景 - ye&#39;s blog</title>
+  <title>如何优雅的将秒换算成-时:分:秒？ - ye&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="css背景"></span>
+            <span id="subtitle" data-typed-text="如何优雅的将秒换算成-时:分:秒？"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-01-20 12:25" pubdate>
-          January 20, 2024 pm
+        <time datetime="2024-04-18 09:29" pubdate>
+          April 18, 2024 am
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          877 words
+          948 words
         
       </span>
     
@@ -267,47 +267,27 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">css背景</h1>
+            <h1 id="seo-header">如何优雅的将秒换算成-时:分:秒？</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="CSS背景"><a href="#CSS背景" class="headerlink" title="CSS背景"></a>CSS背景</h2><h3 id="背景颜色"><a href="#背景颜色" class="headerlink" title="背景颜色"></a>背景颜色</h3><p>background-color(bgc)</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>	<span class="hljs-attribute">background-color</span>: pink;<br>&#125;<br></code></pre></td></tr></table></figure>
+                <h2 id="如何优雅的将秒换算成-时-分-秒？"><a href="#如何优雅的将秒换算成-时-分-秒？" class="headerlink" title="如何优雅的将秒换算成-时:分:秒？"></a>如何优雅的将秒换算成-时:分:秒？</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>先看一下题目，发现就是一道模拟题，但是又一些细节的。</p>
+<p>首先是数据的规模：时间不超过 10^18,所以需要开 long long。</p>
+<p>然后首先要忽略掉毫秒。</p>
+<p>这里普及一个知识:1<em>s</em> &#x3D; 1000ms</p>
+<p>所以需要忽略后面的三位。直接整除 1000 就可以了。</p>
+<p>之后就是处理时分秒了：</p>
+<h4 id="1-小时"><a href="#1-小时" class="headerlink" title="1.小时"></a>1.小时</h4><p>由于只是算一天，24 小时之内，所以要把完整的一天去掉，也就是把对每天的秒数取余，余数就是除了整天剩余的秒数，每天的秒数用<code>24*60*60</code>来表示（当然你也可以直接算出来结果是86400）。然后用最后一天剩余的秒数整除每小时的秒数<code>60*60</code>（也就是3600），就是小时值了。</p>
+<h4 id="2-分钟"><a href="#2-分钟" class="headerlink" title="2.分钟"></a>2.分钟</h4><p>分钟要先对每小时的秒数<code>60*60</code>取余，余数就是除了整小时以外剩余的秒数。之后整除 6060 就是剩余的秒数中整分钟的数，就是分钟值了。</p>
+<h4 id="3-秒"><a href="#3-秒" class="headerlink" title="3.秒"></a>3.秒</h4><p>直接对60取余，剩下的就是秒了。</p>
+<p>时间的处理就搞好了。下面就是输出了，题目要求时、分、秒不足两位时补前导 00。所以这是一个细节。</p>
+<p>当然你可以用printf进行域宽的输出，但是我这里介绍一个用cin的方法。</p>
+<p>要用到两个函数：</p>
+<p>一个是<code>setw()</code>函数，这个函数可以限定域宽，宽度就是括号里的数字。</p>
+<p>另外一个<code>setfill()</code>函数，这个函数可以设置当实际的宽度不足<code>setw()</code>函数的值时，用某个字符来补足。（<code>setfill()</code>函数最好放在<code>setw()</code>函数前面）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> n,h,m,s;<br>    cin&gt;&gt;n;<br>    n=n/<span class="hljs-number">1000</span>;<br>    h=n%(<span class="hljs-number">24</span>*<span class="hljs-number">3600</span>)/<span class="hljs-number">3600</span>;<br>    m=n%<span class="hljs-number">3600</span>/<span class="hljs-number">60</span>;<br>    s=n%<span class="hljs-number">60</span>;<br>    cout&lt;&lt;<span class="hljs-built_in">setfill</span>(<span class="hljs-string">&#x27;0&#x27;</span>)&lt;&lt;<span class="hljs-built_in">setw</span>(<span class="hljs-number">2</span>)&lt;&lt;h&lt;&lt;<span class="hljs-string">&quot;:&quot;</span>&lt;&lt;<span class="hljs-built_in">setfill</span>(<span class="hljs-string">&#x27;0&#x27;</span>)&lt;&lt;<span class="hljs-built_in">setw</span>(<span class="hljs-number">2</span>)&lt;&lt;m&lt;&lt;<span class="hljs-string">&quot;:&quot;</span>&lt;&lt;<span class="hljs-built_in">setfill</span>(<span class="hljs-string">&#x27;0&#x27;</span>)&lt;&lt;<span class="hljs-built_in">setw</span>(<span class="hljs-number">2</span>)&lt;&lt;s;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>颜色取值可以用：关键字、rgb表示法、rgba表示法、十六进制…</p>
-<h3 id="背景图片"><a href="#背景图片" class="headerlink" title="背景图片"></a>背景图片</h3><p>background-image(bgi)</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>	<span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;图片的路径&#x27;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>①背景图片中url可以省略引号。</p>
-<p>②背景图片默认是在水平和垂直方向平铺的。</p>
-<p>③背景图片仅仅是指给盒子起到装饰效果，类似于背景颜色。</p>
-<h3 id="背景平铺"><a href="#背景平铺" class="headerlink" title="背景平铺"></a>背景平铺</h3><p>background-repeat(bgr)</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&#123;<br>	<span class="hljs-attribute">background-repeat</span>:no-repeat;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>repeat (默认值)水平和垂直方向都平铺</p>
-<p>no-repeat 不平铺</p>
-<p>repeat-x 沿着水平方向(x轴)平铺</p>
-<p>repeat-y 沿着垂直方向(y轴)平铺</p>
-<h3 id="背景位置"><a href="#背景位置" class="headerlink" title="背景位置"></a>背景位置</h3><p>background-position(bgp)</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&#123;<br>	<span class="hljs-attribute">background-position</span>:<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h4 id="方位名词"><a href="#方位名词" class="headerlink" title="方位名词"></a>方位名词</h4><h5 id="水平方向"><a href="#水平方向" class="headerlink" title="水平方向"></a>水平方向</h5><p>left、center、right</p>
-<h5 id="垂直方向"><a href="#垂直方向" class="headerlink" title="垂直方向"></a>垂直方向</h5><p>top、center、bottom</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&#123;<br>	<span class="hljs-attribute">background-position</span>: right bottom; //水平位置 垂直位置<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h4 id="数字-px"><a href="#数字-px" class="headerlink" title="数字+px"></a>数字+px</h4><h5 id="坐标轴"><a href="#坐标轴" class="headerlink" title="坐标轴"></a>坐标轴</h5><p>①原点(0,0) 盒子左上角</p>
-<p>②x轴 水平向右</p>
-<p>③y轴 垂直向下</p>
-<h5 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h5><p>将图片左上角与坐标点重合即可</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&#123;<br>	<span class="hljs-attribute">background-position</span>: <span class="hljs-number">50px</span> <span class="hljs-number">100px</span>; //水平位置 垂直位置<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="背景相关属性连写"><a href="#背景相关属性连写" class="headerlink" title="背景相关属性连写"></a>背景相关属性连写</h3><p>background: color image repeat position</p>
-<p>可以不按顺序写。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&#123;<br>	<span class="hljs-attribute">background</span>: pink <span class="hljs-built_in">url</span>(<span class="hljs-string">./images/1.jpg</span>) no-repeat bottom center ;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h4 id="与img的区别"><a href="#与img的区别" class="headerlink" title="与img的区别"></a>与img的区别</h4><p>①img标签是一个标签，不设置宽高默认会以原尺寸显示。</p>
-<p>②div标签需要设置div的宽高，因为背景图片只是装饰的css样式，不能撑开div标签。</p>
 
                 
               </div>
@@ -325,8 +305,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>css背景</div>
-      <div>https://bayeeaa.github.io/2024/01/20/css-bgc/</div>
+      <div>如何优雅的将秒换算成-时:分:秒？</div>
+      <div>https://bayeeaa.github.io/2024/04/18/秒转换时间/</div>
     </div>
     <div class="license-meta">
       
@@ -338,7 +318,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>January 20, 2024</div>
+          <div>April 18, 2024</div>
         </div>
       
       
@@ -370,9 +350,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/04/18/%E7%A7%92%E8%BD%AC%E6%8D%A2%E6%97%B6%E9%97%B4/" title="如何优雅的将秒换算成-时:分:秒？">
+                      <a href="/2024/04/18/JavaScript%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" title="JavaScript基本语法">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">如何优雅的将秒换算成-时:分:秒？</span>
+                        <span class="hidden-mobile">JavaScript基本语法</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -380,8 +360,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/11/06/%E9%80%92%E5%BD%92%E2%80%94%E2%80%94%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2(dfs)/" title="递归——深度优先搜索(dfs)">
-                        <span class="hidden-mobile">递归——深度优先搜索(dfs)</span>
+                      <a href="/2024/01/20/css-bgc/" title="css背景">
+                        <span class="hidden-mobile">css背景</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
