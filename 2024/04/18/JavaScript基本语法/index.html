@@ -24,7 +24,7 @@
 <meta property="og:description" content="JavaScript基础语法介绍JavaScript介绍1.1 JavaScript是什么是一个运行在浏览器上的编程语言。 1.2JavaScript书写位置内部式： 12345&lt;body&gt;    &lt;script&gt;        alert(&amp;#x27;hey&amp;#x27;)&#x2F;&#x2F;页面弹出警示框    &lt;&#x2F;script&gt;&lt;&#x2F;body&gt;  外部式： 123">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-04-18T04:48:23.000Z">
-<meta property="article:modified_time" content="2024-04-18T04:58:24.586Z">
+<meta property="article:modified_time" content="2024-04-25T10:54:07.826Z">
 <meta property="article:author" content="Ye">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k words
+          5.8k words
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          30 mins
+          49 mins
         
       </span>
     
@@ -405,6 +405,65 @@
 
 <p>例如：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> sayhi&#123;<br>	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;hi&#x27;</span>)<br>&#125;<br><br><span class="hljs-title function_">sayhi</span>()<br></code></pre></td></tr></table></figure>
+
+<h3 id="异常处理语句"><a href="#异常处理语句" class="headerlink" title="异常处理语句"></a>异常处理语句</h3><h4 id="throw语句"><a href="#throw语句" class="headerlink" title="throw语句"></a>throw语句</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">throw</span> expression;<br></code></pre></td></tr></table></figure>
+
+<p>使用这个语句后就会弹出error：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">5</span>;i++)&#123;<br>    <span class="hljs-keyword">if</span>(i!=<span class="hljs-number">4</span>)&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;yes&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-string">&quot;not 4&quot;</span>; <span class="hljs-comment">//Uncaught not 4</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="try…catch语句"><a href="#try…catch语句" class="headerlink" title="try…catch语句"></a>try…catch语句</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">try</span>&#123;<br>	...<br><br>&#125; <span class="hljs-keyword">catch</span> (error)&#123;<br>	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>catch块可以用来处理所有try块总产生的异常。</p>
+<h4 id="finally块"><a href="#finally块" class="headerlink" title="finally块"></a>finally块</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">openMyFile</span>();<br><span class="hljs-keyword">try</span> &#123;<br>  <span class="hljs-title function_">writeMyFile</span>(theData); <span class="hljs-comment">//This may throw a error</span><br>&#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>  <span class="hljs-title function_">handleError</span>(e); <span class="hljs-comment">// If we got a error we handle it</span><br>&#125; <span class="hljs-keyword">finally</span> &#123;<br>  <span class="hljs-title function_">closeMyFile</span>(); <span class="hljs-comment">// always close the resource</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>finally</code>块包含了在 try 和 catch 块完成后、下面接着 try…catch 的语句之前执行的语句。<code>finally</code>块无论是否抛出异常都会执行。如果抛出了一个异常，就算没有异常处理，<code>finally</code>块里的语句也会执行。</p>
+<h3 id="循环与迭代"><a href="#循环与迭代" class="headerlink" title="循环与迭代"></a>循环与迭代</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration#for_%E8%AF%AD%E5%8F%A5">for 语句</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration#do...while_%E8%AF%AD%E5%8F%A5">do…while 语句</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration#while_%E8%AF%AD%E5%8F%A5">while 语句</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration#label_%E8%AF%AD%E5%8F%A5">label 语句</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration#break_%E8%AF%AD%E5%8F%A5">break 语句</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration#continue_%E8%AF%AD%E5%8F%A5">continue 语句</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration#for...in_%E8%AF%AD%E5%8F%A5">for…in 语句</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration#for...of_%E8%AF%AD%E5%8F%A5">for…of 语句</a></li>
+</ul>
+<p>其循环方式与c语言相似，不再一一赘述。</p>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>一个对象就是一系列属性的集合，一个属性包含一个名和一个值。一个属性的值可以是函数，这种情况下属性也被称为<em>方法</em>。</p>
+<p>对象及其属性：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> myCar = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>();<br>myCar.<span class="hljs-property">make</span> = <span class="hljs-string">&quot;Ford&quot;</span>;<br>myCar.<span class="hljs-property">model</span> = <span class="hljs-string">&quot;Mustang&quot;</span>;<br>myCar.<span class="hljs-property">year</span> = <span class="hljs-number">1969</span>;<br></code></pre></td></tr></table></figure>
+
+<p>可以按如下方法访问对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">myCar[<span class="hljs-string">&quot;make&quot;</span>] = <span class="hljs-string">&quot;Ford&quot;</span>;<br>myCar[<span class="hljs-string">&quot;model&quot;</span>] = <span class="hljs-string">&quot;Mustang&quot;</span>;<br>myCar[<span class="hljs-string">&quot;year&quot;</span>] = <span class="hljs-number">1969</span>;<br></code></pre></td></tr></table></figure>
+
+<h4 id="创建新对象"><a href="#创建新对象" class="headerlink" title="创建新对象"></a>创建新对象</h4><h5 id="使用对象初始化器创建"><a href="#使用对象初始化器创建" class="headerlink" title="使用对象初始化器创建"></a>使用对象初始化器创建</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = &#123;<br>  <span class="hljs-attr">property_1</span>: value_1, <span class="hljs-comment">// property_# 可以是一个标识符...</span><br>  <span class="hljs-number">2</span>: value_2, <span class="hljs-comment">// 或一个数字...</span><br>  [<span class="hljs-string">&quot;property&quot;</span> + <span class="hljs-number">3</span>]: value_3, <span class="hljs-comment">//  或一个可计算的 key 名...</span><br>  <span class="hljs-comment">// ...,</span><br>  <span class="hljs-string">&quot;property n&quot;</span>: value_n,<br>&#125;; <span class="hljs-comment">// 或一个字符串</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="使用构造函数创建"><a href="#使用构造函数创建" class="headerlink" title="使用构造函数创建"></a>使用构造函数创建</h5><p>用构造函数创建分两种：</p>
+<ol>
+<li>通过创建一个构造函数来定义对象的类型。(建议首字母大写)</li>
+<li>通过 <code>new</code> 创建对象实例。</li>
+</ol>
+<p>这里首先定义一个<em>对象类型</em>，并且赋予其make,model,year属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Car</span>(<span class="hljs-params">make, model, year</span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">make</span> = make;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">model</span> = model;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">year</span> = year;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>注意这里是通过this来给对象类型属性值赋值</p>
+<p>然后你就可以创建一个新对象啦</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> mycar = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Car</span>(<span class="hljs-string">&quot;Eagle&quot;</span>, <span class="hljs-string">&quot;Talon TSi&quot;</span>, <span class="hljs-number">1993</span>);<br></code></pre></td></tr></table></figure>
+
+<p>或者你也可以让类中加入一个owner：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Car</span>(<span class="hljs-params">make, model, year, owner</span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">make</span> = make;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">model</span> = model;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">year</span> = year;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">owner</span> = owner;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>那么你就可以这样创建：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> car1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Car</span>(<span class="hljs-string">&quot;Eagle&quot;</span>, <span class="hljs-string">&quot;Talon TSi&quot;</span>, <span class="hljs-number">1993</span>, rand);<br><span class="hljs-keyword">var</span> car2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Car</span>(<span class="hljs-string">&quot;Nissan&quot;</span>, <span class="hljs-string">&quot;300ZX&quot;</span>, <span class="hljs-number">1992</span>, ken);<br></code></pre></td></tr></table></figure>
+
+<p>就可以这样索引读取：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">car2.<span class="hljs-property">owner</span>.<span class="hljs-property">name</span>;<br></code></pre></td></tr></table></figure>
+
+<p>你也可以为之前定义的对象增加新的属性：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">car1.<span class="hljs-property">color</span> = <span class="hljs-string">&quot;black&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>注意这里只是这个car1增加了新属性，不影响其他car1,car3</p>
+<h5 id="使用Object-create方法创建"><a href="#使用Object-create方法创建" class="headerlink" title="使用Object.create方法创建"></a>使用Object.create方法创建</h5><p>及使用Object.create()函数创建</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> <span class="hljs-title class_">Animal</span> = &#123;<br>  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;Invertebrates&quot;</span>, <span class="hljs-comment">// 属性默认值(无脊椎动物)</span><br>  <span class="hljs-attr">displayType</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123; <span class="hljs-comment">//类里面可以包含函数</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">type</span>); <span class="hljs-comment">//该函数用来显示type的值</span><br>  &#125;,<br>&#125;;<br><br><span class="hljs-comment">// 创建一种新的动物——animal1</span><br><span class="hljs-keyword">var</span> animal1 = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(<span class="hljs-title class_">Animal</span>);<br>animal1.<span class="hljs-title function_">displayType</span>(); <span class="hljs-comment">// 输出:Invertebrates(因为没有没有给type赋值)</span><br><br><span class="hljs-comment">// 创建一种新的动物——Fishes</span><br><span class="hljs-keyword">var</span> fish = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(<span class="hljs-title class_">Animal</span>);<br>fish.<span class="hljs-property">type</span> = <span class="hljs-string">&quot;Fishes&quot;</span>;<br>fish.<span class="hljs-title function_">displayType</span>(); <span class="hljs-comment">// 输出:Fishes</span><br></code></pre></td></tr></table></figure>
 
 
                 
