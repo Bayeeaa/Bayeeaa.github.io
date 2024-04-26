@@ -16,19 +16,25 @@
   <meta name="author" content="Ye">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="axios">
+    <meta name="description" content="AJAX-axios库使用与http协议当我们需要将前后端数据进行传递时，我们可以运用AJAX技术。AJAX也就是异步的JavaScript和XML(Asynchronous JavaScript And XML)。简单的说，就是使用XMLHttpRequest对象与服务器通信。它可以使用JSON,XML,HTML和text文本等格式发送和接收数据。 AJAX工作原理  网页中发生一个事件（页面加">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AJAX-axios库使用与http协议">
 <meta property="og:url" content="https://bayeeaa.github.io/2024/04/26/axios/index.html">
 <meta property="og:site_name" content="ye&#39;s blog">
+<meta property="og:description" content="AJAX-axios库使用与http协议当我们需要将前后端数据进行传递时，我们可以运用AJAX技术。AJAX也就是异步的JavaScript和XML(Asynchronous JavaScript And XML)。简单的说，就是使用XMLHttpRequest对象与服务器通信。它可以使用JSON,XML,HTML和text文本等格式发送和接收数据。 AJAX工作原理  网页中发生一个事件（页面加">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://bayeeaa.github.io/2024/04/26/axios/ajax.gif">
+<meta property="og:image" content="https://bayeeaa.github.io/2024/04/26/axios/image-20240426231418816.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2024/04/26/axios/image-20240426232117702.png">
 <meta property="article:published_time" content="2024-04-26T15:41:11.000Z">
-<meta property="article:modified_time" content="2024-04-26T15:41:11.778Z">
+<meta property="article:modified_time" content="2024-04-26T15:48:39.836Z">
 <meta property="article:author" content="Ye">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bayeeaa.github.io/2024/04/26/axios/ajax.gif">
   
   
   
-  <title>axios - ye&#39;s blog</title>
+  <title>AJAX-axios库使用与http协议 - ye&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -194,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="axios"></span>
+            <span id="subtitle" data-typed-text="AJAX-axios库使用与http协议"></span>
           
         </div>
 
@@ -217,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 words
+          2.1k words
         
       </span>
     
@@ -228,7 +234,7 @@
         
         
         
-          1 mins
+          18 mins
         
       </span>
     
@@ -265,12 +271,85 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">axios</h1>
+            <h1 id="seo-header">AJAX-axios库使用与http协议</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <h3 id="AJAX-axios库使用与http协议"><a href="#AJAX-axios库使用与http协议" class="headerlink" title="AJAX-axios库使用与http协议"></a>AJAX-axios库使用与http协议</h3><p>当我们需要将前后端数据进行传递时，我们可以运用AJAX技术。AJAX也就是异步的JavaScript和XML(Asynchronous JavaScript And XML)。简单的说，就是使用XMLHttpRequest对象与服务器通信。它可以使用JSON,XML,HTML和text文本等格式发送和接收数据。</p>
+<h4 id="AJAX工作原理"><a href="#AJAX工作原理" class="headerlink" title="AJAX工作原理"></a>AJAX工作原理</h4><p><img src="/2024/04/26/axios/ajax.gif" srcset="/img/loading.gif" lazyload alt="ajax工作原理"></p>
+<ol>
+<li>网页中发生一个事件（页面加载、按钮点击）</li>
+<li>由 JavaScript 创建 XMLHttpRequest 对象</li>
+<li>XMLHttpRequest 对象向 web 服务器发送请求</li>
+<li>服务器处理该请求</li>
+<li>服务器将响应发送回网页</li>
+<li>由 JavaScript 读取响应</li>
+<li>由 JavaScript 执行正确的动作（比如更新页面）</li>
+</ol>
+<h4 id="axios使用"><a href="#axios使用" class="headerlink" title="axios使用"></a>axios使用</h4><p>axios是基于Promise的HTTP客户端作用于浏览器和node.js，属于网络请求库。</p>
+<h5 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h5><p>引入axios.js的两种方法：</p>
+<p>使用 jsDelivr CDN:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>使用 unpkg CDN:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/axios/dist/axios.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>函数基本使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">axios</span>(&#123;<br>	<span class="hljs-attr">url</span>:<span class="hljs-string">&#x27;目标地址&#x27;</span><br>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span>=&gt;</span>&#123;<br>	<span class="hljs-comment">//后端返回数据</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h5 id="axios-查询参数"><a href="#axios-查询参数" class="headerlink" title="axios-查询参数"></a>axios-查询参数</h5><p>使用axios提供的params选项(param是“参数”的意思)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">axios</span>(&#123;<br>	<span class="hljs-attr">url</span>:<span class="hljs-string">&#x27;&#x27;</span>,<br>	<span class="hljs-attr">params</span>:&#123;<br>		参数名:值<br>	&#125;<br>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span>=&gt;</span>&#123;<br>	<span class="hljs-comment">//返回值</span><br>    <span class="hljs-comment">//console.log(result)</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">axios</span>(&#123;<br>    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;https://hmajax.itheima.net/api/city&#x27;</span>,<br>    <span class="hljs-attr">params</span>:&#123;<br>        <span class="hljs-attr">pname</span>: <span class="hljs-string">&#x27;河北省&#x27;</span><br>    &#125;<br>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span>=&gt;</span>&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2024/04/26/axios/image-20240426231418816.png" srcset="/img/loading.gif" lazyload alt="返回的json格式文件"></p>
+<p>查询完的数据就可以在Response里找到result值，一般情况是返回一个message和一个res，其返回的数据是个json文件。</p>
+<h5 id="axios-请求配置"><a href="#axios-请求配置" class="headerlink" title="axios-请求配置"></a>axios-请求配置</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">axios</span>(&#123;<br>	<span class="hljs-attr">url</span>:<span class="hljs-string">&#x27;&#x27;</span>,<br>	<span class="hljs-attr">method</span>:<span class="hljs-string">&#x27;请求方法&#x27;</span>,<br>	<span class="hljs-attr">data</span>:&#123;<br>		参数名:值<br>	&#125;<br>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span>=&gt;</span>&#123;<br>	<span class="hljs-comment">//返回值</span><br>    <span class="hljs-comment">//console.log(result)</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>axios将data对象的数据通过上述方式传入后端，后端就会根据其传入的关键词获得对应的res并在then后面得到。</p>
+<h5 id="axios-错误处理"><a href="#axios-错误处理" class="headerlink" title="axios-错误处理"></a>axios-错误处理</h5><p>在then方法的后面，通过点语法调用catch方法，传入回调函数并定义形参。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">axios</span>(&#123;<br>	<span class="hljs-comment">//请求选项</span><br>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> &#123;<br>	<span class="hljs-comment">//处理数据</span><br>&#125;).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;<br>	<span class="hljs-comment">//处理错误</span><br>    <span class="hljs-comment">//console.log(error)</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>该方法可以捕捉到错误数据，并将数据传入error形参中，于是就可以将错误数据解析并返回客户端中显示。（其实error可以用console.log在控制台查看，但是catch可以将数据传入并可解析）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">alert</span>(error.<span class="hljs-property">response</span>.<span class="hljs-property">data</span>.<span class="hljs-property">message</span>) <span class="hljs-comment">//一般情况下可以通过这样解析json文件并弹出问题</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h4><h5 id="Request-Headers"><a href="#Request-Headers" class="headerlink" title="Request Headers"></a>Request Headers</h5><p>http协议规定了浏览器发送及服务器返回内容的格式，也就是如果你传入data对象，报文会将其转化为一个json文件打包传给后端，然后后端再传入对应的json文件。</p>
+<p>如下图就是一个请求报文(也就是请求头)：</p>
+<p><img src="/2024/04/26/axios/image-20240426232117702.png" srcset="/img/loading.gif" lazyload alt="Request Headers"></p>
+<p>Accept中可以看到返回的是个json文件，Host是域名，User-Agent是用来模仿用户登录。</p>
+<h5 id="Resonpse-Headers"><a href="#Resonpse-Headers" class="headerlink" title="Resonpse Headers"></a>Resonpse Headers</h5><p>当我们后端受到前端的request headers后就会相应的传入response headers，这个headers包括：响应行，响应头，空行，响应体。响应体就包含了我们需要的json文件，浏览器会将该文件通过js渲染，显示于页面中。在文件传输的时候可能会有前后传递出错的时候，这时候就需要状态码来告知错误信息。</p>
+<p>状态码有如下几种：</p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>分类描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1**</td>
+<td>信息，服务器收到请求，需要请求者继续执行操作</td>
+</tr>
+<tr>
+<td>2**</td>
+<td>成功，操作被成功接收并处理</td>
+</tr>
+<tr>
+<td>3**</td>
+<td>重定向，需要进一步的操作以完成请求</td>
+</tr>
+<tr>
+<td>4**</td>
+<td>客户端错误，请求包含语法错误或无法完成请求</td>
+</tr>
+<tr>
+<td>5**</td>
+<td>服务器错误，服务器在处理请求的过程中发生了错误</td>
+</tr>
+</tbody></table>
+
                 
               </div>
             
@@ -287,7 +366,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>axios</div>
+      <div>AJAX-axios库使用与http协议</div>
       <div>https://bayeeaa.github.io/2024/04/26/axios/</div>
     </div>
     <div class="license-meta">
