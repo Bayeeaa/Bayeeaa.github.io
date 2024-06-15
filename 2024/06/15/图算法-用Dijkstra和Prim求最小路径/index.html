@@ -16,27 +16,22 @@
   <meta name="author" content="Ye">
   <meta name="keywords" content="">
   
-    <meta name="description" content="这次是在做前端的时候，前后端联调发生的问题。接口名前后都对的上然而显示“Post方法不被允许”：  第一反应是去看自定义端口最后的url是不是少一个“&#x2F;”：  发现并没有少。 最后经过排查发现前后端地址没有对上。前端地址没有连接本地的地址。   修改target的请求地址为”http:&#x2F;&#x2F;127.0.0.1:3381“，成功解决。">
+    <meta name="description" content="图算法-用Dijkstra和Prim求最小路径解决问题：在一个树中有多个节点和多条有向或无向的边，若我们给各个边附上权值，那么利用这两个算法可以计算从一个节点到所有节点的最小距离。实际中可以解决比如快递在区域配送最短的路径等问题。 Dijkstra思路例如以第1个节点为树根并循环整个树的节点，找到与1连接的所有点然后比较到这个点的距离是否小于原点(节点1)到这个点的距离(此时还没有)，若此时的距离">
 <meta property="og:type" content="article">
-<meta property="og:title" content="本地已经后端部署，前端response返回“Method Post not allowed”问题">
-<meta property="og:url" content="https://bayeeaa.github.io/2024/05/04/%E6%9C%AC%E5%9C%B0%E5%B7%B2%E7%BB%8F%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2%EF%BC%8C%E5%89%8D%E7%AB%AFresponse%E8%BF%94%E5%9B%9E%E2%80%9CMethod-Post-not-allowed%E2%80%9D%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="图算法-用Dijkstra和Prim求最小路径">
+<meta property="og:url" content="https://bayeeaa.github.io/2024/06/15/%E5%9B%BE%E7%AE%97%E6%B3%95-%E7%94%A8Dijkstra%E5%92%8CPrim%E6%B1%82%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84/index.html">
 <meta property="og:site_name" content="ye&#39;s blog">
-<meta property="og:description" content="这次是在做前端的时候，前后端联调发生的问题。接口名前后都对的上然而显示“Post方法不被允许”：  第一反应是去看自定义端口最后的url是不是少一个“&#x2F;”：  发现并没有少。 最后经过排查发现前后端地址没有对上。前端地址没有连接本地的地址。   修改target的请求地址为”http:&#x2F;&#x2F;127.0.0.1:3381“，成功解决。">
+<meta property="og:description" content="图算法-用Dijkstra和Prim求最小路径解决问题：在一个树中有多个节点和多条有向或无向的边，若我们给各个边附上权值，那么利用这两个算法可以计算从一个节点到所有节点的最小距离。实际中可以解决比如快递在区域配送最短的路径等问题。 Dijkstra思路例如以第1个节点为树根并循环整个树的节点，找到与1连接的所有点然后比较到这个点的距离是否小于原点(节点1)到这个点的距离(此时还没有)，若此时的距离">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://bayeeaa.github.io/2024/05/04/%E6%9C%AC%E5%9C%B0%E5%B7%B2%E7%BB%8F%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2%EF%BC%8C%E5%89%8D%E7%AB%AFresponse%E8%BF%94%E5%9B%9E%E2%80%9CMethod-Post-not-allowed%E2%80%9D%E9%97%AE%E9%A2%98/82c4ccc79f7bcddc7c82641131305f5.png">
-<meta property="og:image" content="https://bayeeaa.github.io/2024/05/04/%E6%9C%AC%E5%9C%B0%E5%B7%B2%E7%BB%8F%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2%EF%BC%8C%E5%89%8D%E7%AB%AFresponse%E8%BF%94%E5%9B%9E%E2%80%9CMethod-Post-not-allowed%E2%80%9D%E9%97%AE%E9%A2%98/image-20240504234225465.png">
-<meta property="og:image" content="https://bayeeaa.github.io/2024/05/04/%E6%9C%AC%E5%9C%B0%E5%B7%B2%E7%BB%8F%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2%EF%BC%8C%E5%89%8D%E7%AB%AFresponse%E8%BF%94%E5%9B%9E%E2%80%9CMethod-Post-not-allowed%E2%80%9D%E9%97%AE%E9%A2%98/image-20240504234403334.png">
-<meta property="og:image" content="https://bayeeaa.github.io/2024/05/04/%E6%9C%AC%E5%9C%B0%E5%B7%B2%E7%BB%8F%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2%EF%BC%8C%E5%89%8D%E7%AB%AFresponse%E8%BF%94%E5%9B%9E%E2%80%9CMethod-Post-not-allowed%E2%80%9D%E9%97%AE%E9%A2%98/image-20240504234428092.png">
-<meta property="article:published_time" content="2024-05-04T15:38:25.000Z">
-<meta property="article:modified_time" content="2024-05-04T15:49:16.020Z">
+<meta property="article:published_time" content="2024-06-15T14:44:05.000Z">
+<meta property="article:modified_time" content="2024-06-15T14:44:30.930Z">
 <meta property="article:author" content="Ye">
-<meta property="article:tag" content="Debug">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://bayeeaa.github.io/2024/05/04/%E6%9C%AC%E5%9C%B0%E5%B7%B2%E7%BB%8F%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2%EF%BC%8C%E5%89%8D%E7%AB%AFresponse%E8%BF%94%E5%9B%9E%E2%80%9CMethod-Post-not-allowed%E2%80%9D%E9%97%AE%E9%A2%98/82c4ccc79f7bcddc7c82641131305f5.png">
   
   
   
-  <title>本地已经后端部署，前端response返回“Method Post not allowed”问题 - ye&#39;s blog</title>
+  <title>图算法-用Dijkstra和Prim求最小路径 - ye&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="本地已经后端部署，前端response返回“Method Post not allowed”问题"></span>
+            <span id="subtitle" data-typed-text="图算法-用Dijkstra和Prim求最小路径"></span>
           
         </div>
 
@@ -213,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-04 23:38" pubdate>
-          May 4, 2024 pm
+        <time datetime="2024-06-15 22:44" pubdate>
+          June 15, 2024 pm
         </time>
       </span>
     
@@ -225,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          163 words
+          2.2k words
         
       </span>
     
@@ -236,7 +231,7 @@
         
         
         
-          2 mins
+          19 mins
         
       </span>
     
@@ -273,20 +268,34 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">本地已经后端部署，前端response返回“Method Post not allowed”问题</h1>
+            <h1 id="seo-header">图算法-用Dijkstra和Prim求最小路径</h1>
             
             
               <div class="markdown-body">
                 
-                <p>这次是在做前端的时候，前后端联调发生的问题。接口名前后都对的上然而显示“Post方法不被允许”：</p>
-<p><img src="/2024/05/04/%E6%9C%AC%E5%9C%B0%E5%B7%B2%E7%BB%8F%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2%EF%BC%8C%E5%89%8D%E7%AB%AFresponse%E8%BF%94%E5%9B%9E%E2%80%9CMethod-Post-not-allowed%E2%80%9D%E9%97%AE%E9%A2%98/82c4ccc79f7bcddc7c82641131305f5.png" srcset="/img/loading.gif" lazyload alt="response返回的值"></p>
-<p>第一反应是去看自定义端口最后的url是不是少一个“&#x2F;”：</p>
-<p><img src="/2024/05/04/%E6%9C%AC%E5%9C%B0%E5%B7%B2%E7%BB%8F%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2%EF%BC%8C%E5%89%8D%E7%AB%AFresponse%E8%BF%94%E5%9B%9E%E2%80%9CMethod-Post-not-allowed%E2%80%9D%E9%97%AE%E9%A2%98/image-20240504234225465.png" srcset="/img/loading.gif" lazyload alt="自定义接口处"></p>
-<p>发现并没有少。</p>
-<p>最后经过排查发现前后端地址没有对上。前端地址没有连接本地的地址。</p>
-<p><img src="/2024/05/04/%E6%9C%AC%E5%9C%B0%E5%B7%B2%E7%BB%8F%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2%EF%BC%8C%E5%89%8D%E7%AB%AFresponse%E8%BF%94%E5%9B%9E%E2%80%9CMethod-Post-not-allowed%E2%80%9D%E9%97%AE%E9%A2%98/image-20240504234403334.png" srcset="/img/loading.gif" lazyload alt="后端地址设置处"></p>
-<p><img src="/2024/05/04/%E6%9C%AC%E5%9C%B0%E5%B7%B2%E7%BB%8F%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2%EF%BC%8C%E5%89%8D%E7%AB%AFresponse%E8%BF%94%E5%9B%9E%E2%80%9CMethod-Post-not-allowed%E2%80%9D%E9%97%AE%E9%A2%98/image-20240504234428092.png" srcset="/img/loading.gif" lazyload alt="前端地址设置处"></p>
-<p>修改target的请求地址为”<a href="http://127.0.0.1:3381“，成功解决。">http://127.0.0.1:3381“，成功解决。</a></p>
+                <h3 id="图算法-用Dijkstra和Prim求最小路径"><a href="#图算法-用Dijkstra和Prim求最小路径" class="headerlink" title="图算法-用Dijkstra和Prim求最小路径"></a>图算法-用Dijkstra和Prim求最小路径</h3><h4 id="解决问题："><a href="#解决问题：" class="headerlink" title="解决问题："></a>解决问题：</h4><p>在一个树中有多个节点和多条有向或无向的边，若我们给各个边附上权值，那么利用这两个算法可以计算从一个节点到所有节点的最小距离。实际中可以解决比如快递在区域配送最短的路径等问题。</p>
+<h4 id="Dijkstra"><a href="#Dijkstra" class="headerlink" title="Dijkstra"></a>Dijkstra</h4><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>例如以第1个节点为树根并循环整个树的节点，找到与1连接的所有点然后比较到这个点的距离是否小于原点(节点1)到这个点的距离(此时还没有)，若此时的距离比另一条路到这个点的距离小，则存入数据，以此类推。</p>
+<h5 id="具体如下："><a href="#具体如下：" class="headerlink" title="具体如下："></a>具体如下：</h5><p>我们用dist数组来存入原点到所有点的最小距离，最开始的时候设置所有的点到原点的距离为无穷大。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">memset</span>(dist, <span class="hljs-number">0x3f</span>, <span class="hljs-built_in">sizeof</span>(dist));<br>dist[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<span class="hljs-comment">//原点到原点的距离为0</span><br></code></pre></td></tr></table></figure>
+
+<p>用state数组来记录这个点是否已经找到了到原点的最小距离，如果是则记下1，否则是0。</p>
+<p>首先用for遍历每个点，寻找到每一个点的到原点的距离。</p>
+<p>再在用一个for来确定这个点是到原点的最短距离。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>    <span class="hljs-type">int</span> t = <span class="hljs-number">-1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++)&#123;<span class="hljs-comment">//遍历dist数组，找到没有确定最短路径的节点中距离源点最近的点t</span><br>        <span class="hljs-keyword">if</span>(!state[j] &amp;&amp; (t == <span class="hljs-number">-1</span> || dist[j] &lt; dist[t]))	t = j;<br>    &#125;<br>    state[t] = <span class="hljs-number">1</span>;<span class="hljs-comment">//state[i]置为1。</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = h[t]; j != <span class="hljs-number">-1</span>; j = ne[j])&#123;<span class="hljs-comment">//遍历t所有可以到达的节点i</span><br>        <span class="hljs-type">int</span> i = e[j];<br>        dist[i] = <span class="hljs-built_in">min</span>(dist[i], dist[t] + w[j]);<span class="hljs-comment">//更新dist[j]</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>整个函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Dijkstra</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">memset</span>(dist, <span class="hljs-number">0x3f</span>, <span class="hljs-built_in">sizeof</span>(dist));<span class="hljs-comment">//dist数组的各个元素为无穷大</span><br>    dist[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<span class="hljs-comment">//源点到源点的距离为置为 0</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>        <span class="hljs-type">int</span> t = <span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++)&#123;<span class="hljs-comment">//遍历dist数组，找到没有确定最短路径的节点中距离源点最近的点t</span><br>            <span class="hljs-keyword">if</span>(!state[j] &amp;&amp; (t == <span class="hljs-number">-1</span> || dist[j] &lt; dist[t]))	t = j;<br>        &#125;<br>        state[t] = <span class="hljs-number">1</span>;<span class="hljs-comment">//state[i]置为1。</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = h[t]; j != <span class="hljs-number">-1</span>; j = ne[j])&#123;<span class="hljs-comment">//遍历t所有可以到达的节点i</span><br>            <span class="hljs-type">int</span> i = e[j];<br>            dist[i] = <span class="hljs-built_in">min</span>(dist[i], dist[t] + w[j]);<span class="hljs-comment">//更新dist[j]</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="Prim"><a href="#Prim" class="headerlink" title="Prim"></a>Prim</h4><h5 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h5><p>prim 算法干的事情是：给定一个无向图，在图中选择若干条边把图的所有节点连起来。要求边长之和最小。在图论中，叫做求最小生成树。prim算法相比于dijkstra是贪心的，它要寻找的是每一个点之间的最短距离。</p>
+<h5 id="具体如下"><a href="#具体如下" class="headerlink" title="具体如下"></a>具体如下</h5><p>与Dijkstra一样用dist存入距离，并最开始用无穷大赋值。</p>
+<p>用state数组来记录这个点是否已经找到了到原点的最小距离，如果是则记下1，否则是0。</p>
+<p>用pre数组来保存节点是和谁连通的。</p>
+<p>伪代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">int</span> dist[n],state[n],pre[n];<br>dist[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span>(i : <span class="hljs-number">1</span> ~ n)<br>&#123;<br>    t &lt;- 没有连通起来，但是距离连通部分最近的点;<br>    state[t] = <span class="hljs-number">1</span>;<br>    更新 dist 和 pre;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我们在prim里面相当于是将树的每个点一个一个加入到一个集合中，这个集合就是生成的树。每次选择树都要看看是否在树中并且到树的距离最短，如果是则加入到集合中。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">prim</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">memset</span>(dt,<span class="hljs-number">0x3f</span>, <span class="hljs-built_in">sizeof</span>(dt));<span class="hljs-comment">//初始化距离数组为一个很大的数（10亿左右）</span><br>    <span class="hljs-type">int</span> res= <span class="hljs-number">0</span>;<br>    dt[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<span class="hljs-comment">//从 1 号节点开始生成 </span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<span class="hljs-comment">//每次循环选出一个点加入到生成树</span><br>        <span class="hljs-type">int</span> t = <span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++)&#123;<span class="hljs-comment">//每个节点一次判断</span><br>            <span class="hljs-keyword">if</span>(!st[j] &amp;&amp; (t == <span class="hljs-number">-1</span> || dt[j] &lt; dt[t]))<span class="hljs-comment">//如果没有在树中，且到树的距离最短，则选择该点</span><br>                t = j;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(dt[t] == <span class="hljs-number">0x3f3f3f3f</span>) &#123;<br>            cout &lt;&lt; <span class="hljs-string">&quot;impossible&quot;</span>;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        st[t] = <span class="hljs-number">1</span>;<span class="hljs-comment">// 选择该点</span><br>        res += dt[t];<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)&#123;<span class="hljs-comment">//更新生成树外的点到生成树的距离</span><br>            <span class="hljs-keyword">if</span>(dt[i] &gt; g[t][i] &amp;&amp; !st[i])&#123;<span class="hljs-comment">//从 t 到节点 i 的距离小于原来距离，则更新。</span><br>                dt[i] = g[t][i];<span class="hljs-comment">//更新距离</span><br>                pre[i] = t;<span class="hljs-comment">//从 t 到 i 的距离更短，i 的前驱变为 t.</span><br>            &#125;<br>        &#125;<br>    &#125;<br>    cout &lt;&lt; res;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -299,7 +308,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Debug/" class="print-no-link">#Debug</a>
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
       
     </div>
   
@@ -311,8 +320,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>本地已经后端部署，前端response返回“Method Post not allowed”问题</div>
-      <div>https://bayeeaa.github.io/2024/05/04/本地已经后端部署，前端response返回“Method-Post-not-allowed”问题/</div>
+      <div>图算法-用Dijkstra和Prim求最小路径</div>
+      <div>https://bayeeaa.github.io/2024/06/15/图算法-用Dijkstra和Prim求最小路径/</div>
     </div>
     <div class="license-meta">
       
@@ -324,7 +333,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 4, 2024</div>
+          <div>June 15, 2024</div>
         </div>
       
       
@@ -356,18 +365,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/15/%E5%9B%BE%E7%AE%97%E6%B3%95-%E7%94%A8Dijkstra%E5%92%8CPrim%E6%B1%82%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84/" title="图算法-用Dijkstra和Prim求最小路径">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">图算法-用Dijkstra和Prim求最小路径</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/01/Promise%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8%E4%B8%8Easync%E5%87%BD%E6%95%B0%E8%A7%A3%E5%86%B3%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1%E9%97%AE%E9%A2%98/" title="Promise链式调用与async函数解决回调地狱问题">
-                        <span class="hidden-mobile">Promise链式调用与async函数解决回调地狱问题</span>
+                      <a href="/2024/05/04/%E6%9C%AC%E5%9C%B0%E5%B7%B2%E7%BB%8F%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2%EF%BC%8C%E5%89%8D%E7%AB%AFresponse%E8%BF%94%E5%9B%9E%E2%80%9CMethod-Post-not-allowed%E2%80%9D%E9%97%AE%E9%A2%98/" title="本地已经后端部署，前端response返回“Method Post not allowed”问题">
+                        <span class="hidden-mobile">本地已经后端部署，前端response返回“Method Post not allowed”问题</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
