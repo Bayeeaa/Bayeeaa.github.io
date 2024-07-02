@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>面向JS的TypeScript</title>
+    <link href="/2024/07/02/%E9%9D%A2%E5%90%91JS%E7%9A%84TypeScript/"/>
+    <url>/2024/07/02/%E9%9D%A2%E5%90%91JS%E7%9A%84TypeScript/</url>
+    
+    <content type="html"><![CDATA[<h3 id="面向JS的TypeScript"><a href="#面向JS的TypeScript" class="headerlink" title="面向JS的TypeScript"></a>面向JS的TypeScript</h3><p>说到TypeScript，就不得不从Javascript说起。我们知道JavaScript（也称为 ECMAScript）最初是一种用于浏览器的简单脚本语言。在它被发明时，它被期望用于嵌入网页中的简短代码片段 - 编写几十行以上的代码有点不寻常。因此，早期的网络浏览器执行此类代码的速度非常慢。不过，随着时间的推移，JS 变得越来越流行，Web 开发者开始使用它来创建交互式体验。</p><p>JavaScript是一种为快速使用而设计的语言，与众不同的是，每种语言都有自己的“怪癖“，而 JavaScript 的卑微起步使其拥有许多这样的”怪癖“。</p><ul><li><p>JavaScript 的相等运算符 (<code>==</code>) 强制转换其操作对象，导致意外行为：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;&quot;</span> == <span class="hljs-number">0</span>) &#123;<br>  <span class="hljs-comment">// It is! But why??</span><br>&#125;<br><span class="hljs-keyword">if</span> (<span class="hljs-number">1</span> &lt; x &lt; <span class="hljs-number">3</span>) &#123;<br>  <span class="hljs-comment">// True for any value of x!</span><br>&#125;<br></code></pre></td></tr></table></figure></li><li><p>JavaScript 还允许访问不存在的属性：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> obj = &#123; <span class="hljs-attr">width</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">height</span>: <span class="hljs-number">15</span> &#125;;<br><span class="hljs-comment">// Why is this NaN? Spelling is hard!</span><br><span class="hljs-keyword">const</span> area = obj.<span class="hljs-property">width</span> * obj.<span class="hljs-property">heigth</span>;<br></code></pre></td></tr></table></figure></li></ul><h4 id="TypeScript：静态类型检查器"><a href="#TypeScript：静态类型检查器" class="headerlink" title="TypeScript：静态类型检查器"></a>TypeScript：静态类型检查器</h4><p>静态检查：在不运行代码的情况下检测代码中的错误。</p><p>TypeScript 能在执行前检查程序是否有错误，并根据值的种类进行检查，使其成为静态类型检查器。</p><p>比如：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> obj = &#123; <span class="hljs-attr">width</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">height</span>: <span class="hljs-number">15</span> &#125;;<br><span class="hljs-keyword">const</span> area = obj.<span class="hljs-property">width</span> * obj.<span class="hljs-property">heigth</span>;<br><br>* <span class="hljs-title class_">Property</span> <span class="hljs-string">&#x27;heigth&#x27;</span> does not exist on type <span class="hljs-string">&#x27;&#123; width: number; height: number; &#125;&#x27;</span>. <span class="hljs-title class_">Did</span> you mean <span class="hljs-string">&#x27;height&#x27;</span>?<span class="hljs-title class_">Property</span> <span class="hljs-string">&#x27;heigth&#x27;</span> does not exist on type <span class="hljs-string">&#x27;&#123; width: number; height: number; &#125;&#x27;</span>. <span class="hljs-title class_">Did</span> you mean <span class="hljs-string">&#x27;height&#x27;</span>?<br></code></pre></td></tr></table></figure><h5 id="TypeScript是JavaScript的超集"><a href="#TypeScript是JavaScript的超集" class="headerlink" title="TypeScript是JavaScript的超集"></a>TypeScript是JavaScript的超集</h5><p>因此JS的许多语法在TS中是合法的。由于其语法，TypeScript 不会将任何 JavaScript 代码视为错误。这意味着你可以将任何有效的 JavaScript 代码放入 TypeScript 文件中，而不必担心它的具体编写方式。</p><h5 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> a = (<span class="hljs-number">4</span><br>         *<span class="hljs-string">&#x27;)&#x27;</span>expected.<br></code></pre></td></tr></table></figure><p>在TS中不会将任何JS代码看成错误。因此你可以将任何有效的JS都放入TS文件中，而不必担心其具体用法。</p><h5 id="类型化的JS超集"><a href="#类型化的JS超集" class="headerlink" title="类型化的JS超集"></a>类型化的JS超集</h5><p>TS是一个类型超集，这意味着它添加了关于如何使用不同类型的值的规则。比如在一些JS中的错误不是语法错误而是“以不正确的方式使用某种值（类型）的错误”。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">4</span> / []);<br></code></pre></td></tr></table></figure><p>这个语法上合法的程序记录了 <code>Infinity</code>。但是，TypeScript 将数字除以数组视为无意义的操作，并且会触发错误：“The right-hand side of an arithmetic operation must be of type ‘any’, ‘number’, ‘bigint’ or an enum type.”(分母必须是‘any’,’number’,’bigint’,’enum type’)。</p><h5 id="运行时的行为"><a href="#运行时的行为" class="headerlink" title="运行时的行为"></a>运行时的行为</h5><p>TypeScript 也是一种保留了 JavaScript 运行时行为的编程语言。例如，在 JavaScript 中除以零会产生 <code>Infinity</code> 而不是抛出运行时异常。原则上，TypeScript 不会改变 JavaScript 代码的运行时行为。</p><h5 id="擦除类型"><a href="#擦除类型" class="headerlink" title="擦除类型"></a>擦除类型</h5><p>一旦TS的编译器检查完代码，它就会擦除类型以生成结果的“编译”代码。这意味着一旦代码被TS编译后。生成的普通JS就没有类型信息了。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>TS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>二叉树的建立、遍历规则、以及节点计算</title>
     <link href="/2024/06/22/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BB%BA%E7%AB%8B%E3%80%81%E9%81%8D%E5%8E%86%E8%A7%84%E5%88%99%E3%80%81%E4%BB%A5%E5%8F%8A%E8%8A%82%E7%82%B9%E8%AE%A1%E7%AE%97/"/>
     <url>/2024/06/22/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BB%BA%E7%AB%8B%E3%80%81%E9%81%8D%E5%8E%86%E8%A7%84%E5%88%99%E3%80%81%E4%BB%A5%E5%8F%8A%E8%8A%82%E7%82%B9%E8%AE%A1%E7%AE%97/</url>
@@ -14,7 +33,7 @@
     
     <tags>
       
-      <tag>-算法</tag>
+      <tag>算法</tag>
       
     </tags>
     
