@@ -1,0 +1,727 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.jpg">
+  <link rel="icon" href="/img/fluid.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ye">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="IP地址内网ip和公网ip内网IP（Internal Network IP）是指在局域网或者内部网络中使用的IP地址。在IPv4的网络中，内网IP地址通常属于私有IP地址范围，例如：  10.0.0.0 到 10.255.255.255 172.16.0.0 到 172.31.255.255 192.168.0.0 到 192.168.255.255  这些地址是专门为局域网内部使用而保留的，不会">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IP地址">
+<meta property="og:url" content="https://bayeeaa.github.io/2024/07/10/IP%E5%9C%B0%E5%9D%80/index.html">
+<meta property="og:site_name" content="ye&#39;s blog">
+<meta property="og:description" content="IP地址内网ip和公网ip内网IP（Internal Network IP）是指在局域网或者内部网络中使用的IP地址。在IPv4的网络中，内网IP地址通常属于私有IP地址范围，例如：  10.0.0.0 到 10.255.255.255 172.16.0.0 到 172.31.255.255 192.168.0.0 到 192.168.255.255  这些地址是专门为局域网内部使用而保留的，不会">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://bayeeaa.github.io/2024/07/10/IP%E5%9C%B0%E5%9D%80/image-20240710152532331.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2024/07/10/IP%E5%9C%B0%E5%9D%80/image-20240710160048602.png">
+<meta property="article:published_time" content="2024-07-10T09:15:10.000Z">
+<meta property="article:modified_time" content="2024-07-10T09:18:01.653Z">
+<meta property="article:author" content="Ye">
+<meta property="article:tag" content="-计算机网络">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bayeeaa.github.io/2024/07/10/IP%E5%9C%B0%E5%9D%80/image-20240710152532331.png">
+  
+  
+  
+  <title>IP地址 - ye&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"bayeeaa.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ye</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>档案</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="IP地址"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-10 17:15" pubdate>
+          July 10, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">IP地址</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><h4 id="内网ip和公网ip"><a href="#内网ip和公网ip" class="headerlink" title="内网ip和公网ip"></a>内网ip和公网ip</h4><p>内网IP（Internal Network IP）是指在局域网或者内部网络中使用的IP地址。在IPv4的网络中，内网IP地址通常属于私有IP地址范围，例如：</p>
+<ul>
+<li>10.0.0.0 到 10.255.255.255</li>
+<li>172.16.0.0 到 172.31.255.255</li>
+<li>192.168.0.0 到 192.168.255.255</li>
+</ul>
+<p>这些地址是专门为局域网内部使用而保留的，不会被分配到互联网上，因此可以重复使用。内网IP地址的作用是在局域网内部进行设备之间的通信和连接，比如连接本地打印机、路由器、局域网内的计算机等。</p>
+<p>与内网IP相对的是公网IP（Public IP），公网IP是可以被全球互联网访问到的IP地址，用于在不同的网络之间进行通信。</p>
+<p>我们可以通过</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> ipconfig<br></code></pre></td></tr></table></figure>
+
+<p>来访问我们电脑现在的内网ip(也就是ipv4地址)</p>
+<p><img src="/2024/07/10/IP%E5%9C%B0%E5%9D%80/image-20240710152532331.png" srcset="/img/loading.gif" lazyload alt="IP"></p>
+<p>公网IP（Public IP）是指可以直接在全球互联网上访问到的IP地址。它是由互联网服务提供商（ISP，也就是移动，联通这些公司）分配给网络设备（如路由器、服务器等）的唯一标识符，用于在互联网上进行通信和数据交换。</p>
+<p>公网IP地址是全球唯一的，不同的设备在互联网上需要具有不同的公网IP地址，这样才能保证它们之间能够正确地进行通信和数据传输。公网IP地址通常是静态或动态分配的，静态公网IP地址在一段时间内不会改变，而动态公网IP地址可能会在连接重新建立时发生变化。</p>
+<p>通常情况下，个人用户使用的是动态公网IP地址，而企业或特定应用可能会使用静态公网IP地址，以便更稳定地提供服务和进行网络管理，一般情况下我们个人都是先使用内网然后再通过了路由将数据与公网进行交换，如果想要个人直接接入公网，需要向ISP特别申请。</p>
+<p>通俗的说，内网ip与公网ip就好比寄快递，内网ip是几栋几号室，而公网ip是哪个省哪个市，有了这些ip地址后，我们才能把信息精确分配到每一个计算机个体。</p>
+<h4 id="ipv4和ipv6"><a href="#ipv4和ipv6" class="headerlink" title="ipv4和ipv6"></a>ipv4和ipv6</h4><p>IPv4（Internet Protocol version 4）是互联网协议第四版，是当前广泛使用的互联网协议之一。IPv4定义了互联网上数据的传输方式，它使用32位（4个字节）的地址长度来标识网络上的每个设备或节点。</p>
+<p>IPv4地址通常以点分十进制表示，例如：192.168.1.1。每个IPv4地址由四个八位组成，每个八位组可以表示0到255之间的数值，总共有约42亿个不同的IPv4地址。然而，由于互联网的迅速发展和设备的增多，IPv4地址已经逐渐不足以支持所有连接到互联网的设备。</p>
+<p>为了解决IPv4地址耗尽的问题，IPv6（Internet Protocol version 6）被设计出来，它使用128位（16个字节）的地址长度，大大增加了可用的地址空间，预计能够长期解决IP地址耗尽的问题。IPv6的推广和采用逐渐增加，但目前仍然有大部分互联网流量使用IPv4协议。</p>
+<p>总结起来，IPv4是互联网上广泛使用的网络协议之一，使用32位地址长度来标识网络上的设备或节点，其地址格式为点分十进制。</p>
+<h4 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h4><p>由上面我们知道随着互联网的发展，ipv4逐渐枯竭。为了应对这样的情况，NAT（网络地址转换）技术孕育而生。</p>
+<h5 id="NAT-的主要类型包括："><a href="#NAT-的主要类型包括：" class="headerlink" title="NAT 的主要类型包括："></a>NAT 的主要类型包括：</h5><ul>
+<li>静态 NAT：静态NAT是将一个固定的私有IP地址映射到一个固定的公共IP地址的一种形式，通常用于需要特定设备具有公共IP地址的情况，如服务器。</li>
+<li>动态 NAT：动态NAT是动态地将内部设备的私有IP地址映射到公共IP地址池中的一个可用地址，通常在需要大量设备同时访问互联网时使用。</li>
+<li>PAT（端口地址转换）：也称为Overload NAT，它允许多个设备使用相同的公共IP地址访问互联网，但通过不同的端口号进行区分。</li>
+</ul>
+<p>一般情况我们我们就是通过路由器来将私有的ip地址映射到固定的公共ip地址，所以路由器在这里就充当了网关的作用。但是通过路由器传输的终端就不止一个，另一端接收方路由器对应的终端也不止一个，我们传输就无法一一对应，所以我们就要用到<strong>端口映射</strong>，通过端口号来确定我们要传输数据的终端彼此。</p>
+<p><img src="/2024/07/10/IP%E5%9C%B0%E5%9D%80/image-20240710160048602.png" srcset="/img/loading.gif" lazyload alt="大致是这样传递"></p>
+<h4 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h4><p>在知道子网掩码之前，我们要知道什么是<strong>子网</strong>。</p>
+<p><strong>子网</strong>（Subnet）是指将一个大的IP地址块（IP地址空间）划分成若干个较小的子集，每个子集称为一个子网。在网络中，子网的作用是将一个大的网络划分成多个较小的、更易管理的部分，以便于组织和管理网络设备。</p>
+<p>每个子网由一组连续的IP地址组成，这些IP地址共享一个公共的网络前缀（网络标识符）。这个网络前缀通常由IP地址和子网掩码（Subnet Mask）共同决定，子网掩码定义了IP地址中哪些部分是网络部分，哪些部分是主机部分。</p>
+<p>子网的使用可以帮助网络管理员更有效地管理IP地址，减少广播风暴（Broadcast Storm）和冲突，提高网络的安全性和性能。常见的子网划分方式包括按照部门、功能或地理位置来划分子网，以便于根据需要对每个子网进行管理和配置。</p>
+<p>那么如何确定这个ip是否在这个子网中呢？这就需要有子网掩码。子网掩码通过”&amp;”操作辨别子网：</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span>&amp; X = X<br><span class="hljs-symbol">0 </span>&amp; X = X<br></code></pre></td></tr></table></figure>
+
+<p>比如我们可以将：</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">192.168.1.10</span> &amp; <span class="hljs-number">255</span>.<span class="hljs-number">255</span>.<span class="hljs-number">255</span>.<span class="hljs-number">0</span> = <span class="hljs-number">192</span>.<span class="hljs-number">168</span>.<span class="hljs-number">1</span>.<span class="hljs-number">0</span><br>IP &amp; 子网掩码 =&gt; 结果相同 =&gt; 同一子网<br></code></pre></td></tr></table></figure>
+
+<p>如果我们通过ip和子网掩码的与操作都得到相同的结果，说明他们都在同一个子网当中。</p>
+<h4 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h4><p>端口（Port）是一种逻辑概念，用于区分不同应用程序或服务在同一台计算机上的通信终点。每个端口都有一个数字标识，称为端口号，用于标识特定的网络服务或应用程序。</p>
+<h5 id="主要特点和用途："><a href="#主要特点和用途：" class="headerlink" title="主要特点和用途："></a>主要特点和用途：</h5><ol>
+<li><strong>端口号</strong>：端口号是一个16位的整数，范围从0到65535。其中，0到1023的端口号被称为“系统端口”或“well-known端口”，它们通常分配给常见的网络服务，如HTTP（端口号80）、HTTPS（端口号443）、FTP（端口号21）等。</li>
+<li><strong>通信终点</strong>：在一台计算机上，每个运行的应用程序或服务都可以通过一个或多个端口号来进行通信。例如，Web服务器使用HTTP协议通过端口号80接收Web请求，而电子邮件服务器使用SMTP协议通过端口号25接收邮件。</li>
+<li><strong>传输层概念</strong>：端口属于传输层（第四层）协议的概念，在TCP&#x2F;IP模型中，这一层负责提供可靠的数据传输服务。TCP（Transmission Control Protocol）和UDP（User Datagram Protocol）是两种常用的传输层协议，它们通过端口号来确定数据包应该被交付给哪个应用程序或服务。</li>
+<li><strong>端口分类</strong>：<ul>
+<li><strong>系统端口</strong>：0到1023，预留给众所周知的服务。</li>
+<li><strong>注册端口</strong>：1024到49151，分配给用户进程或应用程序。</li>
+<li><strong>动态&#x2F;私有端口</strong>：49152到65535，用于临时的短暂会话。</li>
+</ul>
+</li>
+</ol>
+<h5 id="端口的重要性："><a href="#端口的重要性：" class="headerlink" title="端口的重要性："></a>端口的重要性：</h5><ul>
+<li><strong>多路复用</strong>：端口允许一台计算机上的多个应用程序同时进行网络通信，通过端口号区分不同的应用数据流。</li>
+<li><strong>网络安全</strong>：端口号有助于防火墙和安全设备识别和控制不同类型的网络流量，提高网络安全性。</li>
+<li><strong>网络管理</strong>：端口号使网络管理员可以轻松地监控和管理网络上的各种服务和应用程序。</li>
+</ul>
+<h4 id="以太网和因特网"><a href="#以太网和因特网" class="headerlink" title="以太网和因特网"></a>以太网和因特网</h4><p>以太网（Ethernet）和因特网（Internet）是两个不同的概念，它们在计算机网络中有着不同的角色和范围。</p>
+<h5 id="以太网（Ethernet）："><a href="#以太网（Ethernet）：" class="headerlink" title="以太网（Ethernet）："></a>以太网（Ethernet）：</h5><ol>
+<li><strong>定义</strong>：以太网是一种局域网（LAN）技术，用于在较小的范围内连接多台计算机和网络设备，如在办公室、校园或家庭内部。</li>
+<li><strong>传输介质</strong>：以太网通常使用双绞线、光纤或者无线电波作为传输介质，传输速度可以从几百Mbps到几十Gbps不等。</li>
+<li><strong>协议</strong>：以太网使用一组标准的数据链路层和物理层协议（如IEEE 802.3标准），定义了数据包在局域网内的传输方式。</li>
+<li><strong>拓扑结构</strong>：以太网的拓扑结构可以是星型、总线型或者环型，其中最常见的是星型拓扑，每台设备连接到一个中央集线器或交换机。</li>
+</ol>
+<h5 id="因特网（Internet）："><a href="#因特网（Internet）：" class="headerlink" title="因特网（Internet）："></a>因特网（Internet）：</h5><ol>
+<li><strong>定义</strong>：因特网是全球范围内的公共计算机网络，由许多不同的网络（包括以太网、光纤网络、卫星网络等）连接起来，通过TCP&#x2F;IP协议族进行数据传输和通信。</li>
+<li><strong>范围</strong>：因特网是全球性的网络，连接了世界上几乎所有的计算机和网络设备，允许它们之间进行跨地域和跨国界的通信。</li>
+<li><strong>协议</strong>：因特网使用TCP&#x2F;IP协议族，包括TCP（Transmission Control Protocol）和IP（Internet Protocol），定义了数据在全球范围内的传输和路由方式。</li>
+<li><strong>服务和应用</strong>：因特网支持各种应用和服务，如电子邮件、网页浏览、文件传输、实时通信等，是人们日常生活中广泛使用的平台。</li>
+</ol>
+<p>简单的说以太网就是局域网，而因特网就是互联网。</p>
+<h4 id="TCP-IP协议"><a href="#TCP-IP协议" class="headerlink" title="TCP&#x2F;IP协议"></a>TCP&#x2F;IP协议</h4><p>TCP&#x2F;IP（Transmission Control Protocol&#x2F;Internet Protocol）是一组通信协议，它定义了互联网和许多私有网络中数据如何传输和交换的标准。TCP&#x2F;IP协议族是现代互联网通信的基础，它包括多个协议，每个协议负责不同的功能。</p>
+<ol>
+<li><strong>IP（Internet Protocol）</strong>：<ul>
+<li>IP协议负责在网络中传送数据包，并确保它们能够从源地址到目标地址安全地传输。</li>
+<li>它定义了数据包的结构和格式，以及如何在网络中路由和转发数据包。</li>
+</ul>
+</li>
+<li><strong>TCP（Transmission Control Protocol）</strong>：<ul>
+<li>TCP协议是一种面向连接的协议，负责在通信的两端建立可靠的数据传输连接。</li>
+<li>它确保数据包按顺序到达目的地，并处理丢失数据包的重传，以及流量控制和拥塞控制。</li>
+</ul>
+</li>
+<li><strong>UDP（User Datagram Protocol）</strong>：<ul>
+<li>UDP协议是一种无连接的协议，它提供了一种简单的数据传输服务，适用于实时应用程序和广播通信。</li>
+<li>与TCP不同，UDP不保证数据的顺序和可靠性，但是它提供了较低的延迟和更高的传输速度。</li>
+</ul>
+</li>
+<li><strong>其他协议</strong>：<ul>
+<li><strong>ICMP（Internet Control Message Protocol）</strong>：用于在IP网络上发送控制消息，如错误报告和网络诊断。</li>
+<li><strong>ARP（Address Resolution Protocol）</strong>：用于将IP地址映射为MAC地址（硬件地址）。</li>
+</ul>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="print-no-link">#-计算机网络</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>IP地址</div>
+      <div>https://bayeeaa.github.io/2024/07/10/IP地址/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Ye</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 10, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/04/%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E5%B0%86pdf%E7%AD%89%E6%96%87%E4%BB%B6%E4%BC%A0%E5%85%A5%E5%90%8E%E7%AB%AF/" title="前端如何将pdf等文件传入后端">
+                        <span class="hidden-mobile">前端如何将pdf等文件传入后端</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
