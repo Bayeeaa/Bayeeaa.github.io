@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>vite构建的项目“@”地址无法解析问题</title>
+    <link href="/2024/07/19/vite%E6%9E%84%E5%BB%BA%E7%9A%84%E9%A1%B9%E7%9B%AE%E2%80%9C-%E2%80%9D%E5%9C%B0%E5%9D%80%E6%97%A0%E6%B3%95%E8%A7%A3%E6%9E%90%E9%97%AE%E9%A2%98/"/>
+    <url>/2024/07/19/vite%E6%9E%84%E5%BB%BA%E7%9A%84%E9%A1%B9%E7%9B%AE%E2%80%9C-%E2%80%9D%E5%9C%B0%E5%9D%80%E6%97%A0%E6%B3%95%E8%A7%A3%E6%9E%90%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<p>使用vite构建项目后，发现无法识别”@”地址：</p><p><img src="/2024/07/19/vite%E6%9E%84%E5%BB%BA%E7%9A%84%E9%A1%B9%E7%9B%AE%E2%80%9C-%E2%80%9D%E5%9C%B0%E5%9D%80%E6%97%A0%E6%B3%95%E8%A7%A3%E6%9E%90%E9%97%AE%E9%A2%98/image-20240719223909893.png" alt="报错提示"></p><p>经过排查是由于config文件中没有配置”@”对应的路径：</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">import</span> &#123; defineConfig &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vite&#x27;</span><br><span class="hljs-keyword">import</span> vue <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vitejs/plugin-vue&#x27;</span><br><span class="hljs-comment">// https://vitejs.dev/config/</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;<br>  <span class="hljs-attr">plugins</span>: [<br>    <span class="hljs-title function_">vue</span>(),<br>  ],<br>&#125;)<br></code></pre></td></tr></table></figure><p>打开vite.config.ts文件，改成：</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">import</span> &#123; fileURLToPath, <span class="hljs-variable constant_">URL</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;node:url&#x27;</span><br><span class="hljs-keyword">import</span> &#123; defineConfig &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vite&#x27;</span><br><span class="hljs-keyword">import</span> vue <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vitejs/plugin-vue&#x27;</span><br><br><span class="hljs-comment">// https://vitejs.dev/config/</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;<br>  <span class="hljs-attr">plugins</span>: [<br>    <span class="hljs-title function_">vue</span>(),<br>  ],<br>  <span class="hljs-attr">resolve</span>: &#123;<br>    <span class="hljs-attr">alias</span>: &#123;<br>      <span class="hljs-string">&#x27;@&#x27;</span>: <span class="hljs-title function_">fileURLToPath</span>(<span class="hljs-keyword">new</span> <span class="hljs-title function_">URL</span>(<span class="hljs-string">&#x27;./src&#x27;</span>, <span class="hljs-keyword">import</span>.<span class="hljs-property">meta</span>.<span class="hljs-property">url</span>)) <span class="hljs-comment">//这里的配置就是可以让@可以读取成&#x27;./src&#x27;</span><br>    &#125;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure><p>中间的reslove的alias所包含的就是”@”的配置项，这样我们就可以用@来代替.&#x2F;src。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Debug</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>IP地址</title>
     <link href="/2024/07/10/IP%E5%9C%B0%E5%9D%80/"/>
     <url>/2024/07/10/IP%E5%9C%B0%E5%9D%80/</url>
@@ -14,7 +33,7 @@
     
     <tags>
       
-      <tag>-计算机网络</tag>
+      <tag>计算机网络</tag>
       
     </tags>
     
