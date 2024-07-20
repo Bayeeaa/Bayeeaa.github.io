@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://bayeeaa.github.io/2024/07/20/vue3-ts%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE/image-20240719200614527.png">
 <meta property="og:image" content="https://bayeeaa.github.io/2024/07/20/vue3-ts%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE/image-20240719214457064.png">
 <meta property="article:published_time" content="2024-07-20T08:06:02.000Z">
-<meta property="article:modified_time" content="2024-07-20T08:10:44.738Z">
+<meta property="article:modified_time" content="2024-07-20T08:12:26.721Z">
 <meta property="article:author" content="Ye">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="TS">
@@ -302,20 +302,20 @@
 <p>这样我们就已经可以访问”&#x2F;home”组件了，但是我们的组件应该要配合layout来显示，具体放在页面的那个地方才合适呢？</p>
 <h3 id="控制组件存放位置"><a href="#控制组件存放位置" class="headerlink" title="控制组件存放位置"></a>控制组件存放位置</h3><p>使用中存放组件的位置用RouterView标签，触发标签用RouterLink标签。</p>
 <p>首先我们还是一样要在script中导入RouterView，RouterLink：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">RouterView</span>, <span class="hljs-title class_">RouterLink</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">RouterView</span>, <span class="hljs-title class_">RouterLink</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span><br></code></pre></td></tr></table></figure>
 
 <p>然后就可以在template中使用了：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:style</span>=<span class="hljs-string">&quot;&#123; padding: &#x27;24px&#x27;, background: &#x27;#fff&#x27;, minHeight: &#x27;600px&#x27; &#125;&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">RouterView</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">RouterView</span>&gt;</span>          <br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;div :style=&quot;&#123; padding: &#x27;24px&#x27;, background: &#x27;#fff&#x27;, minHeight: &#x27;600px&#x27; &#125;&quot;&gt;<br>  &lt;RouterView&gt;&lt;/RouterView&gt;          <br>&lt;/div&gt;<br></code></pre></td></tr></table></figure>
 
 <p>其中组件都会在RouterView的位置显示。而我们触发事件就要：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">RouterLink</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/home&quot;</span>&gt;</span>  首页 <span class="hljs-tag">&lt;/<span class="hljs-name">RouterLink</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;RouterLink to=&quot;/home&quot;&gt;  首页 &lt;/RouterLink&gt;<br></code></pre></td></tr></table></figure>
 
 <p>这里需要配合button等来配合使用。</p>
 <p>当然考虑到地址的变化，也可以这样写RouterLink：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">RouterLink</span> <span class="hljs-attr">:to</span>=<span class="hljs-string">&quot;&#123;path:/home&#125;&quot;</span>&gt;</span>  首页 <span class="hljs-tag">&lt;/<span class="hljs-name">RouterLink</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;RouterLink :to=&quot;&#123;path:/home&#125;&quot;&gt;  首页 &lt;/RouterLink&gt;<br></code></pre></td></tr></table></figure>
 
 <p>或者：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">RouterLink</span> <span class="hljs-attr">:to</span>=<span class="hljs-string">&quot;&#123;name:shouye&#125;&quot;</span>&gt;</span>  首页 <span class="hljs-tag">&lt;/<span class="hljs-name">RouterLink</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;RouterLink :to=&quot;&#123;name:shouye&#125;&quot;&gt;  首页 &lt;/RouterLink&gt;<br></code></pre></td></tr></table></figure>
 
 <h3 id="子路由配置"><a href="#子路由配置" class="headerlink" title="子路由配置"></a>子路由配置</h3><p>我们上面配置都是一级路由，而二级子路由要怎么配置呢？</p>
 <p>首先我们找到index.ts文件，再里面添加children在path中：</p>
@@ -323,7 +323,7 @@
 
 <p>然后我们只需在RouterLink里面修改to的路径就可以了，也就是我们可以localhost&#x2F;home&#x2F;detail来访问子组件了。</p>
 <h3 id="路由传参方法"><a href="#路由传参方法" class="headerlink" title="路由传参方法"></a>路由传参方法</h3><h4 id="query"><a href="#query" class="headerlink" title="query"></a>query</h4><p>使用query传参我们需要在RouterLink的to中加入需要传入的值，比如我们想传给子组件“qq”一词：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">RouterLink</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/detail?a=qq&amp;b=kk&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">RouterLink</span>&gt;</span>  <br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;RouterLink to=&quot;/detail?a=qq&amp;b=kk&quot;&gt;&lt;/RouterLink&gt;  <br></code></pre></td></tr></table></figure>
 
 <p>可以看到我给子组件通过“路径?变量&#x3D;值”将值传递，然后在子组件中我们需要再导入router接收传递的信息，就可以使用了：</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">import</span> &#123; useRoute &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span>;<br><span class="hljs-keyword">let</span> route = <span class="hljs-title function_">useRoute</span>()<br></code></pre></td></tr></table></figure>
