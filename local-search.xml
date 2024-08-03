@@ -4,6 +4,27 @@
   
   
   <entry>
+    <title>Vue的生命周期</title>
+    <link href="/2024/08/04/Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
+    <url>/2024/08/04/Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Vue生命周期"><a href="#Vue生命周期" class="headerlink" title="Vue生命周期"></a>Vue生命周期</h2><p>通俗的讲就是：一个vue实例从创建到销毁的整个过程</p><p>①创建(响应式数据) ②挂载(渲染模板) ③更新(修改数据更新视图) ④销毁(关闭页面,销毁实例)</p><h3 id="Vue生命周期函数"><a href="#Vue生命周期函数" class="headerlink" title="Vue生命周期函数"></a>Vue生命周期函数</h3><ol><li><strong>创建阶段（Creation）</strong>：<ul><li>beforeCreate：实例刚被创建，数据观测和事件机制初始化之前被调用。</li><li>created：实例已经创建完成，完成数据观测、属性和方法的运算，初始化事件等。</li></ul></li><li><strong>挂载阶段（Mounting）</strong>：<ul><li>beforeMount：在挂载开始之前被调用：相关的 render 函数首次被调用。</li><li>mounted：实例已经挂载到 DOM 上后被调用。</li></ul></li><li><strong>更新阶段（Updating）</strong>：<ul><li>beforeUpdate：数据更新时调用，发生在虚拟 DOM 重新渲染和打补丁之前。</li><li>updated：数据更新后调用，发生在虚拟 DOM 重新渲染和打补丁之后。</li></ul></li><li><strong>销毁阶段（Destroying）</strong>：<ul><li>beforeDestroy：实例销毁之前调用。在这一步，实例仍然完全可用。</li><li>destroyed：实例销毁后调用。在这一步，所有事件监听器被移除，所有子实例被销毁。</li></ul></li><li><strong>错误处理阶段（Error Handling）</strong>：<ul><li>errorCaptured：当子组件抛出错误时会触发该钩子。</li></ul></li></ol><p><img src="/2024/08/04/Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="vue生命周期"></p><p>为了深入的理解这段话，我们要知道什么是<code>实例</code></p><h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>在 Vue.js 中，”实例”（Instance）是指通过 Vue 构造函数创建的一个 Vue 实例对象。每个 Vue 应用都是通过创建一个 Vue 实例来实现的。当您使用 Vue 构造函数创建一个实例时，您可以传入一个选项对象，用于配置该实例的行为。</p><p>在 Vue 实例中，您可以定义数据、计算属性、方法、生命周期钩子函数等。这些属性和方法定义了该实例的行为和功能。Vue 实例还可以与 DOM 元素进行绑定，从而实现数据的双向绑定、事件处理等功能。</p><p>下面是一个简单的示例，演示了如何创建一个 Vue 实例：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 创建一个 Vue 实例</span><br><span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>  <span class="hljs-comment">// 选项对象</span><br>  <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>, <span class="hljs-comment">// 指定要挂载的元素</span><br>  <span class="hljs-attr">data</span>: &#123;<br>    <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;Hello, Vue!&#x27;</span><br>  &#125;,<br>  <span class="hljs-attr">methods</span>: &#123;<br>    <span class="hljs-attr">greet</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-title function_">alert</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">message</span>);<br>    &#125;<br>  &#125;,<br>  <span class="hljs-attr">created</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Vue 实例已创建&#x27;</span>);<br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure><p>在上面的示例中，我们创建了一个 Vue 实例 <code>vm</code>，并传入了一个选项对象，其中包含了 <code>el</code>、<code>data</code>、<code>methods</code> 和 <code>created</code> 等属性。这个实例可以通过 <code>vm</code> 来访问，并且可以调用定义的方法、访问数据等。</p><h3 id="Vue3-Composition-API"><a href="#Vue3-Composition-API" class="headerlink" title="Vue3 Composition API"></a>Vue3 Composition API</h3><p>进入到vue3后，组合式式API大为推广，在这其中的生命钩子函数有了更灵活的运用，这其中有了这样的变化：</p><ol><li><code>onBeforeMount</code>: 在组件挂载之前执行的函数，类似于 Vue 2.x 中的 <code>beforeMount</code> 钩子函数。</li><li><code>onMounted</code>: 在组件挂载到 DOM 后执行的函数，类似于 Vue 2.x 中的 <code>mounted</code> 钩子函数。</li><li><code>onBeforeUpdate</code>: 在组件更新之前执行的函数，类似于 Vue 2.x 中的 <code>beforeUpdate</code> 钩子函数。</li><li><code>onUpdated</code>: 在组件更新完成后执行的函数，类似于 Vue 2.x 中的 <code>updated</code> 钩子函数。</li><li><code>onBeforeUnmount</code>: 在组件卸载之前执行的函数，类似于 Vue 2.x 中的 <code>beforeUnmount</code> 钩子函数。</li><li><code>onUnmounted</code>: 在组件卸载后执行的函数，类似于 Vue 2.x 中的 <code>unmounted</code> 钩子函数。</li><li><code>onActivated</code>: 在组件被激活时执行的函数，用于配合 <code>&lt;keep-alive&gt;</code> 组件使用。</li><li><code>onDeactivated</code>: 在组件被停用时执行的函数，用于配合 <code>&lt;keep-alive&gt;</code> 组件使用。</li><li><code>onErrorCaptured</code>: 捕获子组件抛出的错误，类似于 Vue 2.x 中的 <code>errorCaptured</code> 钩子函数。</li></ol><h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><p>我们分两组进行演示，分别是onBeforeMount和onMounted，onBeforeUpdate和onUpdated。其中用到比较多的就是Mounted这组。</p><h4 id="onMounted"><a href="#onMounted" class="headerlink" title="onMounted"></a>onMounted</h4><p>我们输入以下代码</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;h3&gt;&#123;&#123; title &#125;&#125;&lt;/h3&gt;<br>&lt;/template&gt;<br><br>&lt;script setup lang=&quot;ts&quot;&gt;<br>import &#123; onMounted, onBeforeMount &#125; from &#x27;vue&#x27;<br>const title = &#x27;hello&#x27;<br><br>onBeforeMount(() =&gt; &#123;<br>  console.log(&quot;onBeforeMount: &quot;, document.querySelector(&quot;h3&quot;)?.innerHTML); //undefined<br>&#125;)<br><br>onMounted(() =&gt; &#123;<br>  console.log(&quot;onMounted: &quot;, document.querySelector(&quot;h3&quot;)?.innerHTML); //hello<br>&#125;)<br><br>&lt;/script&gt;<br></code></pre></td></tr></table></figure><p>我们可以看到我们分别让两个生命周期函数打印出此时的值，可以看到注释里的结果，在onBeforeMount，也就是实例还挂载到DOM上，此时还没有开始渲染因此式undefined，在onMounted里，hello被打印了出来，说明此时已经完成了渲染，可以操作DOM了。因此我们平时都习惯将网页进入时就需要触发的函数放在onMounted里，防止函数无法准确获取到DOM元素。</p><h4 id="onUpdated"><a href="#onUpdated" class="headerlink" title="onUpdated"></a>onUpdated</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;h2&gt;&#123;&#123; count &#125;&#125;&lt;/h2&gt;&lt;button @click=&quot;add&quot;&gt;+&lt;/button&gt;<br>&lt;/template&gt;<br><br>&lt;script setup lang=&quot;ts&quot;&gt;<br>import &#123; onBeforeUpdate, onUpdated, ref &#125; from &#x27;vue&#x27;<br>let count = ref(1)<br><br>onBeforeUpdate(() =&gt; &#123;<br>  console.log(&quot;onBeforeUpdate&quot;, document.querySelector(&quot;h2&quot;)?.innerHTML) //1<br>&#125;)<br><br>onUpdated(() =&gt; &#123;<br>  console.log(&quot;onUpdated&quot;, document.querySelector(&quot;h2&quot;)?.innerHTML); //2<br>&#125;)<br><br>const add = () =&gt; &#123;<br>  count.value++  <br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure><p>可以看到这里就是差异在内部数据更改和视图更新的区别，在onBeforeUpdate时数据并没有发生更新，而在onUpdated数据发生了更新并且可以显示出来。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>前端</tag>
+      
+      <tag>vue</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>git使用时出现的问题小汇总</title>
     <link href="/2024/07/29/git%E4%BD%BF%E7%94%A8%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%B0%8F%E6%B1%87%E6%80%BB/"/>
     <url>/2024/07/29/git%E4%BD%BF%E7%94%A8%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%B0%8F%E6%B1%87%E6%80%BB/</url>
@@ -36,6 +57,8 @@
     <tags>
       
       <tag>前端</tag>
+      
+      <tag>vue</tag>
       
       <tag>TS</tag>
       
@@ -95,6 +118,8 @@
     <tags>
       
       <tag>前端</tag>
+      
+      <tag>vue</tag>
       
     </tags>
     
