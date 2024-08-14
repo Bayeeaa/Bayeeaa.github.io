@@ -1,0 +1,743 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.jpg">
+  <link rel="icon" href="/img/fluid.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ye">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="static静态变量我们都知道在测试文件中都需要有： 1public static void main(String[] args)  这段文字，而文字中public void main这几个我都已经数值，但是这个static是什么意思呢？今天我们来一起探讨一下这个词语。 属性静态调用当我们遇到不同的成员需要有相同的属性的时候，为了方便同时输入和调用属性，我们引入了static(静态)修饰符： u">
+<meta property="og:type" content="article">
+<meta property="og:title" content="static静态标签">
+<meta property="og:url" content="https://bayeeaa.github.io/2024/08/14/static%E9%9D%99%E6%80%81%E6%A0%87%E7%AD%BE/index.html">
+<meta property="og:site_name" content="ye&#39;s blog">
+<meta property="og:description" content="static静态变量我们都知道在测试文件中都需要有： 1public static void main(String[] args)  这段文字，而文字中public void main这几个我都已经数值，但是这个static是什么意思呢？今天我们来一起探讨一下这个词语。 属性静态调用当我们遇到不同的成员需要有相同的属性的时候，为了方便同时输入和调用属性，我们引入了static(静态)修饰符： u">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://bayeeaa.github.io/2024/08/14/static%E9%9D%99%E6%80%81%E6%A0%87%E7%AD%BE/image-20240814091753742.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2024/08/14/static%E9%9D%99%E6%80%81%E6%A0%87%E7%AD%BE/image-20240814100802874.png">
+<meta property="article:published_time" content="2024-08-14T02:17:15.000Z">
+<meta property="article:modified_time" content="2024-08-14T02:19:22.007Z">
+<meta property="article:author" content="Ye">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bayeeaa.github.io/2024/08/14/static%E9%9D%99%E6%80%81%E6%A0%87%E7%AD%BE/image-20240814091753742.png">
+  
+  
+  
+  <title>static静态标签 - ye&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"bayeeaa.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ye</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>档案</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="static静态标签"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-14 10:17" pubdate>
+          August 14, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">static静态标签</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="static静态变量"><a href="#static静态变量" class="headerlink" title="static静态变量"></a>static静态变量</h3><p>我们都知道在测试文件中都需要有：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span><br></code></pre></td></tr></table></figure>
+
+<p>这段文字，而文字中public void main这几个我都已经数值，但是这个static是什么意思呢？今天我们来一起探讨一下这个词语。</p>
+<h4 id="属性静态调用"><a href="#属性静态调用" class="headerlink" title="属性静态调用"></a>属性静态调用</h4><p>当我们遇到不同的成员需要有相同的属性的时候，为了方便同时输入和调用属性，我们引入了static(静态)修饰符：</p>
+<p>user:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.bayeeaa.demo1.d9_static;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">user</span> &#123;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> number;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String tea;  <span class="hljs-comment">//static修饰tea这个变量</span><br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> name;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setName</span><span class="hljs-params">(String name)</span> &#123;<br>        <span class="hljs-built_in">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getNumber</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> number;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setNumber</span><span class="hljs-params">(<span class="hljs-type">int</span> number)</span> &#123;<br>        <span class="hljs-built_in">this</span>.number = number;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">user</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> number)</span> &#123;<br>        <span class="hljs-built_in">this</span>.name = name;<br>        <span class="hljs-built_in">this</span>.number = number;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">say</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;hi&quot;</span>);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>test:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.bayeeaa.demo1.d9_static;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">test</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">user</span> <span class="hljs-variable">u1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">user</span>(<span class="hljs-string">&quot;bb&quot;</span>,<span class="hljs-number">123</span>);<br>        <span class="hljs-type">user</span> <span class="hljs-variable">u2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">user</span>(<span class="hljs-string">&quot;ye&quot;</span>,<span class="hljs-number">11</span>);<br>        user.tea = <span class="hljs-string">&quot;black tea&quot;</span>;  <span class="hljs-comment">//直接对类进行调取</span><br>        System.out.println(u2.tea);  <span class="hljs-comment">//black tea</span><br>        System.out.println(u1.tea);  <span class="hljs-comment">//black tea</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我们可以看到当我们给tea用static修饰了之后，在test文件中我们就可以直接用类来进行赋值而不需要用成员来赋值，并且赋值后每个成员所访问的值都是一样的。被static所修饰的成员变量叫做静态变量，它有这三个特点：	</p>
+<ul>
+<li>被该类所有对象共享</li>
+<li>不属于对象，属于类</li>
+<li>随着类的加载而加载，优先于对象的存在</li>
+</ul>
+<p>当然被static修饰的成员方法，叫做静态方法，它有这些特点：</p>
+<ul>
+<li>多用在测试类和工具类中</li>
+<li>Javabean类中很少会用到</li>
+</ul>
+<p>这里我们就可以讨论到工具类的创建。</p>
+<h4 id="工具类创建"><a href="#工具类创建" class="headerlink" title="工具类创建"></a>工具类创建</h4><p>创建一个工具类，首先我们要将其私有化，这样外部就不会创建这个类的对象了(因为我们这个要让这个类作为工具，那我们就要写死在这里了，不能再让别人有所操作，不然工具变化会带来不便)：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ArrUtil</span> &#123;<br>	<span class="hljs-keyword">private</span> <span class="hljs-title function_">arrUtil</span><span class="hljs-params">()</span>&#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我们写一个工具类的例子：</p>
+<p>ArrUtil: </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.bayeeaa.demo1.d9_static;<br><br><span class="hljs-keyword">import</span> java.util.ArrayList;  <span class="hljs-comment">//集合list</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ArrUtil</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">ArrUtil</span><span class="hljs-params">()</span>&#123;&#125;; <span class="hljs-comment">//工具类私有化</span><br>    <br>	<span class="hljs-comment">//设置为静态方便调用</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">get_sum</span><span class="hljs-params">(<span class="hljs-type">int</span>[] arr)</span>&#123; <span class="hljs-comment">//计算数组所有数据和</span><br>        <span class="hljs-type">int</span> sum=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; arr.length; i++) &#123;<br>            sum = sum + arr[i];<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">get_num_sum</span><span class="hljs-params">(ArrayList&lt;user&gt; list)</span>&#123;  <span class="hljs-comment">//计算集合中所有对象的num属性和</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; list.size(); i++) &#123;<br>            sum = sum + list.get(i).getNumber();<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>test:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.bayeeaa.demo1.d9_static;<br><br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">test</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br><br>        <span class="hljs-type">int</span>[] a = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>&#125;;<br>        System.out.println(ArrUtil.get_sum(a)); <span class="hljs-comment">//输出数组的数字和</span><br><br>        ArrayList&lt;user&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();  <span class="hljs-comment">//这是个集合</span><br>        <span class="hljs-type">user</span> <span class="hljs-variable">u1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">user</span>(<span class="hljs-string">&quot;ye&quot;</span>,<span class="hljs-number">1</span>);<br>        <span class="hljs-type">user</span> <span class="hljs-variable">u2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">user</span>(<span class="hljs-string">&quot;yee&quot;</span>,<span class="hljs-number">2</span>);<br>        <span class="hljs-type">user</span> <span class="hljs-variable">u3</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">user</span>(<span class="hljs-string">&quot;yeee&quot;</span>,<span class="hljs-number">12</span>);<br><br>        list.add(u1); <span class="hljs-comment">//对象压入集合</span><br>        list.add(u2);<br>        list.add(u3);<br><br>        System.out.println(ArrUtil.get_num_sum(list)); <span class="hljs-comment">//输出集合中num的和</span><br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以看到可以直接通过 类名.方法名() 来调用工具。</p>
+<h4 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h4><p>其实，static有这几个注意事项：</p>
+<ul>
+<li>静态方法中，只能访问静态</li>
+<li>非静态方法可以访问所有</li>
+<li>静态方法中没有this关键字</li>
+</ul>
+<p>而这几个关键都和this关键字有关。以下我来举一些例子。</p>
+<p>test：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.bayeeaa.demo1.d9_static;<br><br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">test</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">methods_class</span> <span class="hljs-variable">pj</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">methods_class</span>();<br>        pj.repeat();<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>methods_class：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.bayeeaa.demo1.d9_static;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">methods_class</span> &#123;<br><br>    String s;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">repeat</span><span class="hljs-params">(methods_class <span class="hljs-built_in">this</span>)</span>&#123;<br>        System.out.println(<span class="hljs-built_in">this</span>);  <span class="hljs-comment">//输出com.bayeeaa.demo1.d9_static.methods_class@b4c966a</span><br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">again</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-built_in">this</span>);  <span class="hljs-comment">//飘红，静态方法中没有this</span><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>我在methods_class文件中输出了两个方法，一个是非静态方法，一个是静态方法，当我们分别用test文件来打印的时候会发现第一个repeat方法打印出了对象的地址，而第二个again方法会报错。</p>
+<p><img src="/2024/08/14/static%E9%9D%99%E6%80%81%E6%A0%87%E7%AD%BE/image-20240814091753742.png" srcset="/img/loading.gif" lazyload alt="Build Output"></p>
+<p>在我们平时使用非静态方法应该是不会在非静态方法中手动调入methods_class this这个值的，但是我们却可以直接用方法调用，这是因为在非静态方法中是默认包括this的，而this的赋值又由jvm调取。所以说在非静态方法中如果我们要调用参数，比如num，实际上应该是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">repeat</span><span class="hljs-params">(methods_class <span class="hljs-built_in">this</span>)</span>&#123;<br>    System.out.println(<span class="hljs-built_in">this</span>.s);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>但是通过上图的报错我们可以看到静态方法中是没有this的。因此在其中要是强行引入this会导致报错。</p>
+<p>有了这样的解释就可以理解上面的三个结论了。</p>
+<h4 id="内存解释"><a href="#内存解释" class="headerlink" title="内存解释"></a>内存解释</h4><p>在作内存解释之前我们要知道：</p>
+<h5 id="栈内存（Stack-Memory）"><a href="#栈内存（Stack-Memory）" class="headerlink" title="栈内存（Stack Memory）"></a>栈内存（Stack Memory）</h5><ol>
+<li><strong>结构和管理方式</strong>：<ul>
+<li>栈内存按照先进后出的原则进行管理（LIFO，即 Last In, First Out）。</li>
+<li>内存分配和回收由系统自动管理。每当一个函数被调用时，系统会在栈上为其分配内存，函数返回时，这部分内存会被自动释放。</li>
+</ul>
+</li>
+<li><strong>用途</strong>：<ul>
+<li>用于存储局部变量、函数调用参数和返回地址等。</li>
+<li>栈内存的管理非常高效，因为内存分配和释放的操作非常简单，只需调整栈顶指针即可。</li>
+</ul>
+</li>
+<li><strong>特点</strong>：<ul>
+<li>内存分配速度快。</li>
+<li>栈内存的大小通常较小，固定大小，超过限制会导致栈溢出（stack overflow）。</li>
+<li>数据的生命周期由函数调用的生命周期决定，一旦函数返回，栈内存中的数据就会失效。</li>
+</ul>
+</li>
+</ol>
+<h4 id="堆内存（Heap-Memory）"><a href="#堆内存（Heap-Memory）" class="headerlink" title="堆内存（Heap Memory）"></a>堆内存（Heap Memory）</h4><ol>
+<li><strong>结构和管理方式</strong>：<ul>
+<li>堆内存没有固定的管理顺序，分配和释放内存是由程序员或垃圾回收机制管理的。</li>
+<li>内存的分配和释放可以发生在程序的任何地方，不像栈内存那样有固定的顺序。</li>
+</ul>
+</li>
+<li><strong>用途</strong>：<ul>
+<li>用于动态分配内存，比如创建对象、数组等，需要程序员显式地请求内存空间。</li>
+<li>适用于需要在多个函数调用间共享数据的情况。</li>
+</ul>
+</li>
+<li><strong>特点</strong>：<ul>
+<li>内存分配和释放相对较慢，因为涉及到更复杂的管理机制。</li>
+<li>堆内存的大小通常较大，由操作系统和系统配置决定。</li>
+<li>需要程序员显式管理内存，未正确释放的内存会导致内存泄漏（memory leak），一些语言如 Java 和 Python 使用垃圾回收机制来自动处理这一问题。</li>
+</ul>
+</li>
+</ol>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><strong>栈内存</strong>适用于存储生命周期短、大小固定的数据，管理简单且高效。</li>
+<li><strong>堆内存</strong>适用于存储生命周期长或大小不确定的数据，管理复杂但灵活。</li>
+</ul>
+<p>我们可以简单的将内存划为三个区域：</p>
+<p><img src="/2024/08/14/static%E9%9D%99%E6%80%81%E6%A0%87%E7%AD%BE/image-20240814100802874.png" srcset="/img/loading.gif" lazyload alt="内存解释"></p>
+<p>字节文件加载：引入main文件，加载里面的方法、类文件中的属性、静态属性等等。</p>
+<p>然后开始创建对象，在堆内存中开辟一块地，并返回其地址给对象pj。</p>
+<p>然后pj就可以根据地址去寻找所要找的元素。</p>
+<h4 id="main的解释"><a href="#main的解释" class="headerlink" title="main的解释"></a>main的解释</h4><p>现在我们再来看下我们每次的入口文件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>public： 被JVM调用，访问权限足够大</li>
+<li>static：被JVM调用，不用创建对象，直接类名访问。因为main方法是静态的，所以测试类中其他方法也需要是静态的。(这里注意下,不是静态的叫实例变量,非static方法需要new一个实例出来才能使用,这里意思是main默认只能调用静态方法,实例要new)</li>
+<li>void：被JVM调用，不需要给JVM返回值</li>
+<li>main：一个通用的名称，虽然不是关键字，但是被JVM识别</li>
+<li>String[] args：以前用于接收键盘录入数据的，现在没有，被保留是为了上下版本兼容</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java/" class="print-no-link">#java</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>static静态标签</div>
+      <div>https://bayeeaa.github.io/2024/08/14/static静态标签/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Ye</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 14, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/04/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E5%B0%81%E8%A3%85/" title="JAVA面向对象编程封装">
+                        <span class="hidden-mobile">JAVA面向对象编程封装</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
