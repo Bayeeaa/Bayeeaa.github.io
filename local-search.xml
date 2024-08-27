@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>AutoCAD学习笔记</title>
+    <link href="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <url>/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<h2 id="AutoCAD学习笔记"><a href="#AutoCAD学习笔记" class="headerlink" title="AutoCAD学习笔记"></a>AutoCAD学习笔记</h2><p>这段时间在金工行业实习了一段时间，了解到一般机械制图是用到cad来绘画草图，然后再将画出的.dwg文件导入到ug(或者solidworks)中将其拉伸成3d图形。下面我将记录下这段时间使用cad的较多的快捷键以及指令操作。</p><h3 id="界面设置"><a href="#界面设置" class="headerlink" title="界面设置"></a>界面设置</h3><p>介于方便我们操作，免得每次都要点开找，我们可以将一些常用的操作直接放在边框layout处。</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240826105405781.png" alt="可以像这样设置CAD界面"></p><p>那么怎么设置呢？我们可以右键上方layout处(灰色处)，然后将光标放到AutoCAD上：</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/d95b2a44155895695886f076c91876b.jpg" alt="如图会出现很多选项，对着上图勾选即可"></p><p>然后将出现的小框拖到上述界面的位置即可，这样方便我们使用。</p><h3 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h3><h4 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h4><table><thead><tr><th>快捷键</th><th>操作</th><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td>l (L)</td><td>直线</td><td>s</td><td>拉伸</td></tr><tr><td>e</td><td>清除</td><td>tr</td><td>修剪</td></tr><tr><td>co</td><td>复制</td><td>ex</td><td>延伸</td></tr><tr><td>m</td><td>移动</td><td>cha</td><td>倒直角</td></tr><tr><td>o</td><td>偏移</td><td>f</td><td>倒圆角</td></tr><tr><td>c</td><td>圆</td><td>dli</td><td>直线标注</td></tr></tbody></table><p>上面这些快捷键只需要对着界面输入然后按下空格(或者回车)后就可以触发。</p><p>还有一点，就是我们要是按下空格就可以<code>重复上一个操作</code>，比如我c完一个圆后还想画一个圆，那就再按下空格，就可以直接再画一个圆。</p><h5 id="c圆"><a href="#c圆" class="headerlink" title="c圆"></a>c圆</h5><p>我们对着界面输入c然后空格后，光标处就会变成十字形，然后只需在图中点一下就可以圆出来：</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827095700961.png" alt="圆形示例"></p><p>注意我们可以看到下面命令框告诉我们可以输入圆的半径，比如我们想让圆的半径为10mm，那我们就可以输入10然后空格，或者想要直径为10mm，那就要输入d+空格，然后再输入10。</p><p>我们可以用旁边的标记列操作看下是否是10mm：</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827100931131.png" alt="标注检查"></p><p>注意这里只是用于检查，实际标注不能用和轮廓线一样颜色的线。</p><h5 id="l直线"><a href="#l直线" class="headerlink" title="l直线"></a>l直线</h5><p>这里注意我们画下直线的时候会出现两个标注：</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827104750508.png" alt="直线示例"></p><p>长度和角度可以用tab键来切换输入(如果没有这两个框是没有点开正交模式左边那个加号按钮)。</p><p>如果我们希望更方便操作角度我们可以开启下面的两个模式：</p><ul><li>正交模式 (f8)：点开后直线就是只能为直角(正交)状态。</li><li>极角模式 (f10)：可以设置角度，点开到相应角会有直线吸附。</li></ul><h5 id="e清除"><a href="#e清除" class="headerlink" title="e清除"></a>e清除</h5><p>这个很好理解，我们只需要选中需要被删除的线段，按下e+空格即可。</p><h5 id="co复制"><a href="#co复制" class="headerlink" title="co复制"></a>co复制</h5><p>我们co完后指令框显示：</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827102741699.png" alt="注意指令框"></p><p>也就是告诉我们需要选中对象。比如我像copy一个圆，那我选择这个圆后，再按下空格，然后出现：</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827102858555.png" alt="copy一下"></p><p>告诉我们寻找基准线，我以点圆的中心为例。</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827103508094.png" alt="找到中心线后移动"></p><p>可以看到一个新圆已经被复制出来。</p><h5 id="m移动"><a href="#m移动" class="headerlink" title="m移动"></a>m移动</h5><p>移动跟复制同理，需要选中对象，然后确定基准点来移动。</p><h5 id="o偏移"><a href="#o偏移" class="headerlink" title="o偏移"></a>o偏移</h5><p>o+空格后出现下图</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827110346139.png" alt="指令框要求输入偏移距离"></p><p>当我们输入距离(比如8mm)，然后再空格，选中对象就可以了</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827110523011.png" alt="选中对象后就可以上下取偏移对象"></p><h5 id="ro旋转"><a href="#ro旋转" class="headerlink" title="ro旋转"></a>ro旋转</h5><p>和上一个一样，都是选中对象，然后选中基准点，再输入旋转角度。</p><h5 id="tr修剪"><a href="#tr修剪" class="headerlink" title="tr修剪"></a>tr修剪</h5><p>这个特殊点，比如我们要删除这段：</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827111416454.png" alt="修剪删除"></p><p>我们就可以tr+两个空格(注意是两个空格)。然后就可以对这段点一下就可以删除了。</p><h5 id="ex延伸"><a href="#ex延伸" class="headerlink" title="ex延伸"></a>ex延伸</h5><p>这个需要选中两个对象，要求这两个对象是要有交点的，然后就可以延长一个对象直至相交。</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827112258116.png" alt="光标放到上面的那个对象上就会延长至相交"></p><h5 id="f倒圆角、cha倒直角"><a href="#f倒圆角、cha倒直角" class="headerlink" title="f倒圆角、cha倒直角"></a>f倒圆角、cha倒直角</h5><p>倒角只需要我们输入f + r(倒角半径)，然后再指定两个对象即可。</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827214628990.png" alt="两条边选中"></p><h5 id="dli正交直线标注"><a href="#dli正交直线标注" class="headerlink" title="dli正交直线标注"></a>dli正交直线标注</h5><p>也就是直线注释，这里注意是正交线，如果是斜线的话要输入dal。</p><h4 id="螺纹孔标注"><a href="#螺纹孔标注" class="headerlink" title="螺纹孔标注"></a>螺纹孔标注</h4><p>这里附上一张实习用到的表：</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/9479b108140e2595cbfb66b28cb0356.jpg" alt="螺纹标注表"></p><p>我们可以看到不同螺纹孔大小都是有标准的螺纹距离和深度的。比如我们想话一个M6的螺纹孔，我们要这样画：</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827224311227.png" alt="注意图中内容"></p><p>由于螺纹只有长度的，因此我们在画实际钻孔时要减去螺纹的长度。注意图中标注的细节，这些可以在图层里设置，方便我们选用：</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827225254858.png" alt="图层设置"></p><h4 id="阴影标注"><a href="#阴影标注" class="headerlink" title="阴影标注"></a>阴影标注</h4><p>找到左边列的打圈处，选中。</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827225418023.png" alt="通过上图步骤选取"></p><p>点击“添加：拾取点”就可以选择需要阴影的位置了，选择成功再空格选择比例、样例，点击确定即可。</p><h4 id="一圆与两圆相切"><a href="#一圆与两圆相切" class="headerlink" title="一圆与两圆相切"></a>一圆与两圆相切</h4><p>同样我们c+空格打开圆的快捷键，然后选择图中操作。</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827231016906.png" alt="输入t，空格"></p><p>然后选择圆中需要相切的两个位置，再输入圆的半径即可。</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827231150002.png" alt="相切后的样子"></p><h4 id="块创建"><a href="#块创建" class="headerlink" title="块创建"></a>块创建</h4><p>块说白了就是自己写一个模板然后方便下次直接用。</p><p>比如我随便画一个矩形想作为块：</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827231640651.png" alt="点击创建"></p><p>我们可以点开绘画然后找到块创建</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827231731280.png" alt="输入名称"></p><p>然后就可以输入名称保存了，需要时就i + 空格换出块就行了。</p><p><img src="/2024/08/27/AutoCAD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20240827231826164.png" alt="按i唤出"></p><p>实际运用中比如这个粗糙度的标注符号在cad里是没有的，那就可以自己画一个然后创建块，方便后续使用。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>制图</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>KMP算法</title>
     <link href="/2024/08/21/KMP%E7%AE%97%E6%B3%95/"/>
     <url>/2024/08/21/KMP%E7%AE%97%E6%B3%95/</url>
@@ -14,9 +33,9 @@
     
     <tags>
       
-      <tag>java</tag>
-      
       <tag>算法</tag>
+      
+      <tag>java</tag>
       
     </tags>
     
