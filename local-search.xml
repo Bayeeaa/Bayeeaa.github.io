@@ -4,6 +4,29 @@
   
   
   <entry>
+    <title>通过Github Pages上线Vite app静态项目</title>
+    <link href="/2024/09/16/%E9%80%9A%E8%BF%87Github-Pages%E4%B8%8A%E7%BA%BFVite-app%E9%9D%99%E6%80%81%E9%A1%B9%E7%9B%AE/"/>
+    <url>/2024/09/16/%E9%80%9A%E8%BF%87Github-Pages%E4%B8%8A%E7%BA%BFVite-app%E9%9D%99%E6%80%81%E9%A1%B9%E7%9B%AE/</url>
+    
+    <content type="html"><![CDATA[<h2 id="通过Github-Pages上线Vite-app静态项目"><a href="#通过Github-Pages上线Vite-app静态项目" class="headerlink" title="通过Github Pages上线Vite app静态项目"></a>通过Github Pages上线Vite app静态项目</h2><p>我们都知道通过github pages是能够免费上线一个静态项目的。但你是否有疑惑，为什么我的vue项目在本地npm run dev的时候是能够查看的，为什么我部署到github上并通过github pages却是空白的？经过尝试我发现vite所构建的项目是相当于是操作文件，而不是对外发布(public)的文件，因此我们需要进行额外的操作。</p><h3 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h3><p>在vite.config.ts文件中输入：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">base</span>:<span class="hljs-string">&#x27;/仓库名/&#x27;</span><br></code></pre></td></tr></table></figure><p><img src="/2024/09/16/%E9%80%9A%E8%BF%87Github-Pages%E4%B8%8A%E7%BA%BFVite-app%E9%9D%99%E6%80%81%E9%A1%B9%E7%9B%AE/image-20240916144907709.png" alt="如上图所示配置"></p><p>然后在终端输入：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm run build<br></code></pre></td></tr></table></figure><p>注意要build的话就需要将所有的飘红的bug都解决掉，否则报错。</p><p>然后要是build成功，就会发现多出一个dist隐藏文件，这个dist文件就是我们需要对外部署的文件。</p><p><img src="/2024/09/16/%E9%80%9A%E8%BF%87Github-Pages%E4%B8%8A%E7%BA%BFVite-app%E9%9D%99%E6%80%81%E9%A1%B9%E7%9B%AE/image-20240916145348136.png" alt="build成功如图所示"></p><h3 id="git操作"><a href="#git操作" class="headerlink" title="git操作"></a>git操作</h3><p>然后我们就需要将这个文件单独出一个分支，我们约定俗成给这个分支叫做”gh-pages”，并将dis导入进这个分支。</p><p>操作如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git add dist -f<br>git commit -m <span class="hljs-string">&quot;adding dist&quot;</span>  <br>git subtree push --prefix dist origin gh-pages<br></code></pre></td></tr></table></figure><ul><li>git add dist -f ：注意-f是强制添加(force)的意思，因为这个是隐藏文件，git会默认将其忽略掉，因此需要强制添加到缓冲区。</li><li>git commit -m “adding dist”  ：确认上传，并写入原因。</li><li>git subtree push –prefix dist origin gh-pages ：我们一个一个分析:”git subtree”用于管理项目中的子目录作为独立的 Git 树结构进行操作；”push –prefix dist”推入子文件dist(dist在整个项目中是子文件)；”origin gh-pages “是目标地，origin是仓库，gh-pages是分支</li></ul><h3 id="上线pages"><a href="#上线pages" class="headerlink" title="上线pages"></a>上线pages</h3><p>当你完成了上述git操作之后就可以在github pages里面操作了：</p><p><img src="/2024/09/16/%E9%80%9A%E8%BF%87Github-Pages%E4%B8%8A%E7%BA%BFVite-app%E9%9D%99%E6%80%81%E9%A1%B9%E7%9B%AE/image-20240916150945697.png" alt="根据步骤操作"></p><p>然后你就可以点击上面”Your site is live at https:&#x2F;&#x2F;**”，就可以访问了。</p><h3 id="静态项目更新"><a href="#静态项目更新" class="headerlink" title="静态项目更新"></a>静态项目更新</h3><p>当我们发现错误需要更新的时候，我们要知道在原vite项目和dist文件中都需要更改。首先需要在原来的vite项目中更改，然后上传至仓库。接着再重复上述的git命令上传至gh-pages里面：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm run build<br>git add dist -f<br>git commit -m <span class="hljs-string">&quot;adding dist&quot;</span>  <br>git subtree push --prefix dist origin gh-pages<br></code></pre></td></tr></table></figure><p>然后就可以完成网站更新了。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>前端</tag>
+      
+      <tag>vue</tag>
+      
+      <tag>Git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Java IO流</title>
     <link href="/2024/09/03/Java-IO%E6%B5%81/"/>
     <url>/2024/09/03/Java-IO%E6%B5%81/</url>
