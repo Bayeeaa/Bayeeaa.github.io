@@ -236,6 +236,46 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/05/04/%E6%9C%AC%E5%9C%B0%E5%B7%B2%E7%BB%8F%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2%EF%BC%8C%E5%89%8D%E7%AB%AFresponse%E8%BF%94%E5%9B%9E%E2%80%9CMethod-Post-not-allowed%E2%80%9D%E9%97%AE%E9%A2%98/" target="_self">
+          本地已经后端部署，前端response返回“Method Post not allowed”问题
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/04/%E6%9C%AC%E5%9C%B0%E5%B7%B2%E7%BB%8F%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2%EF%BC%8C%E5%89%8D%E7%AB%AFresponse%E8%BF%94%E5%9B%9E%E2%80%9CMethod-Post-not-allowed%E2%80%9D%E9%97%AE%E9%A2%98/" target="_self">
+        <div>
+          这次是在做前端的时候，前后端联调发生的问题。接口名前后都对的上然而显示“Post方法不被允许”：  第一反应是去看自定义端口最后的url是不是少一个“&#x2F;”：  发现并没有少。 最后经过排查发现前后端地址没有对上。前端地址没有连接本地的地址。   修改target的请求地址为”http://127.0.0.1:3381“，成功解决。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-05-04 23:38" pubdate>
+              2024-05-04
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Debug/">#Debug</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/05/01/Promise%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8%E4%B8%8Easync%E5%87%BD%E6%95%B0%E8%A7%A3%E5%86%B3%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1%E9%97%AE%E9%A2%98/" target="_self">
           Promise链式调用与async函数解决回调地狱问题
         </a>
@@ -583,46 +623,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/09/11/pixiv-crawler/" target="_self">
-          爬取pixiv日前十图片并下载至本地
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/11/pixiv-crawler/" target="_self">
-        <div>
-          爬取pixivic日前十图片实现目标：通过爬虫代码将pixivic日前十图片下载至本地并通过文件夹分类日期：  1.发送请求首先通过f12检查网站传输的包，发现ranks文件，查看其api所对应的响应，可以找到图片的url下载地址：  于是我们就可以向这个api发送请求： 1234import requestsurl = &quot;https://api.bbmang.me/ranks?page
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-11 12:21" pubdate>
-              2023-09-11
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%88%AC%E8%99%AB/">#爬虫</a>
             
           </div>
         
