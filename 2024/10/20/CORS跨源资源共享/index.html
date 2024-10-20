@@ -16,12 +16,12 @@
   <meta name="author" content="Ye">
   <meta name="keywords" content="">
   
-    <meta name="description" content="CORS跨源资源共享当我通过axios向目标url发送请求时候出现下面报错：  Javascript代码如下： 123456axios(&amp;#123;    url:&amp;#x27;http:&#x2F;&#x2F;127.0.0.1:5000&#x2F;data&amp;#x27;,    method:&amp;#x27;GET&amp;#x27;,&amp;#125;).then(result&#x3D;&gt;&amp;#123;    console.log(result">
+    <meta name="description" content="CORS跨源资源共享当我通过axios向目标url发送请求时候出现下面报错：  Javascript代码如下： 123456789101112131415axios(&amp;#123;    url : &quot;https:&#x2F;&#x2F;jwxt.zufe.edu.cn&#x2F;jwglxt&#x2F;cjcx&#x2F;cjcx_cxXsgrcj.html?doType&#x3D;query&amp;gnmkdm&#x3D;N305005&quot;,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CORS跨源资源共享">
 <meta property="og:url" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/index.html">
 <meta property="og:site_name" content="ye&#39;s blog">
-<meta property="og:description" content="CORS跨源资源共享当我通过axios向目标url发送请求时候出现下面报错：  Javascript代码如下： 123456axios(&amp;#123;    url:&amp;#x27;http:&#x2F;&#x2F;127.0.0.1:5000&#x2F;data&amp;#x27;,    method:&amp;#x27;GET&amp;#x27;,&amp;#125;).then(result&#x3D;&gt;&amp;#123;    console.log(result">
+<meta property="og:description" content="CORS跨源资源共享当我通过axios向目标url发送请求时候出现下面报错：  Javascript代码如下： 123456789101112131415axios(&amp;#123;    url : &quot;https:&#x2F;&#x2F;jwxt.zufe.edu.cn&#x2F;jwglxt&#x2F;cjcx&#x2F;cjcx_cxXsgrcj.html?doType&#x3D;query&amp;gnmkdm&#x3D;N305005&quot;,">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020161909427.png">
 <meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/5436ea32a234579146be2bbee96c24f.jpg">
@@ -30,10 +30,10 @@
 <meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020180407277.png">
 <meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020180811311.png">
 <meta property="article:published_time" content="2024-10-20T10:21:24.000Z">
-<meta property="article:modified_time" content="2024-10-20T10:26:33.628Z">
+<meta property="article:modified_time" content="2024-10-20T10:53:33.285Z">
 <meta property="article:author" content="Ye">
-<meta property="article:tag" content="Debug">
 <meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="Debug">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020161909427.png">
   
@@ -240,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k words
+          2.7k words
         
       </span>
     
@@ -251,7 +251,7 @@
         
         
         
-          19 mins
+          23 mins
         
       </span>
     
@@ -296,7 +296,7 @@
                 <h2 id="CORS跨源资源共享"><a href="#CORS跨源资源共享" class="headerlink" title="CORS跨源资源共享"></a>CORS跨源资源共享</h2><p>当我通过axios向目标url发送请求时候出现下面报错：</p>
 <p><img src="/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020161909427.png" srcset="/img/loading.gif" lazyload alt="访问拒绝"></p>
 <p>Javascript代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">axios</span>(&#123;<br>    <span class="hljs-attr">url</span>:<span class="hljs-string">&#x27;http://127.0.0.1:5000/data&#x27;</span>,<br>    <span class="hljs-attr">method</span>:<span class="hljs-string">&#x27;GET&#x27;</span>,<br>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span>=&gt;</span>&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result);<br>&#125;)<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">axios</span>(&#123;<br>    url : <span class="hljs-string">&quot;https://jwxt.zufe.edu.cn/jwglxt/cjcx/cjcx_cxXsgrcj.html?doType=query&amp;gnmkdm=N305005&quot;</span>,<br>    headers : &#123;<br>        <span class="hljs-string">&quot;User-Agent&quot;</span>: <span class="hljs-string">&quot;123&quot;</span>,<br>        <span class="hljs-string">&quot;Cookie&quot;</span>: <span class="hljs-string">&quot;123&quot;</span><br>    &#125;,<br>    data : &#123;<br>        <span class="hljs-string">&quot;xnm&quot;</span>: <span class="hljs-string">&quot;2023&quot;</span>,<br>        <span class="hljs-string">&quot;xqm&quot;</span>: <span class="hljs-string">&quot;3&quot;</span>,<br>        <span class="hljs-string">&quot;queryModel.showCount&quot;</span>: <span class="hljs-string">&quot;15&quot;</span><br>    &#125;,<br>    <span class="hljs-attr">method</span>:<span class="hljs-string">&#x27;GET&#x27;</span>,<br>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span>=&gt;</span>&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result);<br>&#125;)<br></code></pre></td></tr></table></figure>
 
 <p>可以看到我的http请求被拒绝了。而在Status中我们可以看到CORS error这是什么？</p>
 <h3 id="什么是CORS"><a href="#什么是CORS" class="headerlink" title="什么是CORS?"></a>什么是CORS?</h3><p>CORS（跨源资源共享）是一种机制，允许服务器指示浏览器允许来自不同源的请求。这通常用于保护资源，确保只有特定网站可以访问 API。那么为什么这里出现了CORS的错误呢？</p>
@@ -326,6 +326,9 @@
 <p>main文件代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> GetScoreData <span class="hljs-keyword">import</span> send_to_server<br><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, jsonify<br><br>app = Flask(__name__)<br><br><br><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&#x27;/data&#x27;</span>, methods=[<span class="hljs-string">&#x27;GET&#x27;</span>]</span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_data</span>():<br>    url = <span class="hljs-string">&quot;https://jwxt.zufe.edu.cn/jwglxt/cjcx/cjcx_cxXsgrcj.html？doType=query&amp;gnmkdm=N305005&quot;</span><br>    headers = &#123;<br>        <span class="hljs-string">&quot;User-Agent&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>        <span class="hljs-string">&quot;Cookie&quot;</span>: <span class="hljs-string">&quot;&quot;</span><br>    &#125;<br>    body = &#123;<br>        <span class="hljs-string">&quot;xnm&quot;</span>: <span class="hljs-string">&quot;2023&quot;</span>,<br>        <span class="hljs-string">&quot;xqm&quot;</span>: <span class="hljs-string">&quot;3&quot;</span>,<br>        <span class="hljs-string">&quot;queryModel.showCount&quot;</span>: <span class="hljs-string">&quot;15&quot;</span><br>    &#125;<br>    data = send_to_server(url, headers, body)<br>    <span class="hljs-built_in">print</span>(data)<br>    <span class="hljs-keyword">return</span> jsonify(data)<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    app.run(port=<span class="hljs-number">5000</span>)<br></code></pre></td></tr></table></figure>
 
+<h4 id="发送axios请求"><a href="#发送axios请求" class="headerlink" title="发送axios请求"></a>发送axios请求</h4><p>在JavaScript文件中发送请求：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">axios</span>(&#123;<br>    <span class="hljs-attr">url</span>:<span class="hljs-string">&#x27;http://127.0.0.1:5000/data&#x27;</span>,<br>    <span class="hljs-attr">method</span>:<span class="hljs-string">&#x27;GET&#x27;</span>,<br>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span>=&gt;</span>&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
 <p>但是这样可能还是有问题：</p>
 <p><img src="/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020180407277.png" srcset="/img/loading.gif" lazyload alt="由于请求过于简单，没有请求体，直接跳过了preflight，返回CORS error"></p>
 <p>可以看到跟上文所说的一样，端口不一样也会触发preflight预检测，因此我们有两个思路：</p>
@@ -351,9 +354,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Debug/" class="print-no-link">#Debug</a>
-      
         <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="print-no-link">#计算机网络</a>
+      
+        <a href="/tags/Debug/" class="print-no-link">#Debug</a>
       
     </div>
   
