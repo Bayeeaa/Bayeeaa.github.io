@@ -1,0 +1,680 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.jpg">
+  <link rel="icon" href="/img/fluid.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ye">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="CORS跨源资源共享当我通过axios向目标url发送请求时候出现下面报错：  Javascript代码如下： 123456axios(&amp;#123;    url:&amp;#x27;http:&#x2F;&#x2F;127.0.0.1:5000&#x2F;data&amp;#x27;,    method:&amp;#x27;GET&amp;#x27;,&amp;#125;).then(result&#x3D;&gt;&amp;#123;    console.log(result">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CORS跨源资源共享">
+<meta property="og:url" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/index.html">
+<meta property="og:site_name" content="ye&#39;s blog">
+<meta property="og:description" content="CORS跨源资源共享当我通过axios向目标url发送请求时候出现下面报错：  Javascript代码如下： 123456axios(&amp;#123;    url:&amp;#x27;http:&#x2F;&#x2F;127.0.0.1:5000&#x2F;data&amp;#x27;,    method:&amp;#x27;GET&amp;#x27;,&amp;#125;).then(result&#x3D;&gt;&amp;#123;    console.log(result">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020161909427.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/5436ea32a234579146be2bbee96c24f.jpg">
+<meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/Users/yyn19/AppData/Roaming/Typora/typora-user-images/image-20241020170533736.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/9138eda93c6a9ff183eb2d72329abc8.jpg">
+<meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020180407277.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020180811311.png">
+<meta property="article:published_time" content="2024-10-20T10:21:24.000Z">
+<meta property="article:modified_time" content="2024-10-20T10:24:04.963Z">
+<meta property="article:author" content="Ye">
+<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="Debug">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020161909427.png">
+  
+  
+  
+  <title>CORS跨源资源共享 - ye&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"bayeeaa.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ye</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>档案</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CORS跨源资源共享"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-20 18:21" pubdate>
+          October 20, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CORS跨源资源共享</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="CORS跨源资源共享"><a href="#CORS跨源资源共享" class="headerlink" title="CORS跨源资源共享"></a>CORS跨源资源共享</h2><p>当我通过axios向目标url发送请求时候出现下面报错：</p>
+<p><img src="/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020161909427.png" srcset="/img/loading.gif" lazyload alt="访问拒绝"></p>
+<p>Javascript代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">axios</span>(&#123;<br>    <span class="hljs-attr">url</span>:<span class="hljs-string">&#x27;http://127.0.0.1:5000/data&#x27;</span>,<br>    <span class="hljs-attr">method</span>:<span class="hljs-string">&#x27;GET&#x27;</span>,<br>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span>=&gt;</span>&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>可以看到我的http请求被拒绝了。而在Status中我们可以看到CORS error这是什么？</p>
+<h3 id="什么是CORS"><a href="#什么是CORS" class="headerlink" title="什么是CORS?"></a>什么是CORS?</h3><p>CORS（跨源资源共享）是一种机制，允许服务器指示浏览器允许来自不同源的请求。这通常用于保护资源，确保只有特定网站可以访问 API。那么为什么这里出现了CORS的错误呢？</p>
+<h3 id="由于不同源"><a href="#由于不同源" class="headerlink" title="由于不同源"></a>由于不同源</h3><p>首先要有CORS这个出现(而你用request请求就不会)就是因为我们是不同源。比如<a href="http://123.com:8080和http://321.com:8080这里就是host不一样(或者你端口不一样，http和https不一样)，这就是不同源，也就是说网站不能直接共享另一个网站的数据，除非另一个网站有其他配置。那么何为同源？比如在http://123.com:8080/abab，那么它就和http://123.com:8080是同源的。因此，我现在的网站文件要么就是本地服务器源，要么就是file源，总之不和目标源一样。">http://123.com:8080和http://321.com:8080这里就是host不一样(或者你端口不一样，http和https不一样)，这就是不同源，也就是说网站不能直接共享另一个网站的数据，除非另一个网站有其他配置。那么何为同源？比如在http://123.com:8080/abab，那么它就和http://123.com:8080是同源的。因此，我现在的网站文件要么就是本地服务器源，要么就是file源，总之不和目标源一样。</a></p>
+<h3 id="为什么python的request请求就可以？"><a href="#为什么python的request请求就可以？" class="headerlink" title="为什么python的request请求就可以？"></a>为什么python的request请求就可以？</h3><p>由上一篇文章知道，我们的python是可以正常获取的。这是因为python不在浏览器中运行，它属于后端程序，不会触发preflight检测。</p>
+<h3 id="何为preflight"><a href="#何为preflight" class="headerlink" title="何为preflight"></a>何为preflight</h3><p>如果你要通过这个网站得到目标网站的数据，首先网站不直接发送http请求，而是发送一个http option请求，然后目标网站的服务器会检查这个http option请求。这个过程就叫preflight。</p>
+<h3 id="预检查流程"><a href="#预检查流程" class="headerlink" title="预检查流程"></a>预检查流程</h3><p>如果目标的服务器有配置这个来处理预检的 OPTIONS 请求，那么目标服务器就会发送一个CORS头请求，这个头请求包括：</p>
+<ul>
+<li><code>Access-Control-Allow-Origin</code>：指定允许的源。如果该值与请求源匹配，浏览器会继续执行实际请求。</li>
+<li><code>Access-Control-Allow-Methods</code>：列出允许的方法（如 GET、POST）。</li>
+<li><code>Access-Control-Allow-Headers</code>：列出允许的自定义请求头。</li>
+</ul>
+<p>可以看到目标服务器是可以指定允许的源，允许的方法还有允许的请求头。</p>
+<p>然后你的浏览器接收到了这个CORS之后，会自己检查，如果符合的，就不会发送你的http请求（这也是在保护你的数据，总不能什么都不检查就把你的cookie什么发过去吧）。当然如果你的http请求都满足CORS的头请求，那么就会正常发送。</p>
+<p><img src="/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/5436ea32a234579146be2bbee96c24f.jpg" srcset="/img/loading.gif" lazyload alt="流程如图"></p>
+<p>这里再看下我的请求：</p>
+<p><img src="/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/Users\yyn19\AppData\Roaming\Typora\typora-user-images\image-20241020170533736.png" srcset="/img/loading.gif" lazyload alt="控制台信息"></p>
+<p>再结合第一张图的404，可以看出并不是我的请求不满足CORS头请求，而是目标服务器根本没配置option请求。</p>
+<h3 id="另一种思路"><a href="#另一种思路" class="headerlink" title="另一种思路"></a>另一种思路</h3><p>如果我们浏览器无法直接请求，那么我是不是可以通过先通过python请求并获取目标服务器数据，然后再将获取的数据部署到本地服务器，然后再让axios去请求本地服务器的数据呢？<img src="/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/9138eda93c6a9ff183eb2d72329abc8.jpg" srcset="/img/loading.gif" lazyload alt="思路如上图"></p>
+<h4 id="配置Flask"><a href="#配置Flask" class="headerlink" title="配置Flask"></a>配置Flask</h4><p>我们这里直接使用Flask框架来简单的将json数据传入本地服务器，端口就写5000好了。</p>
+<p>main文件代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> GetScoreData <span class="hljs-keyword">import</span> send_to_server<br><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, jsonify<br><br>app = Flask(__name__)<br><br><br><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&#x27;/data&#x27;</span>, methods=[<span class="hljs-string">&#x27;GET&#x27;</span>]</span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_data</span>():<br>    url = <span class="hljs-string">&quot;https://jwxt.zufe.edu.cn/jwglxt/cjcx/cjcx_cxXsgrcj.html？doType=query&amp;gnmkdm=N305005&quot;</span><br>    headers = &#123;<br>        <span class="hljs-string">&quot;User-Agent&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>        <span class="hljs-string">&quot;Cookie&quot;</span>: <span class="hljs-string">&quot;&quot;</span><br>    &#125;<br>    body = &#123;<br>        <span class="hljs-string">&quot;xnm&quot;</span>: <span class="hljs-string">&quot;2023&quot;</span>,<br>        <span class="hljs-string">&quot;xqm&quot;</span>: <span class="hljs-string">&quot;3&quot;</span>,<br>        <span class="hljs-string">&quot;queryModel.showCount&quot;</span>: <span class="hljs-string">&quot;15&quot;</span><br>    &#125;<br>    data = send_to_server(url, headers, body)<br>    <span class="hljs-built_in">print</span>(data)<br>    <span class="hljs-keyword">return</span> jsonify(data)<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    app.run(port=<span class="hljs-number">5000</span>)<br></code></pre></td></tr></table></figure>
+
+<p>但是这样可能还是有问题：</p>
+<p><img src="/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020180407277.png" srcset="/img/loading.gif" lazyload alt="由于请求过于简单，没有请求体，直接跳过了preflight，返回CORS error"></p>
+<p>可以看到跟上文所说的一样，端口不一样也会触发preflight预检测，因此我们有两个思路：</p>
+<ul>
+<li>更改端口号使其一致</li>
+<li>配置CORS</li>
+</ul>
+<p>如果配置CORS也非常方便，只需下载flask_cors库并在主文件中写下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> flask_cors <span class="hljs-keyword">import</span> CORS<br>CORS(app) <span class="hljs-comment"># 允许所有来源访问</span><br></code></pre></td></tr></table></figure>
+
+<p>即可允许访问。</p>
+<p>同样你也可以将端口改成5050，这样也可以成功访问数据。</p>
+<p><img src="/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020180811311.png" srcset="/img/loading.gif" lazyload alt="访问成功"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="print-no-link">#计算机网络</a>
+      
+        <a href="/tags/Debug/" class="print-no-link">#Debug</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CORS跨源资源共享</div>
+      <div>https://bayeeaa.github.io/2024/10/20/CORS跨源资源共享/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Ye</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 20, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/19/%E4%B8%80%E9%94%AE%E7%88%AC%E5%8F%96%E4%B8%AA%E4%BA%BA%E7%BB%A9%E7%82%B9%E5%B9%B6%E8%AE%A1%E7%AE%97%E5%B9%B3%E5%9D%87%E7%BB%A9%E7%82%B9%E7%9A%84%E8%84%9A%E6%9C%AC/" title="一键爬取个人绩点并计算平均绩点的脚本">
+                        <span class="hidden-mobile">一键爬取个人绩点并计算平均绩点的脚本</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
