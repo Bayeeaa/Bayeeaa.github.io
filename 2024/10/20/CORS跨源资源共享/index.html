@@ -25,15 +25,15 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020161909427.png">
 <meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/5436ea32a234579146be2bbee96c24f.jpg">
-<meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/Users/yyn19/AppData/Roaming/Typora/typora-user-images/image-20241020170533736.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020170533736.png">
 <meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/9138eda93c6a9ff183eb2d72329abc8.jpg">
 <meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020180407277.png">
 <meta property="og:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020180811311.png">
 <meta property="article:published_time" content="2024-10-20T10:21:24.000Z">
-<meta property="article:modified_time" content="2024-10-20T10:24:04.963Z">
+<meta property="article:modified_time" content="2024-10-20T10:26:33.628Z">
 <meta property="article:author" content="Ye">
-<meta property="article:tag" content="计算机网络">
 <meta property="article:tag" content="Debug">
+<meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://bayeeaa.github.io/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020161909427.png">
   
@@ -300,7 +300,13 @@
 
 <p>可以看到我的http请求被拒绝了。而在Status中我们可以看到CORS error这是什么？</p>
 <h3 id="什么是CORS"><a href="#什么是CORS" class="headerlink" title="什么是CORS?"></a>什么是CORS?</h3><p>CORS（跨源资源共享）是一种机制，允许服务器指示浏览器允许来自不同源的请求。这通常用于保护资源，确保只有特定网站可以访问 API。那么为什么这里出现了CORS的错误呢？</p>
-<h3 id="由于不同源"><a href="#由于不同源" class="headerlink" title="由于不同源"></a>由于不同源</h3><p>首先要有CORS这个出现(而你用request请求就不会)就是因为我们是不同源。比如<a href="http://123.com:8080和http://321.com:8080这里就是host不一样(或者你端口不一样，http和https不一样)，这就是不同源，也就是说网站不能直接共享另一个网站的数据，除非另一个网站有其他配置。那么何为同源？比如在http://123.com:8080/abab，那么它就和http://123.com:8080是同源的。因此，我现在的网站文件要么就是本地服务器源，要么就是file源，总之不和目标源一样。">http://123.com:8080和http://321.com:8080这里就是host不一样(或者你端口不一样，http和https不一样)，这就是不同源，也就是说网站不能直接共享另一个网站的数据，除非另一个网站有其他配置。那么何为同源？比如在http://123.com:8080/abab，那么它就和http://123.com:8080是同源的。因此，我现在的网站文件要么就是本地服务器源，要么就是file源，总之不和目标源一样。</a></p>
+<h3 id="由于不同源"><a href="#由于不同源" class="headerlink" title="由于不同源"></a>由于不同源</h3><p>首先要有CORS这个出现(而你用request请求就不会)就是因为我们是不同源。比如</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">http</span>://<span class="hljs-number">123</span>.com:<span class="hljs-number">8080</span><br><span class="hljs-attribute">http</span>://<span class="hljs-number">321</span>.com:<span class="hljs-number">8080</span><br></code></pre></td></tr></table></figure>
+
+<p>这里就是host不一样(或者你端口不一样，http和https不一样)，这就是不同源，也就是说网站不能直接共享另一个网站的数据，除非另一个网站有其他配置。那么何为同源？比如</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">http</span>://<span class="hljs-number">123</span>.com:<span class="hljs-number">8080</span><br><span class="hljs-attribute">http</span>://<span class="hljs-number">123</span>.com:<span class="hljs-number">8080</span>/abab<br></code></pre></td></tr></table></figure>
+
+<p>那么它就和是同源的。因此，我现在的网站文件要么就是本地服务器源，要么就是file源，总之不和目标源一样。</p>
 <h3 id="为什么python的request请求就可以？"><a href="#为什么python的request请求就可以？" class="headerlink" title="为什么python的request请求就可以？"></a>为什么python的request请求就可以？</h3><p>由上一篇文章知道，我们的python是可以正常获取的。这是因为python不在浏览器中运行，它属于后端程序，不会触发preflight检测。</p>
 <h3 id="何为preflight"><a href="#何为preflight" class="headerlink" title="何为preflight"></a>何为preflight</h3><p>如果你要通过这个网站得到目标网站的数据，首先网站不直接发送http请求，而是发送一个http option请求，然后目标网站的服务器会检查这个http option请求。这个过程就叫preflight。</p>
 <h3 id="预检查流程"><a href="#预检查流程" class="headerlink" title="预检查流程"></a>预检查流程</h3><p>如果目标的服务器有配置这个来处理预检的 OPTIONS 请求，那么目标服务器就会发送一个CORS头请求，这个头请求包括：</p>
@@ -313,8 +319,8 @@
 <p>然后你的浏览器接收到了这个CORS之后，会自己检查，如果符合的，就不会发送你的http请求（这也是在保护你的数据，总不能什么都不检查就把你的cookie什么发过去吧）。当然如果你的http请求都满足CORS的头请求，那么就会正常发送。</p>
 <p><img src="/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/5436ea32a234579146be2bbee96c24f.jpg" srcset="/img/loading.gif" lazyload alt="流程如图"></p>
 <p>这里再看下我的请求：</p>
-<p><img src="/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/Users\yyn19\AppData\Roaming\Typora\typora-user-images\image-20241020170533736.png" srcset="/img/loading.gif" lazyload alt="控制台信息"></p>
-<p>再结合第一张图的404，可以看出并不是我的请求不满足CORS头请求，而是目标服务器根本没配置option请求。</p>
+<p><img src="/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/image-20241020170533736.png" srcset="/img/loading.gif" lazyload alt="控制台信息"></p>
+<p>再结合第一张图的404，可以看出并不是我的请求不满足CORS头请求，而是目标服务器根本没做接收option请求的配置。</p>
 <h3 id="另一种思路"><a href="#另一种思路" class="headerlink" title="另一种思路"></a>另一种思路</h3><p>如果我们浏览器无法直接请求，那么我是不是可以通过先通过python请求并获取目标服务器数据，然后再将获取的数据部署到本地服务器，然后再让axios去请求本地服务器的数据呢？<img src="/2024/10/20/CORS%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/9138eda93c6a9ff183eb2d72329abc8.jpg" srcset="/img/loading.gif" lazyload alt="思路如上图"></p>
 <h4 id="配置Flask"><a href="#配置Flask" class="headerlink" title="配置Flask"></a>配置Flask</h4><p>我们这里直接使用Flask框架来简单的将json数据传入本地服务器，端口就写5000好了。</p>
 <p>main文件代码如下：</p>
@@ -345,9 +351,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="print-no-link">#计算机网络</a>
-      
         <a href="/tags/Debug/" class="print-no-link">#Debug</a>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="print-no-link">#计算机网络</a>
       
     </div>
   
