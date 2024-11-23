@@ -1,0 +1,786 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.jpg">
+  <link rel="icon" href="/img/fluid.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ye">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="pandas数据分析和plot画布的使用在我们实际生活中充满着大量的数据，那么这些数据需要怎么去筛选呢？python中的pandas给了我们非常强大的批量管理功能，同时plot画布也可以便于我们将数据可视化。 pandaspandas中包括Series和DataFramepandas 是 Python 中一个非常流行的数据分析库，它提供了高效、灵活的数据结构和工具，尤其是 DataFrame 和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pandas数据分析和plot画布的使用">
+<meta property="og:url" content="https://bayeeaa.github.io/2024/11/23/pandas%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8Cplot%E7%94%BB%E5%B8%83%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="ye&#39;s blog">
+<meta property="og:description" content="pandas数据分析和plot画布的使用在我们实际生活中充满着大量的数据，那么这些数据需要怎么去筛选呢？python中的pandas给了我们非常强大的批量管理功能，同时plot画布也可以便于我们将数据可视化。 pandaspandas中包括Series和DataFramepandas 是 Python 中一个非常流行的数据分析库，它提供了高效、灵活的数据结构和工具，尤其是 DataFrame 和">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://bayeeaa.github.io/2024/11/23/pandas%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8Cplot%E7%94%BB%E5%B8%83%E7%9A%84%E4%BD%BF%E7%94%A8/image-20241122101430434.png">
+<meta property="article:published_time" content="2024-11-23T04:29:07.000Z">
+<meta property="article:modified_time" content="2024-11-23T04:30:22.144Z">
+<meta property="article:author" content="Ye">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bayeeaa.github.io/2024/11/23/pandas%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8Cplot%E7%94%BB%E5%B8%83%E7%9A%84%E4%BD%BF%E7%94%A8/image-20241122101430434.png">
+  
+  
+  
+  <title>pandas数据分析和plot画布的使用 - ye&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"bayeeaa.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ye</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>档案</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="pandas数据分析和plot画布的使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-23 12:29" pubdate>
+          November 23, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          52 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">pandas数据分析和plot画布的使用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="pandas数据分析和plot画布的使用"><a href="#pandas数据分析和plot画布的使用" class="headerlink" title="pandas数据分析和plot画布的使用"></a>pandas数据分析和plot画布的使用</h2><p>在我们实际生活中充满着大量的数据，那么这些数据需要怎么去筛选呢？python中的pandas给了我们非常强大的批量管理功能，同时plot画布也可以便于我们将数据可视化。</p>
+<h3 id="pandas"><a href="#pandas" class="headerlink" title="pandas"></a>pandas</h3><h4 id="pandas中包括Series和DataFrame"><a href="#pandas中包括Series和DataFrame" class="headerlink" title="pandas中包括Series和DataFrame"></a>pandas中包括Series和DataFrame</h4><p><code>pandas</code> 是 Python 中一个非常流行的数据分析库，它提供了高效、灵活的数据结构和工具，尤其是 <code>DataFrame</code> 和 <code>Series</code> 两种数据结构，广泛用于数据清洗、处理、分析和建模。</p>
+<p><strong>pandas</strong> :是一个 Python 的库（包），它的名字源自“<strong>panel data</strong>”的缩写。<code>pandas</code> 提供了高效的数据结构和数据操作工具，特别是处理表格数据（类似数据库表或 Excel 表格）和时间序列数据。它能够让用户轻松地加载、清理、处理、变换、分析和可视化数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>Series</strong>：是 <code>pandas</code> 中的一种数据结构，类似于一维数组（<code>numpy.ndarray</code>），但它具备更多功能。每个 <code>Series</code> 由一组数据和一个与之相关的索引组成，因此它不仅仅是一个简单的列表，还可以通过标签来访问元素。<code>Series</code> 是 <code>pandas</code> 中最基础的数据类型。</p>
+<ul>
+<li>一维数据结构。</li>
+<li>包含数据（可以是任何类型，如数字、字符串、日期等）和索引。</li>
+<li>索引为数据提供了标签，可以通过标签进行定位和访问。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 创建一个 Series 对象</span><br>s = pd.Series([<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>], index=[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>])<br><br><span class="hljs-built_in">print</span>(s)<br></code></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs txt">b    20<br>c    30<br>d    40<br>dtype: int64<br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>s</code> 是一个 <code>Series</code>，它包含四个数据点和相应的索引标签。</p>
+<p><code>Series</code> 的内部结构：</p>
+<ul>
+<li>数据：<code>[10, 20, 30, 40]</code></li>
+<li>索引：<code>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</code></li>
+</ul>
+<p><strong>DataFrame</strong>：是 <code>pandas</code> 中最强大和常用的数据结构，它是一个二维的表格结构，类似于数据库中的表、Excel 表格或 SQL 查询的结果集。<code>DataFrame</code> 可以被看作是多个 <code>Series</code> 的组合，每个 <code>Series</code> 对应一个列，因此每个列都可以有自己的数据类型。</p>
+<p>特点：</p>
+<ul>
+<li>二维数据结构（表格形式）。</li>
+<li>每列是一个 <code>Series</code>，每行也有索引。</li>
+<li>行和列都有标签，可以通过行标签和列标签进行数据访问。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br><span class="hljs-comment"># 创建一个 DataFrame 对象</span><br>data = &#123;<br>    <span class="hljs-string">&#x27;A&#x27;</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],<br>    <span class="hljs-string">&#x27;B&#x27;</span>: [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>],<br>    <span class="hljs-string">&#x27;C&#x27;</span>: [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>]<br>&#125;<br><br>df = pd.DataFrame(data)<br><br><span class="hljs-built_in">print</span>(df)<br></code></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">   A  B  C<br>0  1  4  7<br>1  2  5  8<br>2  3  6  9<br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>df</code> 是一个 <code>DataFrame</code>，它包含三列：<code>A</code>、<code>B</code> 和 <code>C</code>，每列的数据是一个 <code>Series</code>。</p>
+<p><code>pandas</code>、<code>Series</code> 和 <code>DataFrame</code> 之间的关系</p>
+<ol>
+<li><strong><code>pandas</code> 是一个库</strong>，提供了操作和分析数据的功能。<ul>
+<li><code>pandas</code> 包含了 <code>Series</code> 和 <code>DataFrame</code> 这两种核心的数据结构。</li>
+</ul>
+</li>
+<li><strong><code>Series</code> 是 <code>pandas</code> 中的一维数据结构</strong>，它可以看作是 <code>DataFrame</code> 的一列。<ul>
+<li><code>Series</code> 适用于一维数据的存储和操作，它有一个一维的数组结构和一个与之相关的索引（标签）。</li>
+</ul>
+</li>
+<li><strong><code>DataFrame</code> 是 <code>pandas</code> 中的二维数据结构</strong>，由多个 <code>Series</code> 组成。<ul>
+<li>每个 <code>DataFrame</code> 由多个列（<code>Series</code>）组成，行和列都可以有标签（索引和列名）。</li>
+</ul>
+</li>
+</ol>
+<p>数据结构的层级关系：</p>
+<ul>
+<li><code>pandas</code> 是整个库。</li>
+<li><code>Series</code> 是 <code>pandas</code> 提供的基本数据结构之一，表示一维数据。</li>
+<li><code>DataFrame</code> 是 <code>pandas</code> 中的二维数据结构，由多个 <code>Series</code> 组成。</li>
+</ul>
+<p>以上我们搞清楚了pandas、Series、DataFrame之间的关系，接下来我们看看如何使用他们。</p>
+<h4 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h4><p>将csv文件读取成dataframe对象：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br>df_citygdp = pd.read_csv(<span class="hljs-string">&#x27;city.csv&#x27;</span>, index_col=<span class="hljs-number">0</span>, header=<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+
+<p>index_col&#x3D;0表示将第一列作为行索引，header&#x3D;0表示将第一行作为列索引。</p>
+<p>同样的，如果是excel文件：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br>df_zpcjd = pd.read_excel(<span class="hljs-string">&#x27;综评成绩单.xlsx&#x27;</span>, index_col=[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>])<br></code></pre></td></tr></table></figure>
+
+<p>index_col&#x3D;[0,1]表示将第二和第三列作为行索引。</p>
+<p>注意：</p>
+<ul>
+<li>csv文件：是纯文本文件，每一行代表一条记录，记录中的字段由逗号或其他分隔符（如制表符、分号等）分隔。</li>
+<li>xlsx文件：是 Excel 的标准文件格式，基于 XML（可扩展标记语言）。它使用压缩的二进制格式存储数据，并可以包含多个工作表（Sheet）。</li>
+</ul>
+<p><img src="/2024/11/23/pandas%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8Cplot%E7%94%BB%E5%B8%83%E7%9A%84%E4%BD%BF%E7%94%A8/image-20241122101430434.png" srcset="/img/loading.gif" lazyload alt="读出来的表如上图"></p>
+<p>或者直接手动创建：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">data = &#123;<span class="hljs-string">&#x27;A&#x27;</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>], <span class="hljs-string">&#x27;B&#x27;</span>: [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span>]&#125;<br>df = pd.DataFrame(data)<br></code></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs apache">   <span class="hljs-attribute">A</span>   B<br><span class="hljs-attribute">0</span>  <span class="hljs-number">1</span>  <span class="hljs-number">10</span><br><span class="hljs-attribute">1</span>  <span class="hljs-number">2</span>  <span class="hljs-number">20</span><br><span class="hljs-attribute">2</span>  <span class="hljs-number">3</span>  <span class="hljs-number">30</span><br><span class="hljs-attribute">3</span>  <span class="hljs-number">4</span>  <span class="hljs-number">40</span><br><span class="hljs-attribute">4</span>  <span class="hljs-number">5</span>  <span class="hljs-number">50</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="筛选"><a href="#筛选" class="headerlink" title="筛选"></a>筛选</h4><h5 id="列筛选"><a href="#列筛选" class="headerlink" title="列筛选"></a>列筛选</h5><p>假如：我们要筛选出”20经贸类4”的作业、实验、出勤、期末情况。</p>
+<p>首先我们如果我们按字典的输入方式，输入：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">df_zpcjd[<span class="hljs-string">&#x27;班级&#x27;</span>]<br></code></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs dns">学号            姓名 <br><span class="hljs-number">180110840516</span>  梁家豪     <span class="hljs-number">18</span>会计<span class="hljs-number">2</span><br><span class="hljs-number">190110920132</span>  石杨      <span class="hljs-number">19</span>经贸<span class="hljs-number">1</span><br><span class="hljs-number">200110920423</span>  李润     <span class="hljs-number">20</span>财会类<span class="hljs-number">3</span><br><span class="hljs-number">200110920426</span>  林小康    <span class="hljs-number">20</span>财会类<span class="hljs-number">3</span><br><span class="hljs-number">200110810629</span>  吾佳悦    <span class="hljs-number">20</span>财税类<span class="hljs-number">6</span><br><span class="hljs-number">200110920415</span>  胡绮     <span class="hljs-number">20</span>金融类<span class="hljs-number">2</span><br><span class="hljs-number">200110920401</span>  陈思慧    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920402</span>  陈特     <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920404</span>  陈雨廷    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920405</span>  陈雨薇    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920406</span>  戴佳妮    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920407</span>  丁子厚    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920408</span>  董睿滢    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920409</span>  董欣桦    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920410</span>  符嘉瑞    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920411</span>  傅敬轩    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920412</span>  巩静雯    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920413</span>  洪旭辉    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920414</span>  侯家馨    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920416</span>  黄伟伟    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920417</span>  黄卓佳    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920418</span>  姜梦柯    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920419</span>  荆国隆    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br><span class="hljs-number">200110920420</span>  赖砚儿    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br>...<br></code></pre></td></tr></table></figure>
+
+<p>可以看到输出了一整列只有班级的值，因此我们只用直接将“班级“进行比较，无需再用for循环，就可以直接输出所有”20经贸类4“班级的信息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">df_20_jm4 = df_zpcjd[df_zpcjd[<span class="hljs-string">&#x27;班级&#x27;</span>] == <span class="hljs-string">&#x27;20经贸类4&#x27;</span>]<br><span class="hljs-built_in">print</span>(df_20_jm4)<br></code></pre></td></tr></table></figure>
+
+<p>输出为：</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs tap">					 班级      作业 实验 出勤 期末<br>学号           姓名                          <br>200110920401 陈思慧  20经贸类4  <span class="hljs-number"> 90 </span><span class="hljs-number"> 95 </span><span class="hljs-number"> 95 </span> 84<br>200110920402 陈特   20经贸类4  <span class="hljs-number"> 65 </span><span class="hljs-number"> 65 </span><span class="hljs-number"> 65 </span> 72<br>200110920404 陈雨廷  20经贸类4  <span class="hljs-number"> 90 </span><span class="hljs-number"> 85 </span><span class="hljs-number"> 85 </span> 44<br>200110920405 陈雨薇  20经贸类4  <span class="hljs-number"> 90 </span><span class="hljs-number"> 95 </span><span class="hljs-number"> 95 </span> 83<br>200110920406 戴佳妮  20经贸类4  <span class="hljs-number"> 90 </span><span class="hljs-number"> 90 </span><span class="hljs-number"> 90 </span> 76<br>200110920407 丁子厚  20经贸类4  <span class="hljs-number"> 85 </span><span class="hljs-number"> 90 </span><span class="hljs-number"> 90 </span> 57<br>200110920408 董睿滢  20经贸类4  <span class="hljs-number"> 97 </span><span class="hljs-number"> 90 </span><span class="hljs-number"> 90 </span> 51<br>200110920409 董欣桦  20经贸类4  <span class="hljs-number"> 70 </span><span class="hljs-number"> 80 </span><span class="hljs-number"> 80 </span> 66<br>200110920410 符嘉瑞  20经贸类4  <span class="hljs-number"> 90 </span><span class="hljs-number"> 90 </span><span class="hljs-number"> 90 </span> 68<br>200110920411 傅敬轩  20经贸类4  <span class="hljs-number"> 70 </span><span class="hljs-number"> 80 </span><span class="hljs-number"> 80 </span> 72<br>200110920412 巩静雯  20经贸类4  <span class="hljs-number"> 97 </span><span class="hljs-number"> 90 </span><span class="hljs-number"> 90 </span> 76<br>200110920413 洪旭辉  20经贸类4  <span class="hljs-number"> 90 </span><span class="hljs-number"> 95 </span><span class="hljs-number"> 95 </span> 85<br>200110920414 侯家馨  20经贸类4  <span class="hljs-number"> 92 </span><span class="hljs-number"> 85 </span><span class="hljs-number"> 85 </span> 48<br>200110920416 黄伟伟  20经贸类4  <span class="hljs-number"> 95 </span><span class="hljs-number"> 90 </span><span class="hljs-number"> 90 </span> 73<br>200110920417 黄卓佳  20经贸类4  <span class="hljs-number"> 95 </span><span class="hljs-number"> 90 </span><span class="hljs-number"> 90 </span> 75<br>200110920418 姜梦柯  20经贸类4  <span class="hljs-number"> 96 </span><span class="hljs-number"> 90 </span><span class="hljs-number"> 90 </span> 78<br>200110920419 荆国隆  20经贸类4  <span class="hljs-number"> 96 </span><span class="hljs-number"> 90 </span><span class="hljs-number"> 90 </span> 55<br>200110920420 赖砚儿  20经贸类4  <span class="hljs-number"> 96 </span><span class="hljs-number"> 95 </span><span class="hljs-number"> 95 </span> 84<br>200110920421 李鲍华  20经贸类4  <span class="hljs-number"> 95 </span><span class="hljs-number"> 90 </span><span class="hljs-number"> 90 </span> 57<br>200110920422 李慧婷  20经贸类4  <span class="hljs-number"> 90 </span><span class="hljs-number"> 90 </span><span class="hljs-number"> 90 </span> 67<br>200110920424 李奕璁  20经贸类4  <span class="hljs-number"> 96 </span><span class="hljs-number"> 95 </span><span class="hljs-number"> 95 </span> 81<br>200110920425 李雨萍  20经贸类4  <span class="hljs-number"> 93 </span><span class="hljs-number"> 90 </span><span class="hljs-number"> 90 </span> 77<br>...<br></code></pre></td></tr></table></figure>
+
+<p>由次可以看到，进行直接的比较就可以筛选出想要的值。</p>
+<p>最后再将想要的值筛选出所需列即可（如果由多个列，直接用列表即可）。</p>
+<p>完整如下：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs py">df_20_jm4 = df_zpcjd[df_zpcjd[<span class="hljs-string">&#x27;班级&#x27;</span>] == <span class="hljs-string">&#x27;20经贸类4&#x27;</span>] <br>df_selected = df_20_jm4[[<span class="hljs-string">&#x27;作业&#x27;</span>, <span class="hljs-string">&#x27;实验&#x27;</span>, <span class="hljs-string">&#x27;出勤&#x27;</span>, <span class="hljs-string">&#x27;期末&#x27;</span>]]<br><span class="hljs-built_in">print</span>(df_selected)<br></code></pre></td></tr></table></figure>
+
+<h5 id="行筛选"><a href="#行筛选" class="headerlink" title="行筛选"></a>行筛选</h5><p>这里我们就可以讲到loc方法，loc方法可以帮我们精准定位我们需要的信息。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">df.loc[行索引, 列索引]<br></code></pre></td></tr></table></figure>
+
+<p>比如我想要筛选出“陈思慧”这一行，我们就可以直接输入：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">df_zpcjd.loc[(<span class="hljs-number">200110920401</span>, <span class="hljs-string">&#x27;陈思慧&#x27;</span>)] <span class="hljs-comment">#由于是多索引，我们要把索引值完整的加上，即包括学号</span><br></code></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs delphi">班级    <span class="hljs-number">20</span>经贸类<span class="hljs-number">4</span><br>作业        <span class="hljs-number">90</span><br>实验        <span class="hljs-number">95</span><br>出勤        <span class="hljs-number">95</span><br>期末        <span class="hljs-number">84</span><br><span class="hljs-keyword">Name</span>: (<span class="hljs-number">200110920401</span>, 陈思慧), dtype: <span class="hljs-keyword">object</span><br></code></pre></td></tr></table></figure>
+
+<p>筛选期末成绩小于40或者综合成绩小于60的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">df_bukao=df_zpcjd[(df_zpcjd[<span class="hljs-string">&quot;期末&quot;</span>]&lt;<span class="hljs-number">40</span>) | (df_zpcjd[<span class="hljs-string">&quot;综合成绩&quot;</span>]&lt;<span class="hljs-number">60</span>)]<br></code></pre></td></tr></table></figure>
+
+<p>注意或是”|”还有两项之间要用括号分隔。</p>
+<h4 id="清洗"><a href="#清洗" class="headerlink" title="清洗"></a>清洗</h4><h5 id="行删除"><a href="#行删除" class="headerlink" title="行删除"></a>行删除</h5><p>删除行时，通常使用 <code>drop()</code> 方法并指定 <code>axis=0</code>（行的方向），可以通过行标签来删除。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">df = df.drop(<span class="hljs-string">&#x27;行标签&#x27;</span>, axis=<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+
+<h5 id="列删除"><a href="#列删除" class="headerlink" title="列删除"></a>列删除</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">df = df.drop(<span class="hljs-string">&#x27;列名&#x27;</span>, axis=<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+<h5 id="删除重复列"><a href="#删除重复列" class="headerlink" title="删除重复列"></a>删除重复列</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">df.loc[:, df_citygdp.nunique() &gt; <span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure>
+
+<p>这里的用了loc中的nunique方法。这个方法会返回每一列中唯一值的数量。结果是一个包含每列唯一值数量的 <code>Series</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">df.dropna(axis=<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+<p>这个dropna方法可以删除所有包含NaN的列(或行)</p>
+<h4 id="Series保存"><a href="#Series保存" class="headerlink" title="Series保存"></a>Series保存</h4><p>保存一个新系列，一行一列，只用Series即可</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs py">max_score = df_zpcjd[<span class="hljs-string">&#x27;综合成绩&#x27;</span>].<span class="hljs-built_in">max</span>()  <span class="hljs-comment"># 最大值</span><br>min_score = df_zpcjd[<span class="hljs-string">&#x27;综合成绩&#x27;</span>].<span class="hljs-built_in">min</span>()  <span class="hljs-comment"># 最小值</span><br>mean_score = df_zpcjd[<span class="hljs-string">&#x27;综合成绩&#x27;</span>].mean()  <span class="hljs-comment"># 平均值</span><br>std_score = df_zpcjd[<span class="hljs-string">&#x27;综合成绩&#x27;</span>].std()  <span class="hljs-comment"># 标准差</span><br>var_score = df_zpcjd[<span class="hljs-string">&#x27;综合成绩&#x27;</span>].var()  <span class="hljs-comment"># 方差</span><br><br>sr_cjtj = pd.Series(&#123;<br>    <span class="hljs-string">&#x27;最大值&#x27;</span>: max_score,<br>    <span class="hljs-string">&#x27;最小值&#x27;</span>: min_score,<br>    <span class="hljs-string">&#x27;平均值&#x27;</span>: mean_score,<br>    <span class="hljs-string">&#x27;标准差&#x27;</span>: std_score,<br>    <span class="hljs-string">&#x27;方差&#x27;</span>: var_score<br>&#125;)<br><span class="hljs-built_in">print</span>(sr_cjtj)<br></code></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs dns">最大值     <span class="hljs-number">95.650000</span><br>最小值     <span class="hljs-number">38.400000</span><br>平均值     <span class="hljs-number">75.136170</span><br>标准差     <span class="hljs-number">11.516603</span><br>方差     <span class="hljs-number">132.632142</span><br>dtype: float64<br></code></pre></td></tr></table></figure>
+
+<h3 id="plot画布"><a href="#plot画布" class="headerlink" title="plot画布"></a>plot画布</h3><p>首先我们要导入文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br>plt.rcParams[<span class="hljs-string">&#x27;font.sans-serif&#x27;</span>] = <span class="hljs-string">&#x27;SimHei&#x27;</span> <br>plt.rcParams[<span class="hljs-string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="hljs-literal">False</span> <span class="hljs-comment">#中文输入</span><br></code></pre></td></tr></table></figure>
+
+<p>我们约定俗成简写成plt。</p>
+<p>下面两行是为了能够有中文输入，因为原本这里是不支持中文的。</p>
+<p>我们要创建要一个画布，我们主要要有一下部件：</p>
+<ul>
+<li>函数类型</li>
+<li>函数数据</li>
+<li>标题</li>
+<li>x轴标签、y轴标签</li>
+<li>x轴坐标数据、y轴坐标数据</li>
+</ul>
+<p>这几个都是独立开来的，所以我们只需要的是叠加，就能完成画布制作。</p>
+<p><strong>折线图</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">p1 = plt.figure(figsize=(<span class="hljs-number">8</span>,<span class="hljs-number">20</span>)) <span class="hljs-comment">#父画布</span><br>p1.add_subplot(<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>) <span class="hljs-comment">#三分之一的画布占用，下面的plt都属指这个subplot，而且都是并行执行的。</span><br>plt.plot(<span class="hljs-built_in">range</span>(<span class="hljs-number">20</span>),ar_shuju[-<span class="hljs-number">3</span>:-<span class="hljs-number">23</span>:-<span class="hljs-number">1</span>,-<span class="hljs-number">2</span>],color=<span class="hljs-string">&#x27;r&#x27;</span>) <span class="hljs-comment">#plot(x轴数据，y轴数据，线条颜色)</span><br>plt.plot(<span class="hljs-built_in">range</span>(<span class="hljs-number">20</span>),ar_shuju[-<span class="hljs-number">3</span>:-<span class="hljs-number">23</span>:-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>],color=<span class="hljs-string">&#x27;y&#x27;</span>) <span class="hljs-comment">#plot是折线图</span><br>plt.title(<span class="hljs-string">&#x27;1996-2015人口变化趋势&#x27;</span>) <span class="hljs-comment">#标题</span><br>plt.xlabel(<span class="hljs-string">&#x27;年份&#x27;</span>) <span class="hljs-comment">#x轴标签</span><br>plt.ylabel(<span class="hljs-string">&#x27;人口（万人）&#x27;</span>) <span class="hljs-comment">#y轴标签</span><br>plt.xticks(<span class="hljs-built_in">range</span>(<span class="hljs-number">20</span>),ar_shuju[-<span class="hljs-number">3</span>:-<span class="hljs-number">23</span>:-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>],rotation=<span class="hljs-number">45</span>) <span class="hljs-comment">#x轴数据名称(个数，数据，倾斜度)</span><br>plt.legend([<span class="hljs-string">&#x27;城镇人口&#x27;</span>,<span class="hljs-string">&#x27;乡村人口&#x27;</span>]) <span class="hljs-comment">#线的名称</span><br></code></pre></td></tr></table></figure>
+
+<p>这个例子中range(20)表示x轴的数据，ar_shuju[-3:-23:-1,-2]表示y轴数据。</p>
+<p><strong>饼状图</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">p1.add_subplot(<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>)<br>explodel = [<span class="hljs-number">0.01</span>,<span class="hljs-number">0.01</span>]<br>plt.pie(ar_shuju[<span class="hljs-number">0</span>,<span class="hljs-number">4</span>:<span class="hljs-number">6</span>],explode=explodel,labels=[<span class="hljs-string">&#x27;城镇人口&#x27;</span>,<span class="hljs-string">&#x27;乡村人口&#x27;</span>],autopct=<span class="hljs-string">&#x27;%5.2f%%&#x27;</span>)<br>plt.title(<span class="hljs-string">&#x27;2015年末城乡人口比例图&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><strong>条状图</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">plt.bar([x轴数据...],[y轴数据...])<br></code></pre></td></tr></table></figure>
+
+<p>道理类似。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>pandas数据分析和plot画布的使用</div>
+      <div>https://bayeeaa.github.io/2024/11/23/pandas数据分析和plot画布的使用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Ye</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 23, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/26/%E7%94%B5%E5%BD%B1%E9%95%9C%E5%A4%B4%E8%AF%AD%E8%A8%80%E7%9A%84%E8%BF%90%E7%94%A8%E5%92%8C%E8%A1%A8%E8%BE%BE%E6%8A%80%E5%B7%A7/" title="电影镜头语言的运用和表达技巧">
+                        <span class="hidden-mobile">电影镜头语言的运用和表达技巧</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
