@@ -1,0 +1,830 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.jpg">
+  <link rel="icon" href="/img/fluid.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ye">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="CEF框架的基本认识CEF（Chromium Embedded Framework） 是一个基于Google Chromium的Web browser控件（桌面开发），旨在将 Chromium 浏览器的功能嵌入到其他应用程序中。它为开发者提供了一个轻量级的方式来集成 Web 内容浏览、HTML5 支持、JavaScript 执行等功能，从而使得开发者可以在桌面应用程序中嵌入网页浏览器或构建基于 W">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CEF框架的基本认识">
+<meta property="og:url" content="https://bayeeaa.github.io/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/index.html">
+<meta property="og:site_name" content="ye&#39;s blog">
+<meta property="og:description" content="CEF框架的基本认识CEF（Chromium Embedded Framework） 是一个基于Google Chromium的Web browser控件（桌面开发），旨在将 Chromium 浏览器的功能嵌入到其他应用程序中。它为开发者提供了一个轻量级的方式来集成 Web 内容浏览、HTML5 支持、JavaScript 执行等功能，从而使得开发者可以在桌面应用程序中嵌入网页浏览器或构建基于 W">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250123152528489.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250123153252105.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250123153200137.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250123153013165.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250123153727193.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250123154639326.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250123154924467.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250125104830920.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250125112831501.png">
+<meta property="article:published_time" content="2025-01-26T05:49:58.000Z">
+<meta property="article:modified_time" content="2025-01-26T05:52:41.276Z">
+<meta property="article:author" content="Ye">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bayeeaa.github.io/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250123152528489.png">
+  
+  
+  
+  <title>CEF框架的基本认识 - ye&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"bayeeaa.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ye</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>档案</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CEF框架的基本认识"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-26 13:49" pubdate>
+          January 26, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          109 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CEF框架的基本认识</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="CEF框架的基本认识"><a href="#CEF框架的基本认识" class="headerlink" title="CEF框架的基本认识"></a>CEF框架的基本认识</h2><p><strong>CEF（Chromium Embedded Framework）</strong> 是一个基于Google Chromium的Web browser控件（桌面开发），旨在将 Chromium 浏览器的功能嵌入到其他应用程序中。它为开发者提供了一个轻量级的方式来集成 Web 内容浏览、HTML5 支持、JavaScript 执行等功能，从而使得开发者可以在桌面应用程序中嵌入网页浏览器或构建基于 Web 的应用程序。我们熟知的钉钉、学习通、网易云、微信等都是借助于CEF框架编写的。为了对CEF框架作最基本的了解，我们先自己写一个CEF框架Demo。</p>
+<h3 id="运行官方CEF的示例项目"><a href="#运行官方CEF的示例项目" class="headerlink" title="运行官方CEF的示例项目"></a>运行官方CEF的示例项目</h3><p>我们主要进行3步准备。</p>
+<h4 id="CEF库以及Wrapper源码"><a href="#CEF库以及Wrapper源码" class="headerlink" title="CEF库以及Wrapper源码"></a>CEF库以及Wrapper源码</h4><p><a target="_blank" rel="noopener" href="https://cef-builds.spotifycdn.com/index.html">CEF库下载地址</a></p>
+<p><img src="/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250123152528489.png" srcset="/img/loading.gif" lazyload alt="下载Standard版"></p>
+<p>下载完后是一个压缩文件。注意解压需要用压缩软件（如Bandizip等），使用原生Windows解压时间过长。</p>
+<p><img src="/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250123153252105.png" srcset="/img/loading.gif" lazyload alt="libcef库以及libcef_dll_wrapper静态库"></p>
+<ul>
+<li><strong>cmake</strong>：该目录下存放了配置和构建以Windows作为编译环境的cmake配置文件，具体内容可以自行查看。</li>
+<li><strong>Debug和Release</strong>：这两个文件夹中，打开会看到已经编译好的CEF核心库文件</li>
+<li><strong>include</strong>：libcef本身提供的头文件以及wrapper会使用到的头文件。</li>
+<li><strong>libcef_dll</strong>：存放了<strong>libcef_dll_wrapper</strong>源码。</li>
+<li><strong>Resources</strong>：CEF作为内核的浏览器运行时需要用到的资源文件。</li>
+<li><strong>tests</strong>：存放了利用libcef、以及wrapper作为库来编写的浏览器Demo。其中，cefsimple编译出来的是一个简单的浏览器，而cefclient编译出来的是一个展示了cef许多API功能的exe。</li>
+</ul>
+<h4 id="使用-CMake-工具来编译-CEF"><a href="#使用-CMake-工具来编译-CEF" class="headerlink" title="使用 CMake 工具来编译 CEF"></a>使用 CMake 工具来编译 CEF</h4><p><a target="_blank" rel="noopener" href="https://cmake.org/download/">cmake下载地址</a></p>
+<p><img src="/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250123153200137.png" srcset="/img/loading.gif" lazyload alt="使用安装包更方便"></p>
+<p>打开cmake-gui.exe程序，在<code>Where is the source code</code>栏中选择源码所在目录，在下方的<code>Where to build the binaries</code>栏目中我们可以自定义任意位置，但是为了方便管理，我们选择在源码所在目录下增加一个build文件夹。</p>
+<p><img src="/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250123153013165.png" srcset="/img/loading.gif" lazyload alt="如下配置"></p>
+<p>Configure&gt;Generate。cmake于是为我们生成了7个解决方案，存在于cef.sln文件中。</p>
+<p><img src="/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250123153727193.png" srcset="/img/loading.gif" lazyload alt="如图"></p>
+<h4 id="使用VS编译"><a href="#使用VS编译" class="headerlink" title="使用VS编译"></a>使用VS编译</h4><p>我们点击CMake中的Open Project（就是打开cef.sln），然后我们对simple或者client文件进行编译。</p>
+<p><img src="/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250123154639326.png" srcset="/img/loading.gif" lazyload alt="对simple编译"></p>
+<p>同时我们可以在simple_app.cc（或者client_app.cc）中修改url值来改变访问的地址。</p>
+<p><img src="/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250123154924467.png" srcset="/img/loading.gif" lazyload alt="双击exe文件访问"></p>
+<p>然后我们就可以在上面的文件中打开exe文件，将弹出所选url的页面。</p>
+<h3 id="基本原理认识"><a href="#基本原理认识" class="headerlink" title="基本原理认识"></a>基本原理认识</h3><p>现在我们可以通过搭建一个全新的CEF工程来完成对这个程序更加深刻的理解。我们在Visual Studio中创建一个全新的C++项目，然后开始从0编写代码。</p>
+<h4 id="配置工程"><a href="#配置工程" class="headerlink" title="配置工程"></a>配置工程</h4><ul>
+<li>“常规-&gt;C++语言标准”设置为：<code>ISO C++17 标准 ( /std:c++17 )</code>，这个配置可以使我们在工程中使用现代 C++ 的语言特性。</li>
+<li>“C&#x2F;C++ -&gt;常规-&gt;附加包含目录”设置为： <code>D:\Project\cef-projects\cef_binary_132.3.1+g144febe+chromium-132.0.6834.83_windows64</code> ，这个路径是你下载的 CEF 框架所在的路径。注意：在使用 CEF 框架前你必须已经成功编译了 CEF 的示例项目。</li>
+<li>“C&#x2F;C++ -&gt;常规-&gt;预处理器定义”设置为如下内容：</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs ini">WIN32<br>_WINDOWS<br>__STDC_CONSTANT_MACROS<br>__STDC_FORMAT_MACROS<br>_WIN32<br>UNICODE<br>_UNICODE<br><span class="hljs-attr">WINVER</span>=<span class="hljs-number">0</span>x0601<br><span class="hljs-attr">_WIN32_WINNT</span>=<span class="hljs-number">0</span>x601<br>NOMINMAX<br>WIN32_LEAN_AND_MEAN<br><span class="hljs-attr">_HAS_EXCEPTIONS</span>=<span class="hljs-number">0</span><br><span class="hljs-attr">PSAPI_VERSION</span>=<span class="hljs-number">1</span><br>CEF_USE_SANDBOX<br>CEF_USE_ATL<br><span class="hljs-attr">_HAS_ITERATOR_DEBUGGING</span>=<span class="hljs-number">0</span><br>_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS<br></code></pre></td></tr></table></figure>
+
+<p>这些预处理器定义大部分都是 Windows 平台和 CEF 框架要求的预处理器定义，最后一项是为了屏蔽 CEF 框架中低版本 C++ 警告的预处理器。</p>
+<ul>
+<li>“C&#x2F;C++ -&gt;代码生成-&gt;运行库”设置为：<code>多线程调试 (/ MTd )</code>，这是为了适配 Chromium 的调试方式而设置的。</li>
+<li>“链接器-&gt;输入-&gt;附加依赖项”设置为如下内容：</li>
+</ul>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-symbol">D:</span>\Project\cef-projects\cef_binary_132.<span class="hljs-number">3.1</span>+g144febe+chromium-<span class="hljs-number">132.0</span>.<span class="hljs-number">6834.83_</span>windows64\build\libcef_dll_wrapper\Debug\libcef_dll_wrapper.<span class="hljs-keyword">lib</span><br><span class="hljs-symbol">D:</span>\Project\cef-projects\cef_binary_132.<span class="hljs-number">3.1</span>+g144febe+chromium-<span class="hljs-number">132.0</span>.<span class="hljs-number">6834.83_</span>windows64\Debug\libcef.<span class="hljs-keyword">lib</span><br><span class="hljs-symbol">D:</span>\Project\cef-projects\cef_binary_132.<span class="hljs-number">3.1</span>+g144febe+chromium-<span class="hljs-number">132.0</span>.<span class="hljs-number">6834.83_</span>windows64\Debug\cef_sandbox.<span class="hljs-keyword">lib</span><br>comctl32.<span class="hljs-keyword">lib</span><br>gdi32.<span class="hljs-keyword">lib</span><br>rpcrt4.<span class="hljs-keyword">lib</span><br>shlwapi.<span class="hljs-keyword">lib</span><br>ws2_32.<span class="hljs-keyword">lib</span><br>Advapi32.<span class="hljs-keyword">lib</span><br>dbghelp.<span class="hljs-keyword">lib</span><br>Delayimp.<span class="hljs-keyword">lib</span><br>OleAut32.<span class="hljs-keyword">lib</span><br>PowrProf.<span class="hljs-keyword">lib</span><br>Propsys.<span class="hljs-keyword">lib</span><br>psapi.<span class="hljs-keyword">lib</span><br>Shcore.<span class="hljs-keyword">lib</span><br></code></pre></td></tr></table></figure>
+
+<p>这是在编译、链接我们的程序时，使用 CEF 和 Windows 库的配置，其中 D:\Project\cef-projects\cef_binary_132.3.1+g144febe+chromium-132.0.6834.83_windows64 是你下载的 CEF 框架所在的路径。</p>
+<ul>
+<li>“链接器-&gt;系统-&gt;子系统”设置为：<code>窗口 ( /SUBSYSTEM:WINDOWS )</code>，VisualStudio 创建空白项目时，默认是控制台项目，这里我们把它调整为窗口项目。</li>
+<li>“清单工具-&gt;输入和输出-&gt;附加清单文件”设置为：<code>$(ProjectDir)ceftest.manifest</code>，这是为了让我们的工程生成的可执行程序兼容不同版本的 Windows 操作系统。设置好此配置之后，需要在工程的根目录下（与 main.cpp 在同一个目录）创建一个名为 ceftest.manifest 的文件，代码如下（此处的文件名你也可以按照自己的想法命名，不过注意配置里的文件名要和实际的文件名一致哦）：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;utf-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">assembly</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;urn:schemas-microsoft-com:asm.v1&quot;</span> <span class="hljs-attr">manifestVersion</span>=<span class="hljs-string">&quot;1.0&quot;</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">compatibility</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;urn:schemas-microsoft-com:compatibility.v1&quot;</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">application</span>&gt;</span><br>			<span class="hljs-comment">&lt;!--The ID below indicates application support for Windows 8.1 --&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">supportedOS</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">&quot;&#123;1f676c76-80e1-4239-95bb-83d0f6d0da78&#125;&quot;</span>/&gt;</span><br>			<span class="hljs-comment">&lt;!-- 10.0 --&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">supportedOS</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">&quot;&#123;8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a&#125;&quot;</span>/&gt;</span><br>			<span class="hljs-comment">&lt;!-- 适用于 Windows 11 --&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">supportedOS</span> <span class="hljs-attr">Id</span>=<span class="hljs-string">&quot;&#123;A25EFA83-AFF6-4F06-9AC4-84E92AFC6F4B&#125;&quot;</span>/&gt;</span><br>		<span class="hljs-tag">&lt;/<span class="hljs-name">application</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">compatibility</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">assembly</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>至此，这个全新的 C++ 工程就配置成功了，但现在还无法使用它，接下来我们就介绍如何为新工程准备资源。</p>
+<h4 id="资源准备"><a href="#资源准备" class="headerlink" title="资源准备"></a>资源准备</h4><p><img src="/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250125104830920.png" srcset="/img/loading.gif" lazyload alt="图中框起来的不要"></p>
+<p>把上面的资源复制到D:\Project\cef-projects\ceftest\x64\Debug中，因为只有这样这个新工程才能正确调用 CEF 框架提供的API。</p>
+<h4 id="入口程序"><a href="#入口程序" class="headerlink" title="入口程序"></a>入口程序</h4><p>我们目标创建一个应用程序，打开就是我的博客首页。首先在解决方案中创建一个main.cpp文件作为主入口文件，后续再创建App.cpp等文件：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;windows.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;App.h&quot;</span></span><br><span class="hljs-comment">//整个应用的入口函数</span><br><span class="hljs-function"><span class="hljs-type">int</span> APIENTRY <span class="hljs-title">wWinMain</span><span class="hljs-params">(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPTSTR lpCmdLine, _In_ <span class="hljs-type">int</span> nCmdShow)</span> </span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//CefEnableHighDPISupport(); 这个是启用高分屏支持的方法，现已不用手动调入</span><br>    <span class="hljs-function">CefMainArgs <span class="hljs-title">main_args</span><span class="hljs-params">(hInstance)</span></span>;<br>    CefSettings settings;<br>    <span class="hljs-type">int</span> exit_code = <span class="hljs-built_in">CefExecuteProcess</span>(main_args, <span class="hljs-literal">nullptr</span>, <span class="hljs-literal">nullptr</span>);<br>    <span class="hljs-keyword">if</span> (exit_code &gt;= <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">return</span> exit_code;<br>    &#125;<br>    <span class="hljs-function">CefRefPtr&lt;App&gt; <span class="hljs-title">app</span><span class="hljs-params">(<span class="hljs-keyword">new</span> App())</span></span>;<br>    <span class="hljs-built_in">CefInitialize</span>(main_args, settings, app.<span class="hljs-built_in">get</span>(), <span class="hljs-literal">nullptr</span>);<br>    <span class="hljs-built_in">CefRunMessageLoop</span>();<br>    <span class="hljs-built_in">CefShutdown</span>();<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>下面我们来分别讲讲各段代码的用处：</p>
+<h5 id="wWinMain"><a href="#wWinMain" class="headerlink" title="wWinMain"></a>wWinMain</h5><p>这是 Windows 应用程序使用的标准入口点，尤其适用于基于 Windows API 的图形用户界面（GUI）应用程序。</p>
+<p><strong>声明部分</strong>：</p>
+<p>**<code>int</code>**：</p>
+<ul>
+<li>这个方法返回一个 int 类型的数字，操作系统会直接抛弃这个值。但如果有外部应用唤起你这个应用，那么这个返回值对于它来说可能是有意义的，一般返回 0 表示应用程序正常退出，返回其他值表示应用程序因异常而退出。</li>
+</ul>
+<p>**<code>APIENTRY</code>**：</p>
+<ul>
+<li><code>APIENTRY</code> 是一个宏，通常在 Windows 编程中用于指定调用约定（calling convention）。调用约定定义了函数参数如何传递、返回值如何返回以及函数如何清理堆栈等。<code>APIENTRY</code> 实际上是 <code>__stdcall</code>，表示使用 Windows API 的标准调用约定。</li>
+<li>对于 Windows GUI 程序，这个约定用于确保正确的堆栈清理和传递参数。</li>
+</ul>
+<p>**<code>wWinMain</code>**：</p>
+<ul>
+<li><code>wWinMain</code> 是 Windows 程序的入口点，通常用于 <strong>宽字符集（Unicode）</strong> 程序。如果你在程序中使用的是宽字符（如 <code>wchar_t</code> 类型），而不是传统的单字节字符（如 <code>char</code>），就会使用 <code>wWinMain</code>。如果是使用单字节字符集，则使用 <code>WinMain</code>。</li>
+</ul>
+<p><strong>参数解析</strong>：</p>
+<p>参数前有 <em>In</em> 修饰符表示该参数是<strong>必填</strong>的输入参数，有 <em>In_opt</em> 修饰符的意思是该参数是<strong>可选</strong>的输入参数。</p>
+<p>**<code>_In_ HINSTANCE hInstance</code>**：</p>
+<ul>
+<li><code>hInstance</code> 是当前应用程序的实例句柄。它是一个指向该应用程序的内存位置的标识符，在 Windows 中，实例句柄用于标识一个应用程序的运行实例。它通常在程序启动时由操作系统提供，后续可以用来访问程序的资源（如窗口、图标等）。</li>
+</ul>
+<p>**<code>_In_opt_ HINSTANCE hPrevInstance</code>**：</p>
+<ul>
+<li><code>hPrevInstance</code> 是上一个实例的句柄。没有实际意义，是老版本 Windows 系统的历史遗留产物</li>
+</ul>
+<p>**<code>_In_ LPTSTR lpCmdLine</code>**：</p>
+<ul>
+<li><code>lpCmdLine</code> 是指向命令行参数的指针。它包含传递给程序的命令行字符串（不包括程序名）。如果程序有命令行参数，它们将被传递给 <code>lpCmdLine</code>，你可以在程序中解析它们。例如，<code>lpCmdLine</code> 中可能包含用户指定的路径或其他配置参数。</li>
+<li><code>LPTSTR</code> 是一个指针，指向宽字符集的字符串（<code>wchar_t*</code>）。如果你使用的是宽字符集（Unicode），则此参数是一个宽字符字符串；如果使用的是单字节字符集（ASCII），则它是 <code>char*</code> 类型的字符串。</li>
+</ul>
+<p>**<code>_In_ int nCmdShow</code>**：</p>
+<ul>
+<li><code>nCmdShow</code>是一个整数值，指定如何显示应用程序的主窗口。这个参数的值由操作系统传递，通常是控制窗口的可见性或状态。例如，<code>nCmdShow</code> 可以指示窗口是最小化、最大化还是普通显示。常见的值包括：<ul>
+<li><code>SW_SHOW</code>：正常显示窗口</li>
+<li><code>SW_MINIMIZE</code>：最小化窗口</li>
+<li><code>SW_MAXIMIZE</code>：最大化窗口</li>
+<li><code>SW_HIDE</code>：隐藏窗口</li>
+</ul>
+</li>
+</ul>
+<h5 id="应用程序初始化"><a href="#应用程序初始化" class="headerlink" title="应用程序初始化"></a>应用程序初始化</h5><p><code>CefMainArgs</code>是 CEF 对应用程序实例句柄的包装类，用于多进程启动。这里我们使用 hInstance 实例化了这个类的对象，名为：main_args 。</p>
+<p><code>CefSettings</code>是 CEF 的配置对象，类似日志级别、调试端口等都是通过这个对象设置的，这里我们就全部使用默认值，后面涉及到具体的配置项之后再详细讲解。</p>
+<h5 id="CefExecuteProcess负责启动进程"><a href="#CefExecuteProcess负责启动进程" class="headerlink" title="CefExecuteProcess负责启动进程"></a>CefExecuteProcess负责启动进程</h5><p>假如我们已经写完了这个程序，我们在启动这个CEF的时候会发现有好几个进程：</p>
+<p><img src="/2025/01/26/CEF%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86/image-20250125112831501.png" srcset="/img/loading.gif" lazyload alt="多个进程"></p>
+<p>这些进程中除了主进程是由用户启动的外，其他子进程都是 CEF 框架通过 CefExecuteProcess 方法启动的。这是为什么呢？这是因为主进程启动后，执行到CefExecuteProcess时，此方法会立即返回 -1 。接下去主进程就会进入 CEF 的消息循环，在适当的时候主进程会以特殊的命令行参数多次启动你的可执行文件，这样就创建了多个子进程。子进程启动后也会执行到这个 CefExecuteProcess 方法，但子进程执行此方法会被阻塞（不会继续执行后面的逻辑），当子进程执行完它们的任务后，这个方法将返回一个大于等于 0 的值。也就是说子进程在第10行代码处就退出执行了，子进程不会执行 12~18 行代码。</p>
+<h5 id="CefRefPtr类中的智能指针"><a href="#CefRefPtr类中的智能指针" class="headerlink" title="CefRefPtr类中的智能指针"></a>CefRefPtr类中的智能指针</h5><p>接下来主进程会创建一个 App 对象，这个对象的指针被封装到一个<code>CefRefPtr</code>类型里了。CefRefPtr用于管理 CEF 中对象的生命周期，它是 CEF 的引用计数智能指针，类似于 C++11 中的 <code>std::shared_ptr</code>，但是具有特定的设计，用于与 CEF 的引用计数机制配合使用。</p>
+<p>在 CEF 中，大多数对象都通过引用计数来管理其生命周期。这意味着当一个对象被多个地方引用时，只有当最后一个引用被销毁时，资源才会被释放。这有助于避免内存泄漏和悬挂指针的问题。<code>CefRefPtr</code> 通过自动管理对象的引用计数，帮助开发者避免手动管理内存的复杂性。</p>
+<h5 id="CefInitialize方法对CEF框架初始化及消息循环"><a href="#CefInitialize方法对CEF框架初始化及消息循环" class="headerlink" title="CefInitialize方法对CEF框架初始化及消息循环"></a>CefInitialize方法对CEF框架初始化及消息循环</h5><p>接下来主进程会执行<code>CefInitialize</code>方法，这个方法负责初始化 CEF 的浏览器进程处理类（注意：后文我们提到的浏览器进程与前文提到的主进程属于同一个进程）。这个方法的第一个参数仍然是我们前面创建的 CefMainArgs 对象，第二个参数是 CefSettings 对象，第三个参数就是 App 对象的指针，这里是通过 CefRefPtr 智能指针的 get 方法获取的。第四个参数与沙箱有关，这里我们依然置空。</p>
+<p><code>CefRunMessageLoop</code>负责开启 CEF 消息循环，这个方法会阻塞后面代码的执行，一直到应用程序的某个地方调用了 CefQuitMessageLoop 方法之后，这个方法才会退出执行。（CefQuitMessageLoop 方法会发射应用程序退出的消息，CefRunMessageLoop 方法会收到这个消息，收到这个消息后就退出方法了。）</p>
+<p><code>CefShutdown</code>方法会结束主进程，释放资源。最后应用程序退出。</p>
+<h4 id="浏览器进程入口"><a href="#浏览器进程入口" class="headerlink" title="浏览器进程入口"></a>浏览器进程入口</h4><p>操作系统调用完程序的入口函数后，CEF 框架就通过其自身的消息循环机制接管了接下来的执行工作。在之前的主入口main中我们有App对象，并且把这个对象传递给了 CEF 的<code>CefInitialize</code>方法，CEF 框架收到这个对象之后，会把浏览器进程的一些逻辑交给 App 对象执行，<strong>也就是说 App 对象就是我们浏览器进程的入口程序</strong>。</p>
+<p>我们首先来看看App.h文件：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> once</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;include/cef_app.h&quot;</span></span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">App</span> : <span class="hljs-keyword">public</span> CefApp, <span class="hljs-keyword">public</span> CefBrowserProcessHandler<br>&#123;<br><span class="hljs-keyword">public</span>:<br>        <span class="hljs-built_in">App</span>() = <span class="hljs-keyword">default</span>;<br>        <span class="hljs-function">CefRefPtr&lt;CefBrowserProcessHandler&gt; <span class="hljs-title">GetBrowserProcessHandler</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; &#125;<br>        <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">OnContextInitialized</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span></span>;<br><span class="hljs-keyword">private</span>:<br>        <span class="hljs-built_in">IMPLEMENT_REFCOUNTING</span>(App);<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><code>#pragma once</code> 是一个编译指令，告诉编译器本头文件只会被包含一次。这样可以避免多次包含同一个头文件导致的重复定义问题。让我们来逐行分析一下这段代码：</p>
+<p><strong>class App : public CefApp, public CefBrowserProcessHandler</strong>:</p>
+<ul>
+<li><p>这行定义了一个名为 <code>App</code> 的类，并且它从 <code>CefApp</code> 和 <code>CefBrowserProcessHandler</code> 这两个基类继承。</p>
+</li>
+<li><p><strong><code>CefApp</code></strong> 是 CEF 应用程序的基类，它提供了对 CEF 应用程序生命周期的管理。</p>
+</li>
+<li><p><strong><code>CefBrowserProcessHandler</code></strong> 是 CEF 中处理浏览器进程的类，它提供了浏览器进程相关的回调函数。</p>
+<p>因为 <code>App</code> 同时继承了这两个类，意味着它既是 CEF 应用程序的一个实例（<code>CefApp</code>），又能处理浏览器进程的事件（<code>CefBrowserProcessHandler</code>）。</p>
+</li>
+</ul>
+<p><strong>App() &#x3D; default</strong>:</p>
+<ul>
+<li>这是 <code>App</code> 类的构造函数定义。<code>= default;</code> 表示编译器会自动生成默认构造函数，这意味着没有任何自定义的初始化操作。如果需要添加构造函数的初始化行为，可以手动定义它。</li>
+</ul>
+<p><strong>CefRefPtr&lt; CefBrowserProcessHandler &gt; GetBrowserProcessHandler() override { return this; }</strong>:</p>
+<ul>
+<li><p>这个函数是 <code>CefApp</code> 类中的纯虚函数 <code>GetBrowserProcessHandler</code> 的重写（override）。</p>
+</li>
+<li><p>该函数返回一个 <code>CefRefPtr&lt;CefBrowserProcessHandler&gt;</code>，也就是返回 <code>this</code> 指针（<code>this</code> 是当前类 <code>App</code> 的指针）。</p>
+</li>
+<li><p><code>CefRefPtr</code> 是 CEF 中的智能指针，用于管理对象的生命周期，确保对象不会在使用期间被销毁。</p>
+<p>由于 <code>App</code> 同时继承了 <code>CefBrowserProcessHandler</code>，所以返回 <code>this</code> 指针是合法的，表示 <code>App</code> 也充当了浏览器进程的处理器。</p>
+</li>
+</ul>
+<p><strong>void OnContextInitialized() override</strong>:</p>
+<ul>
+<li><p><code>OnContextInitialized</code> 是 CEF 中 <code>CefBrowserProcessHandler</code> 类的一个回调函数。当 CEF 完成初始化时，这个函数会被调用。</p>
+</li>
+<li><p>在该函数内，通常会执行一些初始化代码，比如创建浏览器窗口、加载网页等。</p>
+<p>这个函数只是声明，在代码中可能会有相应的定义来实现实际的初始化逻辑。</p>
+</li>
+</ul>
+<p><strong>IMPLEMENT_REFCOUNTING(App)</strong>:</p>
+<ul>
+<li><p><code>IMPLEMENT_REFCOUNTING</code> 是 CEF 提供的宏，用来实现对象的引用计数功能。</p>
+</li>
+<li><p>CEF 使用引用计数来管理对象的生命周期。<code>IMPLEMENT_REFCOUNTING(App)</code> 会在类 <code>App</code> 中自动生成必要的代码，使得类 <code>App</code> 支持引用计数。</p>
+</li>
+<li><p>引用计数机制可以确保对象在不再需要时被自动销毁，避免内存泄漏。</p>
+<p>这段代码使得 <code>App</code> 类对象可以通过 CEF 的引用计数系统来进行正确的内存管理。</p>
+</li>
+</ul>
+<p>总而言之这段代码定义了一个名为 App 的类，它继承自 CefApp 和 CefBrowserProcessHandler类，并且实现了 CefBrowserProcessHandler中的回调函数 OnContextInitialized。这个类主要用于处理 CEF 浏览器进程的初始化和生命周期管理。通过 CefRefPtr 管理对象的引用计数，确保内存管理的安全性。</p>
+<h4 id="窗口创建逻辑"><a href="#窗口创建逻辑" class="headerlink" title="窗口创建逻辑"></a>窗口创建逻辑</h4><p>我们在<code>OnContextInitialized</code>方法中创建了第一个窗口，让我们看看App.cpp文件内的文件：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;App.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;include/cef_browser.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;include/views/cef_browser_view.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;include/views/cef_window.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;include/wrapper/cef_helpers.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;WindowDelegate.h&quot;</span></span><br><span class="hljs-comment">//CEF主进程上下文环境初始化成功</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">App::OnContextInitialized</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-comment">//表示调用App内的成员函数</span><br>    <span class="hljs-built_in">CEF_REQUIRE_UI_THREAD</span>();<br>    <span class="hljs-keyword">auto</span> url = <span class="hljs-string">&quot;https://www.bayeeaa.top&quot;</span>;<br>    CefBrowserSettings settings;<br>    CefRefPtr&lt;CefBrowserView&gt; browser_view = CefBrowserView::<span class="hljs-built_in">CreateBrowserView</span>(<span class="hljs-literal">nullptr</span>, url, settings, <span class="hljs-literal">nullptr</span>, <span class="hljs-literal">nullptr</span>, <span class="hljs-literal">nullptr</span>);<br>    CefWindow::<span class="hljs-built_in">CreateTopLevelWindow</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">WindowDelegate</span>(browser_view));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>CEF_REQUIRE_UI_THREAD()</code>：这是 CEF 的一个宏，确保后续的代码在 UI 线程中执行。UI 操作必须在主线程（UI 线程）上完成。</p>
+<p><code>auto url = &quot;https://www.bayeeaa.top&quot;;</code>：定义了一个 URL 字符串，指定浏览器将要加载的网页地址。</p>
+<p><code>CefBrowserSettings settings;</code>：创建一个 <code>CefBrowserSettings</code> 对象，用于配置浏览器实例的设置。</p>
+<p><code>CefRefPtr&lt;CefBrowserView&gt; browser_view = CefBrowserView::CreateBrowserView(nullptr, url, settings, nullptr, nullptr, nullptr);</code>：这行代码创建一个浏览器视图（<code>CefBrowserView</code>），并设置它的 URL、浏览器设置等。</p>
+<ul>
+<li><code>nullptr</code> 表示没有指定的参数，比如没有提供父窗口、没有指定特定的浏览器实例等。</li>
+</ul>
+<p><code>CefWindow::CreateTopLevelWindow(new WindowDelegate(browser_view));</code>：这行代码创建了一个顶级窗口，并将 <code>WindowDelegate</code>（一个窗口代理类的实例）与 <code>browser_view</code> 绑定。</p>
+<ul>
+<li><code>WindowDelegate</code> 类通常负责处理窗口的事件（如窗口大小调整、关闭等）。</li>
+</ul>
+<h4 id="窗口代理对象"><a href="#窗口代理对象" class="headerlink" title="窗口代理对象"></a>窗口代理对象</h4><p>窗口代理对象（<code>WindowDelegate</code>）通常是指一个负责管理和处理窗口事件的类。这些事件包括窗口的创建、大小调整、关闭、鼠标和键盘输入等。<code>WindowDelegate</code> 不是 CEF 的核心组件之一，但它通常作为一个自定义类出现在 CEF 的应用程序中，用来简化与窗口相关的操作和事件处理。当浏览器进程的主线程初始化成功后，App 对象的 OnContextInitialized 方法会被执行，在这个方法的最后，我们通过CreateTopLevelWindow 方法为 CEF 框架提供了一个窗口代理对象。 <strong>CEF 框架会把与窗口创建有关的逻辑交给这个对象来执行</strong>。</p>
+<p>所以，在 CEF 中，窗口本身并不直接处理用户交互或者窗口系统事件。相反，它依赖于代理对象来执行这些任务。通过创建一个 <code>WindowDelegate</code> 对象，可以自定义和实现窗口的行为，处理和响应窗口的生命周期事件。</p>
+<p><em>WindowDelegate.h</em>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> once</span><br> <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;include/views/cef_window.h&quot;</span></span><br> <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;include/views/cef_browser_view.h&quot;</span></span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">WindowDelegate</span> : <span class="hljs-keyword">public</span> CefWindowDelegate<br>&#123;<br><span class="hljs-keyword">public</span>:<br>        <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">WindowDelegate</span><span class="hljs-params">(CefRefPtr&lt;CefBrowserView&gt; browser_view)</span> : browser_view_(browser_view) &#123;</span>&#125;;<br>        <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">OnWindowCreated</span><span class="hljs-params">(CefRefPtr&lt;CefWindow&gt; window)</span> <span class="hljs-keyword">override</span></span>;<br>        <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">OnWindowDestroyed</span><span class="hljs-params">(CefRefPtr&lt;CefWindow&gt; window)</span> <span class="hljs-keyword">override</span></span>;<br>        <span class="hljs-function">CefRect <span class="hljs-title">GetInitialBounds</span><span class="hljs-params">(CefRefPtr&lt;CefWindow&gt; window)</span> <span class="hljs-keyword">override</span></span>;<br>        <span class="hljs-built_in">WindowDelegate</span>(<span class="hljs-type">const</span> WindowDelegate&amp;) = <span class="hljs-keyword">delete</span>;<br>        WindowDelegate&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> WindowDelegate&amp;) = <span class="hljs-keyword">delete</span>;<br><span class="hljs-keyword">private</span>:<br>        CefRefPtr&lt;CefBrowserView&gt; browser_view_;<br>        <span class="hljs-built_in">IMPLEMENT_REFCOUNTING</span>(WindowDelegate);<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><code>WindowDelegate 类</code>继承自 CefWindowDelegate ，它的构造函数接收一个 CefBrowserView 类型的智能指针，并把这个智能指针存放到 browser_view_ 私有变量中，以备后续使用。</p>
+<p>与 App 类一样，它也使用了 IMPLEMENT_REFCOUNTING 宏，除此之外，它还删除了拷贝和赋值操作（注意头文件中的两个 “…&#x3D; delete” 语句，这部分内容我们将在下一节课进行详细讲解）。</p>
+<p>这个类实现了父类的三个方法，CEF 框架会在适当的时机调用这三个方法，一般我们可以把它理解为窗口生命周期内的事件，它们分别是：<strong>设置窗口位置和大小事件、窗口创建成功事件、窗口销毁成功事件</strong>。</p>
+<p><em>WindowDelegate.cpp</em>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;WindowDelegate.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;include/cef_app.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;include/views/cef_display.h&quot;</span></span><br><span class="hljs-comment">//窗口创建成功</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">WindowDelegate::OnWindowCreated</span><span class="hljs-params">(CefRefPtr&lt;CefWindow&gt; window)</span> </span>&#123;<br>    window-&gt;<span class="hljs-built_in">AddChildView</span>(browser_view_);<br>    window-&gt;<span class="hljs-built_in">Show</span>();<br>    browser_view_-&gt;<span class="hljs-built_in">RequestFocus</span>();<br>    window-&gt;<span class="hljs-built_in">SetTitle</span>(<span class="hljs-string">L&quot;这是我的窗口标题&quot;</span>);<br>    <span class="hljs-comment">//window-&gt;CenterWindow(CefSize(800, 600));</span><br>&#125;<br><span class="hljs-comment">//窗口销毁成功</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">WindowDelegate::OnWindowDestroyed</span><span class="hljs-params">(CefRefPtr&lt;CefWindow&gt; window)</span> </span>&#123;<br>    browser_view_ = <span class="hljs-literal">nullptr</span>;<br>    <span class="hljs-built_in">CefQuitMessageLoop</span>();<br>&#125;<br><span class="hljs-comment">//设置窗口位置和大小</span><br><span class="hljs-function">CefRect <span class="hljs-title">WindowDelegate::GetInitialBounds</span><span class="hljs-params">(CefRefPtr&lt;CefWindow&gt; window)</span> </span>&#123;<br>    CefRefPtr&lt;CefDisplay&gt; display = CefDisplay::<span class="hljs-built_in">GetPrimaryDisplay</span>();<br>    CefRect rect = display-&gt;<span class="hljs-built_in">GetBounds</span>();<br>    rect.x = (rect.width - <span class="hljs-number">800</span>) / <span class="hljs-number">2</span>;<br>    rect.y = (rect.height - <span class="hljs-number">600</span>) / <span class="hljs-number">2</span>;<br>    rect.width = <span class="hljs-number">800</span>;<br>    rect.height = <span class="hljs-number">600</span>;<br>    <span class="hljs-keyword">return</span> rect;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>设置窗口位置和大小</strong></p>
+<p>当 App 类 <code>CreateTopLevelWindow</code> 方法被执行后，CEF 框架将创建一个系统窗口，创建这个窗口之前，CEF 框架会调用<code>GetInitialBounds</code>方法，在这个方法中我们做了如下几个工作。</p>
+<ol>
+<li>设定窗口的尺寸为宽 800 像素，高 600 像素。</li>
+<li>通过<code>CefDisplay</code> 类的静态方法<code>GetPrimaryDisplay</code> 获取到了用户的主屏幕信息。</li>
+<li>根据主屏幕信息及设定的窗口尺寸计算出窗口位于屏幕正中间时窗口的坐标。</li>
+<li>通过 CefRect 结构把窗口的坐标及尺寸返回给 CEF 框架。</li>
+</ol>
+<p>我们可以在窗口创建成功之后再通过窗口对象的 <code>CenterWindow</code> 方法来把窗口设置到屏幕正中间（同时也可以设置窗口尺寸），但这显然不如在窗口创建之初就明确窗口的位置和尺寸更高效。如果开发者不通过 <code>GetInitialBounds</code> 方法设置窗口的尺寸，还可以通过重写基类的 <code>GetPreferredSize</code>方法来设置窗口尺寸。 CEF 的示例项目就是这么做的，但我认为还是在<code>GetInitialBounds</code> 方法中完成这项工作比较好。</p>
+<p><strong>窗口创建成功事件</strong></p>
+<p>当 App 类 CreateTopLevelWindow 方法被执行后，CEF 框架将创建一个系统窗口，当这个窗口成功创建完成后， <code>OnWindowCreated</code> 被调用，我们在这个方法里把 App 类里创建的 BrowserView 对象添加到了这个窗口中（ window-&gt;AddChildView ），然后让这个窗口显示出来（ window-&gt;Show ），最后用户焦点被聚焦在 BrowserView 上（ browser_view_-&gt;RequestFocus ），最后一行注释掉的代码就是把窗口移动到主屏幕中央的代码。</p>
+<p><strong>窗口销毁成功事件</strong></p>
+<p>当窗口被销毁后（可能是用户点击了窗口的关闭按钮，也可能是代码逻辑触发了窗口关闭的方法），<code>OnWindowDestroyed</code> 方法被执行，此处我们把 browser_view_ 指针置空。接着我们执行了 CefQuitMessageLoop 方法，这个方法会在 CEF 的消息循环中插入一个退出消息，CEF 框架收到这个消息后，会退出消息循环，清理资源，退出应用。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CEF框架的基本认识</div>
+      <div>https://bayeeaa.github.io/2025/01/26/CEF基本认识/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Ye</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 26, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/23/pandas%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8Cplot%E7%94%BB%E5%B8%83%E7%9A%84%E4%BD%BF%E7%94%A8/" title="pandas数据分析和plot画布的使用">
+                        <span class="hidden-mobile">pandas数据分析和plot画布的使用</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
