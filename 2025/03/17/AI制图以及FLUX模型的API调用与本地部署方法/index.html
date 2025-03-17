@@ -1,0 +1,839 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.jpg">
+  <link rel="icon" href="/img/fluid.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ye">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="AI制图思路以及FLUX模型的API调用与本地部署方法随着AI Computer vision的发展已经诞生了多种类型的ai制图模型：Depth Estimation、Image Classification、Object Detection等等。本章博客主要写FLUX模型的Text-to-Image。 AI制图流程我们知道一张图片其实是由很多个像素点构成的，从一句话到一张图片无非就是提取话中的意">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI制图以及FLUX模型的API调用与本地部署方法">
+<meta property="og:url" content="https://bayeeaa.github.io/2025/03/17/AI%E5%88%B6%E5%9B%BE%E4%BB%A5%E5%8F%8AFLUX%E6%A8%A1%E5%9E%8B%E7%9A%84API%E8%B0%83%E7%94%A8%E4%B8%8E%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="ye&#39;s blog">
+<meta property="og:description" content="AI制图思路以及FLUX模型的API调用与本地部署方法随着AI Computer vision的发展已经诞生了多种类型的ai制图模型：Depth Estimation、Image Classification、Object Detection等等。本章博客主要写FLUX模型的Text-to-Image。 AI制图流程我们知道一张图片其实是由很多个像素点构成的，从一句话到一张图片无非就是提取话中的意">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/03/17/AI%E5%88%B6%E5%9B%BE%E4%BB%A5%E5%8F%8AFLUX%E6%A8%A1%E5%9E%8B%E7%9A%84API%E8%B0%83%E7%94%A8%E4%B8%8E%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%96%B9%E6%B3%95/image-20250317171251248.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/03/17/AI%E5%88%B6%E5%9B%BE%E4%BB%A5%E5%8F%8AFLUX%E6%A8%A1%E5%9E%8B%E7%9A%84API%E8%B0%83%E7%94%A8%E4%B8%8E%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%96%B9%E6%B3%95/image-20250317172317932.png">
+<meta property="article:published_time" content="2025-03-17T09:26:59.000Z">
+<meta property="article:modified_time" content="2025-03-17T09:28:41.032Z">
+<meta property="article:author" content="Ye">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bayeeaa.github.io/2025/03/17/AI%E5%88%B6%E5%9B%BE%E4%BB%A5%E5%8F%8AFLUX%E6%A8%A1%E5%9E%8B%E7%9A%84API%E8%B0%83%E7%94%A8%E4%B8%8E%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%96%B9%E6%B3%95/image-20250317171251248.png">
+  
+  
+  
+  <title>AI制图以及FLUX模型的API调用与本地部署方法 - ye&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"bayeeaa.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ye</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>档案</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AI制图以及FLUX模型的API调用与本地部署方法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-17 17:26" pubdate>
+          March 17, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          49 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">AI制图以及FLUX模型的API调用与本地部署方法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="AI制图思路以及FLUX模型的API调用与本地部署方法"><a href="#AI制图思路以及FLUX模型的API调用与本地部署方法" class="headerlink" title="AI制图思路以及FLUX模型的API调用与本地部署方法"></a>AI制图思路以及FLUX模型的API调用与本地部署方法</h2><p>随着AI Computer vision的发展已经诞生了多种类型的ai制图模型：Depth Estimation、Image Classification、Object Detection等等。本章博客主要写FLUX模型的Text-to-Image。</p>
+<h3 id="AI制图流程"><a href="#AI制图流程" class="headerlink" title="AI制图流程"></a>AI制图流程</h3><p>我们知道一张图片其实是由很多个像素点构成的，从一句话到一张图片无非就是提取话中的意思，并转换成向量，通过大模型的计算，构成一个一个像素点，从而变成可以给人看的图片。</p>
+<h4 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h4><p>FLUX.1-dev为官方满配模型，最低显存要求24G，生成图片质量高，但是会占用大量电脑算力。与之诞生的有FLUX.1-dev fp8，FLUX.1 schnell(蒸馏模型)，FLUX.1 schnell fp8，Flux1-dev-bnb-nf4等优化版本供一般用户使用。不同的版本拥有不同的量化精度，我们可以对照以下表格来选择合适的模型。</p>
+<table>
+<thead>
+<tr>
+<th><strong>格式</strong></th>
+<th><strong>位数</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>用途</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>FP32</strong></td>
+<td>32 位浮点</td>
+<td>默认的高精度格式</td>
+<td>模型训练、推理</td>
+</tr>
+<tr>
+<td><strong>FP16</strong></td>
+<td>16 位浮点</td>
+<td>更低的精度，性能更高</td>
+<td>推理加速、混合精度训练</td>
+</tr>
+<tr>
+<td><strong>BF16</strong></td>
+<td>16 位浮点</td>
+<td>宽指数范围，适合训练</td>
+<td>深度学习训练优化</td>
+</tr>
+<tr>
+<td><strong>FP8</strong></td>
+<td>8 位浮点</td>
+<td>超低精度，节省显存</td>
+<td>新一代硬件推理优化</td>
+</tr>
+<tr>
+<td><strong>INT8</strong></td>
+<td>8 位整数</td>
+<td>极低精度，硬件优化好</td>
+<td>推理优化、TensorRT 支持</td>
+</tr>
+<tr>
+<td><strong>INT4</strong></td>
+<td>4 位整数</td>
+<td>更小精度，存储效率高</td>
+<td>极端模型压缩、边缘部署</td>
+</tr>
+<tr>
+<td><strong>NF4</strong></td>
+<td>4 位浮点</td>
+<td>归一化的 4 位浮点格式</td>
+<td>大模型权重量化</td>
+</tr>
+<tr>
+<td><strong>GPTQ</strong></td>
+<td>多位数支持</td>
+<td>高效的权重量化方法</td>
+<td>LLaMA 等大模型优化</td>
+</tr>
+<tr>
+<td><strong>AWQ</strong></td>
+<td>低位权重量化</td>
+<td>激活感知的权重量化方法</td>
+<td>保证模型精度的量化</td>
+</tr>
+</tbody></table>
+<h4 id="VAE"><a href="#VAE" class="headerlink" title="VAE"></a>VAE</h4><p>VAE全称Variational Autoencoder(变分自编码器)，是一种常用于生成模型的深度学习结构。这种概率生成模型，能够学习数据的潜在分布并生成类似的数据。它由两部分组成：</p>
+<ol>
+<li><p><strong>Encoder（编码器）</strong></p>
+<ul>
+<li><p>将输入数据 xxx 映射到一个潜在空间，输出的是一个概率分布的参数（通常是均值 μ\muμ 和标准差 σ\sigmaσ）。</p>
+</li>
+<li><p>这个潜在空间的向量 zzz 是从这个概率分布中随机采样得到的。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Decoder（解码器）</strong></p>
+<ul>
+<li>将潜在向量 zzz 解码，尽可能地还原出原始数据 x′x’x′。</li>
+</ul>
+</li>
+</ol>
+<p>VAE 的总损失由两部分组成：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">L</span> = 重构损失 + KL散度<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>重构损失</strong>（Reconstruction Loss）：衡量生成的 x′x’x′ 与原始输入 xxx 之间的差异，通常使用 <strong>均方误差（MSE）</strong> 或 <strong>交叉熵</strong>。</li>
+<li><strong>KL 散度</strong>（Kullback-Leibler Divergence）：衡量编码器输出的分布 q(z∣x)q(z|x)q(z∣x) 与标准正态分布 p(z)p(z)p(z) 之间的差异，确保潜在空间分布合理，避免模型过拟合。</li>
+</ol>
+<p>简单粗俗的说，VAE就是一个压缩包，它尽量提取这个图像的特征（也就是编码），那么我们的主模型FLUX就可以通过这些特征来进行计算，不需要每一个向量都要都要由FLUX计算，这样就提高了效率，也节省了算力。最后也可以由VAE来进行解压（解码），将图片预测扩散，从而变成我们想要的图片。</p>
+<h4 id="CLIP"><a href="#CLIP" class="headerlink" title="CLIP"></a>CLIP</h4><p>全称为<code>Contrastive Language–Image Pre-training</code>，主要有以下四个特点：</p>
+<ul>
+<li><p><strong>文本引导</strong>：在ComfyUI这种模型中，CLIP 负责把 Prompt 翻译成“潜在空间向量”，引导模型朝着正确的方向生成。</p>
+</li>
+<li><p><strong>图像识别</strong>：在反向提示词时，CLIP 也能识别哪些东西不该出现在图里。</p>
+</li>
+<li><p><strong>风格对齐</strong>：如果你加了艺术风格的描述，CLIP 也能识别出来，并让图像风格尽量贴合。</p>
+</li>
+<li><p><strong>Prompt Embedding</strong>：通过精细化的 Prompt 设计，CLIP 可以捕捉更微妙的图像特征，提升生成效果。</p>
+</li>
+</ul>
+<p>CLIP会将模型编码成嵌入组，用于引导扩散模型生成图像。</p>
+<h4 id="Sampler"><a href="#Sampler" class="headerlink" title="Sampler"></a>Sampler</h4><p>Sampler(采样器)可以说是一个指挥官，它负责控制扩散模型在去噪过程中的步骤和方式。在AI生成图片时，会先在潜在空间里生成一张纯噪声图(这个纯噪声图是纯随机的，没有任何规律)。然后采样器通过集成噪波、引导器、k采样器、西格玛、Latent图像等参数进行除噪。</p>
+<p><strong>噪波</strong>：随机噪声，会随机生成种子，是生成过程的起始点。</p>
+<p><strong>引导器</strong>：提供附加条件信息，引导生成过程朝向特定目标。</p>
+<p><strong>k采样器</strong>：控制采样方式的策略，影响生成过程的质量和多样性。</p>
+<p><strong>西格玛</strong>：控制噪声强度的参数，影响图像中的噪声程度。</p>
+<ul>
+<li><p><strong>UNet</strong>：是一个神经网络结构，专门用于逐步去噪，在生成过程中接收潜在空间的数据，然后逐步去除噪声，直到最终生成图像。</p>
+</li>
+<li><p><strong>Sampler</strong>：负责如何对 UNet 执行去噪操作，以及去噪的具体策略，比如去噪的步数、随机性、细节处理等。</p>
+</li>
+</ul>
+<h4 id="噪点与向量的关系"><a href="#噪点与向量的关系" class="headerlink" title="噪点与向量的关系"></a>噪点与向量的关系</h4><ol>
+<li><strong>噪点与潜在空间中的向量</strong>：<ul>
+<li>在生成图像的过程中，模型通常从一个噪声向量开始，而这个噪声向量会通过扩散模型的反向扩散过程（去噪）逐步转化为一个真实的图像。</li>
+<li>向量代表了图像的潜在特征空间，而噪点则是这种潜在空间的一种随机扰动，表示一个完全无意义、随机的初始状态。</li>
+</ul>
+</li>
+<li><strong>生成过程中的向量</strong>：<ul>
+<li>在前向扩散过程中，模型会将图像逐步添加噪声，最终得到一个完全的噪声图。这时图像的每个像素值是随机的，不能称为“向量”——它只是一个高维的随机噪声。</li>
+<li>然后，在反向扩散过程中，这个噪声逐步被转化为一个更有意义的向量（图像的潜在空间表示），每一步的去噪都在让这个潜在向量向目标图像的特征空间靠近。</li>
+</ul>
+</li>
+<li><strong>潜在向量的编码与解码</strong>：<ul>
+<li>在很多扩散模型（如Stable Diffusion）中，图像会被首先编码为潜在空间中的向量（通过类似 VAE的结构），然后才开始添加噪声或去噪。</li>
+<li>这个潜在向量可以看作是图像的高维“表示”，而噪点则是它的随机扰动。在反向扩散过程中，模型会将噪点从这些潜在向量中去除，最终还原出一个清晰的图像。</li>
+</ul>
+</li>
+</ol>
+<h4 id="ControlNet"><a href="#ControlNet" class="headerlink" title="ControlNet"></a>ControlNet</h4><p><strong>ControlNet</strong> 是一种基于深度学习的 <strong>图像生成控制机制</strong>，特别是在扩散模型中，用来为图像生成过程提供更多的结构化控制。ControlNet 通过 额外的控制信号，使得生成的图像可以更好地遵循特定的约束条件或结构信息，从而更精确地生成用户所期望的图像。也就是说我们可以通过上传更多的图片来标准所要生成的图像。</p>
+<h4 id="LoRA"><a href="#LoRA" class="headerlink" title="LoRA"></a>LoRA</h4><p><strong>LoRA</strong>（Low-Rank Adaptation）是一种用于轻量级微调技术，旨在通过增加少量的参数来调整和微调模型，从而实现更高效的任务定制。</p>
+<p><strong>低秩矩阵分解</strong>：</p>
+<ul>
+<li>LoRA 的核心思想是低秩矩阵分解，它通过在神经网络的权重矩阵上引入一个低秩的适应层，来对模型进行微调。</li>
+<li>通过这种方式，LoRA 只需要学习很少的额外参数，而不是直接修改原有的庞大模型权重。这样可以极大地降低微调大规模模型所需的计算资源和存储开销。</li>
+</ul>
+<p><strong>适应层的引入</strong>：</p>
+<ul>
+<li>在 LoRA 中，通常会在模型的某些层（如 Transformer 层）中添加一个低秩矩阵，并通过这个矩阵来调节模型的行为。</li>
+<li>这些低秩适应层是可训练的，并且它们的规模相对于原始模型的权重矩阵要小得多，这使得微调过程更加高效。</li>
+</ul>
+<p><strong>微调和预训练模型</strong>：</p>
+<ul>
+<li>LoRA 允许你在预训练的大型模型上进行微调，而不需要重新训练整个模型。你只需要调整少量的 LoRA 参数，这使得微调过程更加轻量且资源高效。</li>
+<li>这对于资源有限的用户（如在 GPU 内存受限的情况下）尤其重要，因为 LoRA 允许你通过较少的计算和存储消耗，获得具有较好性能的定制化模型。</li>
+</ul>
+<p>通过Lora我们可以将其他人训练的专一模型参数(比如皮肤光滑，二次元，朋克风等)，让我们训练的图像更加偏向我们想要的部分。并且Lora不需要重建整个模型，因此我们只需要加入一个主模型，再加入几个副模型(Lora)我们就可以完成图片的生成。</p>
+<h4 id="Embedding"><a href="#Embedding" class="headerlink" title="Embedding"></a>Embedding</h4><p>Embedding（嵌入）是一种将高维数据（如文本、图像、语音等）映射到低维向量空间的技术。这种向量表示可以保留原始数据的某些重要特征，并且便于在机器学习和深度学习模型中进行处理。目的是将复杂的数据（例如单词、句子或图像）转换为一个低维度的向量，使得模型能够理解并处理这些数据。在这个向量空间中，相似的输入会被映射到相似的向量，从而可以用数学方法计算它们之间的关系。比如词嵌入（Word Embedding）：是将单词转换成一个固定长度的向量。例如，使用Word2Vec或GloVe这类算法，可以将每个单词映射为一个向量，这些向量在某种程度上反映了单词之间的语义关系。相似意思的词语（如 “king” 和 “queen”）的向量会在空间中非常接近。在图像中，可以用于图像检索或分类任务。</p>
+<p>但是我们可以看到CLIP和Embedding都与向量生成有关，他们之间有什么区别呢？</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th><strong>Embedding</strong></th>
+<th><strong>CLIP</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>输入类型</strong></td>
+<td>单一类型的数据（如文本、图像等）</td>
+<td>同时处理文本和图像两种输入</td>
+</tr>
+<tr>
+<td><strong>输出</strong></td>
+<td>每个输入被映射为一个固定维度的向量</td>
+<td>文本和图像被映射到相同的向量空间</td>
+</tr>
+<tr>
+<td><strong>用途</strong></td>
+<td>用于文本、图像等数据的向量表示、特征提取</td>
+<td>用于跨模态（文本和图像）匹配、生成</td>
+</tr>
+<tr>
+<td><strong>模型架构</strong></td>
+<td>独立于单一模态的嵌入学习</td>
+<td>通过对比学习同时训练文本和图像的嵌入</td>
+</tr>
+<tr>
+<td><strong>目标</strong></td>
+<td>提供单一数据类型的低维向量表示</td>
+<td>实现图像和文本之间的相互理解和转换</td>
+</tr>
+</tbody></table>
+<p>我们可以看到Embedding作为一种通用的技术，它将单一类型的数据（如文本或图像）映射到低维向量空间，用于各种任务，如分类、检索等。</p>
+<p>而CLIP则是一个多模态的模型，旨在将文本和图像映射到同一个向量空间，使得它能够处理跨模态任务，如图像描述生成、图像搜索、文本生成图像等。CLIP 的一个重要特性是，它能够理解并计算文本与图像之间的相似性，从而使得图像和文本在相同的向量空间中具有可比性。</p>
+<h3 id="API调用并使用Gradio可视化界面"><a href="#API调用并使用Gradio可视化界面" class="headerlink" title="API调用并使用Gradio可视化界面"></a>API调用并使用Gradio可视化界面</h3><p>api调用可以让庞大的计算任务在云端服务器进行，可以减少耗时，也可以使用更大数据量的模型。</p>
+<p>进入huggingface我们可以看到官方api调用demo：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> huggingface_hub <span class="hljs-keyword">import</span> InferenceClient<br><br>client = InferenceClient(<br>    provider=<span class="hljs-string">&quot;replicate&quot;</span>,<br>    api_key=<span class="hljs-string">&quot;hf_xxxxxxxxxxxxxxxxxxxxxxxx&quot;</span>,<br>)<br><br><span class="hljs-comment"># output is a PIL.Image object</span><br>image = client.text_to_image(<br>	<span class="hljs-string">&quot;Astronaut riding a horse&quot;</span>,<br>	model=<span class="hljs-string">&quot;black-forest-labs/FLUX.1-dev&quot;</span>,<br>)<br></code></pre></td></tr></table></figure>
+
+<p>provider是供应商；apikey需要自己注册，里面有关收费。</p>
+<p>有了本地部署的demo，我们可以再加入ai生成中比较火的可视化库<code>gradio</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gradio <span class="hljs-keyword">as</span> gr<br><span class="hljs-keyword">from</span> huggingface_hub <span class="hljs-keyword">import</span> InferenceClient<br><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><br>client = InferenceClient(<br>    provider=<span class="hljs-string">&quot;replicate&quot;</span>,<br>    api_key=<span class="hljs-string">&quot;hf_114514&quot;</span><br>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_image</span>(<span class="hljs-params">prompt</span>):<br>    <span class="hljs-keyword">try</span>:<br>        image = client.text_to_image(<br>            prompt,<br>            model=<span class="hljs-string">&quot;black-forest-labs/FLUX.1-dev&quot;</span><br>        )<br>        <span class="hljs-keyword">return</span> image<br>    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;错误: <span class="hljs-subst">&#123;<span class="hljs-built_in">str</span>(e)&#125;</span>&quot;</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">save_image</span>(<span class="hljs-params">image_array</span>):<br>    image = Image.fromarray(image_array)<br><br>    filename = datetime.now().strftime(<span class="hljs-string">&quot;%Y-%m-%d_%H-%M-%S&quot;</span>) + <span class="hljs-string">&quot;.png&quot;</span><br><br>    image.save(filename)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;图片已保存: <span class="hljs-subst">&#123;filename&#125;</span>&quot;</span>)<br><br><span class="hljs-keyword">with</span> gr.Blocks() <span class="hljs-keyword">as</span> demo:<br>    gr.Markdown(<span class="hljs-string">&quot;## Flux.1 AI 图像生成&quot;</span>)<br>    gr.Markdown(<span class="hljs-string">&quot;**输入提示词（Prompt**&quot;</span>)<br><br>    prompt_input = gr.Textbox(label=<span class="hljs-string">&quot;输入描述（Prompt）&quot;</span>)<br>    generate_button = gr.Button(<span class="hljs-string">&quot;生成图像&quot;</span>)<br>    output_image = gr.Image(label=<span class="hljs-string">&quot;生成的图像&quot;</span>)<br>    image_save_button = gr.Button(<span class="hljs-string">&quot;保存图像&quot;</span>)<br><br>    generate_button.click(fn=generate_image, inputs=[prompt_input], outputs=[output_image])<br>    image_save_button.click(fn=save_image, inputs=[output_image], outputs=[])<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    demo.launch(share=<span class="hljs-literal">True</span>)<br><br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<p><img src="/2025/03/17/AI%E5%88%B6%E5%9B%BE%E4%BB%A5%E5%8F%8AFLUX%E6%A8%A1%E5%9E%8B%E7%9A%84API%E8%B0%83%E7%94%A8%E4%B8%8E%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%96%B9%E6%B3%95/image-20250317171251248.png" srcset="/img/loading.gif" lazyload alt="正常有图片的，但是我这里Inference Usage用完了-.-"></p>
+<h3 id="本地部署ComfyUI"><a href="#本地部署ComfyUI" class="headerlink" title="本地部署ComfyUI"></a>本地部署ComfyUI</h3><p>ComfyUI是一个非常使用的ai制图工具，里面的工作流清楚明了。可以在github上的<a target="_blank" rel="noopener" href="https://github.com/comfyanonymous/ComfyUI">官方库地址</a>下载。</p>
+<p>使用模型的方法有很多种，我这里讲一种。下载模型均可在huggingface上找到开源的（FLUX.1dev需要24G，可以下载fp8模型(12G)或者schnell蒸馏模型，这个蒸馏模型预计8G显存可跑）。</p>
+<p>然后下载CLIP模型( t5xxl_fp16.safetensors 或 t5xxl_fp8_e4m3fn.safetensors 还有 clip_l.safetensors)与VAE模型。</p>
+<p>按照以下地址存放：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">ComfyUI<span class="hljs-regexp">/models/u</span>net/FLUX模型<br>ComfyUI<span class="hljs-regexp">/models/</span>vae/VAE模型<br>ComfyUI<span class="hljs-regexp">/models/</span>clip/t5xxl_fp16.safetensors和clip_l.safetensors<br></code></pre></td></tr></table></figure>
+
+<p>然后点击run_nvidia_gpu.bat批处理文件就可以打开UI界面：</p>
+<p><img src="/2025/03/17/AI%E5%88%B6%E5%9B%BE%E4%BB%A5%E5%8F%8AFLUX%E6%A8%A1%E5%9E%8B%E7%9A%84API%E8%B0%83%E7%94%A8%E4%B8%8E%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%96%B9%E6%B3%95/image-20250317172317932.png" srcset="/img/loading.gif" lazyload alt="ComfyUI"></p>
+<p>可以看到整个界面是十分明了的。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AI制图以及FLUX模型的API调用与本地部署方法</div>
+      <div>https://bayeeaa.github.io/2025/03/17/AI制图以及FLUX模型的API调用与本地部署方法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Ye</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 17, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/08/%E5%9C%A8CEF%E4%B8%AD%E9%80%9A%E8%BF%87%E5%86%85%E7%BD%AE%E5%8D%8F%E8%AE%AE%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0html%E6%96%87%E4%BB%B6/" title="在CEF中通过内置协议加载本地html文件">
+                        <span class="hidden-mobile">在CEF中通过内置协议加载本地html文件</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
