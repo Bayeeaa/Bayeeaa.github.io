@@ -1,0 +1,663 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.jpg">
+  <link rel="icon" href="/img/fluid.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ye">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MCP协议的认识与使用现在AI的发展越来越快，ChatGPT已经升级到4.5、Gork也到了3.0版本、更有DeepSeek开源了以极低的成本却性能比肩GPT4的模型，使得各大大模型公司的市值不得不重新估值，直接撼动了美股。截止到现在Google公司推出的Gemini-2.5-pro模型更是断层领先所有世界上的大语言模型，对于人文模块的问题在使用上能明显感觉到与其他大语言模型不同，它能从不同的角度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MCP协议的认识与使用">
+<meta property="og:url" content="https://bayeeaa.github.io/2025/04/11/MCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AE%A4%E8%AF%86%E4%B8%8E%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="ye&#39;s blog">
+<meta property="og:description" content="MCP协议的认识与使用现在AI的发展越来越快，ChatGPT已经升级到4.5、Gork也到了3.0版本、更有DeepSeek开源了以极低的成本却性能比肩GPT4的模型，使得各大大模型公司的市值不得不重新估值，直接撼动了美股。截止到现在Google公司推出的Gemini-2.5-pro模型更是断层领先所有世界上的大语言模型，对于人文模块的问题在使用上能明显感觉到与其他大语言模型不同，它能从不同的角度">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/04/11/MCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AE%A4%E8%AF%86%E4%B8%8E%E4%BD%BF%E7%94%A8/what-is-mcp.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/04/11/MCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AE%A4%E8%AF%86%E4%B8%8E%E4%BD%BF%E7%94%A8/image-20250411151739758.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/04/11/MCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AE%A4%E8%AF%86%E4%B8%8E%E4%BD%BF%E7%94%A8/image-20250411152455435.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/04/11/MCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AE%A4%E8%AF%86%E4%B8%8E%E4%BD%BF%E7%94%A8/image-20250411153212758.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/04/11/MCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AE%A4%E8%AF%86%E4%B8%8E%E4%BD%BF%E7%94%A8/image-20250411154650322.png">
+<meta property="og:image" content="https://bayeeaa.github.io/2025/04/11/MCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AE%A4%E8%AF%86%E4%B8%8E%E4%BD%BF%E7%94%A8/image-20250411155643101.png">
+<meta property="article:published_time" content="2025-04-11T08:01:27.000Z">
+<meta property="article:modified_time" content="2025-04-11T08:04:23.643Z">
+<meta property="article:author" content="Ye">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bayeeaa.github.io/2025/04/11/MCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AE%A4%E8%AF%86%E4%B8%8E%E4%BD%BF%E7%94%A8/what-is-mcp.png">
+  
+  
+  
+  <title>MCP协议的认识与使用 - ye&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"bayeeaa.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ye</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>档案</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MCP协议的认识与使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-11 16:01" pubdate>
+          April 11, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MCP协议的认识与使用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="MCP协议的认识与使用"><a href="#MCP协议的认识与使用" class="headerlink" title="MCP协议的认识与使用"></a>MCP协议的认识与使用</h2><p>现在AI的发展越来越快，ChatGPT已经升级到4.5、Gork也到了3.0版本、更有DeepSeek开源了以极低的成本却性能比肩GPT4的模型，使得各大大模型公司的市值不得不重新估值，直接撼动了美股。截止到现在Google公司推出的Gemini-2.5-pro模型更是断层领先所有世界上的大语言模型，对于人文模块的问题在使用上能明显感觉到与其他大语言模型不同，它能从不同的角度思考问题并提出客观的建议，而不是像其他模型只会分点列出观点。</p>
+<p>但是现在人工智能的发展不能仅仅只局限在卷“可信度”、“代码能力”、“数学解题”能力等，我们需要让AI帮我们真正的做事，真正的解放生产力。这就不得不引申出今年比较火热的一个概念——“AI Agent”。</p>
+<h3 id="何为AI-Agent"><a href="#何为AI-Agent" class="headerlink" title="何为AI Agent"></a>何为AI Agent</h3><p>AI Agent翻译成中文就是“智能体”，智能体说白了就是一个智能的体系，它能够帮我们直接制作ppt、word文档、直接编辑我们的代码项目，而不是每次都需要在聊天大模型里复制粘贴获得答案。它能够独立的判断并直接执行需要的操作。</p>
+<p>其实AI的“人机交互”在早些年里也火过，比如基于图像识别的YOLO，它可以应用在车牌识别，机器人环境识别等等。再比如现在的智驾系统。而今年我们说的AI Agent更加融入了我们的生产生活，它能感知电脑的环境，从而理解问题本身。</p>
+<h3 id="MCP协议的提出"><a href="#MCP协议的提出" class="headerlink" title="MCP协议的提出"></a>MCP协议的提出</h3><p>但是在实际的大语言模型使用过程人机交互的体验并不完美，我们时常要和编译器、浏览器、文件系统、数据库等打交道。但是我们的AI客户端并不知道我们电脑上的这些东西，那么怎么办呢？于是Claude就推出了<a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/">MCP协议（Model Context Protocol）</a></p>
+<p><img src="/2025/04/11/MCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AE%A4%E8%AF%86%E4%B8%8E%E4%BD%BF%E7%94%A8/what-is-mcp.png" srcset="/img/loading.gif" lazyload alt="what-is-mcp"></p>
+<p>由上图可以看到，MCP将各个软件统一管理，并通过MCP Server驱动接入客户端中。不同于之前的function call，MCP将各大模型都进行整合，现在市面上大部分模型都支持了MCP模型。</p>
+<p>在github上也有人专门整理了一些好用的MCP共我们接入AI客户端进行使用，比如<a target="_blank" rel="noopener" href="https://github.com/punkpeye/awesome-mcp-servers">awesome-mcp-servers</a></p>
+<p><img src="/2025/04/11/MCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AE%A4%E8%AF%86%E4%B8%8E%E4%BD%BF%E7%94%A8/image-20250411151739758.png" srcset="/img/loading.gif" lazyload alt="仓库如上"></p>
+<p>可以看到现在MCP支持的操作还是很多的比如Art、Code、Browser Automation等等。</p>
+<h3 id="MCP的使用"><a href="#MCP的使用" class="headerlink" title="MCP的使用"></a>MCP的使用</h3><h4 id="Cursor的配置"><a href="#Cursor的配置" class="headerlink" title="Cursor的配置"></a>Cursor的配置</h4><p>现在市面上支持MCP的AI客户端并不多，有Cursor、Cline、WindSurf、Claude App。Cline是vscode里面的一个插件，而我相信大部分人都是使用Cursor为主的，因此以下以Cursor的使用为例子。</p>
+<p>注意需要将版本升级到最新的版本，不然无法调出mcp.json文件。</p>
+<p>通过下图的操作：</p>
+<p><img src="/2025/04/11/MCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AE%A4%E8%AF%86%E4%B8%8E%E4%BD%BF%E7%94%A8/image-20250411152455435.png" srcset="/img/loading.gif" lazyload alt="操作流程"></p>
+<p>在setting中找到MCP并添加global MCP server（注意这里点开是global，如果你不想要MCP对加入全局变量你可以在当前文件的根目录中加入.cursor文件然后里面再创建mcp.json文件）。</p>
+<h4 id="引入MCP"><a href="#引入MCP" class="headerlink" title="引入MCP"></a>引入MCP</h4><p>点开mcp.json我们可以发现其实MCP就相当于是一个驱动脚本，通过下面的指令我们可以发送请求到远程服务器。</p>
+<p><img src="/2025/04/11/MCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AE%A4%E8%AF%86%E4%B8%8E%E4%BD%BF%E7%94%A8/image-20250411153212758.png" srcset="/img/loading.gif" lazyload alt="框住的为驱动脚本"></p>
+<p>比如我上图举例的文件查询，我们可以在官网中找到一些开源的MCP模型供我们使用<a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem">filesystem</a></p>
+<p><strong>NPX</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;filesystem&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;npx&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-string">&quot;-y&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-string">&quot;@modelcontextprotocol/server-filesystem&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-string">&quot;/Users/username/Desktop&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-string">&quot;/path/to/other/allowed/dir&quot;</span><br>      <span class="hljs-punctuation">]</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>我们选择相应的代码复制到mcp.json中并刷新控制台（这里的路径是filesystem能够访问的范围）。当名称左边亮绿灯了说明已经连接到服务器。我们就可以通过聊天框来运行程序（注意模式要选择到”Agent模式“）。</p>
+<p><img src="/2025/04/11/MCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AE%A4%E8%AF%86%E4%B8%8E%E4%BD%BF%E7%94%A8/image-20250411154650322.png" srcset="/img/loading.gif" lazyload alt="Console Log日志"></p>
+<p>可以看到MCP正确返回我桌面中实际存在的文件夹。由上图的日志我们可以看到，MCP在本质上其实就是一个运行在电脑上的nodejs程序，它通过nodejs来调用数据。</p>
+<p><img src="/2025/04/11/MCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AE%A4%E8%AF%86%E4%B8%8E%E4%BD%BF%E7%94%A8/image-20250411155643101.png" srcset="/img/loading.gif" lazyload alt="大致如上图"></p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>今年也许是Agent的一年，随着年初Manus，智能体一词被逐渐突出，我们都知道在大语言模型中编程的效率并不高效，经常编写出一堆bug。那么如果我们有MCP协议的支持，智能体是否能够直接读取电脑的环境配置，读取代码上下文的关系，那么以后代码编辑的效率会不会大大提高？maybe。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MCP协议的认识与使用</div>
+      <div>https://bayeeaa.github.io/2025/04/11/MCP协议的认识与使用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Ye</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 11, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/17/AI%E5%88%B6%E5%9B%BE%E4%BB%A5%E5%8F%8AFLUX%E6%A8%A1%E5%9E%8B%E7%9A%84API%E8%B0%83%E7%94%A8%E4%B8%8E%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%96%B9%E6%B3%95/" title="AI制图以及FLUX模型的API调用与本地部署方法">
+                        <span class="hidden-mobile">AI制图以及FLUX模型的API调用与本地部署方法</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
